@@ -1,0 +1,32 @@
+{
+	"name": "mezon/application",
+	"description": "Small application script",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Dodonov Alexey",
+			"email": "alexey@dodonov.pro",
+			"homepage": "http://gdzone.ru",
+			"role": "Founder"
+		}
+	],
+	"require": {
+		"php": ">=7.2.0",
+		"mezon/template-engine" : ">=1.0.0",
+		"mezon/conf" : ">=1.0.0",
+		"mezon/router" : ">=1.0.0",
+	},
+	"support": {
+		"email": "alexey@dodonov.pro",
+		"issues": "https://github.com/alexdodonov/mezon-application/issues",
+		"source": "https://github.com/alexdodonov/mezon-application"
+	},
+	"minimum-stability": "dev",
+	"homepage": "https://github.com/alexdodonov/mezon-application",
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"Mezon\\Application\\": ""
+		}
+	}
+}
