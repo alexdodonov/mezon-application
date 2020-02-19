@@ -45,9 +45,12 @@ class HtmlTemplateUnitTest extends \PHPUnit\Framework\TestCase
         $this->expectException(Exception::class);
 
         // setup and test body
-        new \Mezon\Application\HtmlTemplate(__DIR__, 'index2', [
+        $template = new \Mezon\Application\HtmlTemplate(__DIR__, 'index3', [
             'main'
         ]);
+
+        // debug if the exception was not thrown
+        var_dump($template);
     }
 
     /**
@@ -82,5 +85,33 @@ class HtmlTemplateUnitTest extends \PHPUnit\Framework\TestCase
 
         // test body
         $template->getBlock('unexisting');
+    }
+
+    /**
+     * Test existing var fetch
+     */
+    public function testGetExistingVar(): void
+    {
+        // setup
+        $template = new \Mezon\Application\HtmlTemplate(__DIR__);
+        $template->setPageVar('existing-var', 'existing value');
+
+        // test body and assertions
+        $this->assertEquals('existing value', $template->getPageVar('existing-var'));
+    }
+
+    /**
+     * Test unexisting var fetch
+     */
+    public function testGetUnExistingVar(): void
+    {
+        // setup
+        $template = new \Mezon\Application\HtmlTemplate(__DIR__);
+
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // test body
+        $template->getPageVar('unexisting-var');
     }
 }

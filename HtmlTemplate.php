@@ -87,6 +87,22 @@ class HtmlTemplate
     }
 
     /**
+     * Getting page var
+     *
+     * @param string $var
+     *            variable name
+     * @return mixed variable value, or exception if the variable was not found
+     */
+    public function getPageVar(string $var)
+    {
+        if (isset($this->pageVars[$var]) === false) {
+            throw (new \Exception('Template variable ' . $var . ' was not set'));
+        }
+
+        return $this->pageVars[$var];
+    }
+
+    /**
      * Setting page variables from file's content
      *
      * @param string $var
