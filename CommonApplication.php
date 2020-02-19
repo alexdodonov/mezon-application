@@ -122,10 +122,10 @@ class CommonApplication extends \Mezon\Application\Application
     /**
      * Method processes exception.
      *
-     * @param \Mezon\Service\ServiceRestTransport\RestException $e
+     * @param \Mezon\Rest\Exception $e
      *            RestException object.
      */
-    public function handleRestException(\Mezon\Service\ServiceRestTransport\RestException $e): void
+    public function handleRestException(\Mezon\Rest\Exception $e): void
     {
         $error = $this->baseFormatter($e);
 
@@ -169,8 +169,7 @@ class CommonApplication extends \Mezon\Application\Application
             }
 
             print($this->template->compile());
-        } catch (\Mezon\Service\ServiceRestTransport\RestException $e) {
-            // TODO exclude RestException to separate package
+        } catch (\Mezon\Rest\Exception $e) {
             $this->handleRestException($e);
         } catch (\Exception $e) {
             $this->handleException($e);

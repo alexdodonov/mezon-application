@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "523042c83f7bd6d636ab15b70bd63269",
+    "content-hash": "3d8bee6a4edcf25b990d289b77bdc8ed",
     "packages": [
         {
             "name": "mezon/conf",
@@ -83,6 +83,45 @@
             "description": "Small and fast framework for functional programming",
             "homepage": "https://github.com/alexdodonov/mezon-functional",
             "time": "2020-02-13T21:26:22+00:00"
+        },
+        {
+            "name": "mezon/rest-exception",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-rest-exception.git",
+                "reference": "0c3303e628c7b4514b39fe90cca1990cece2e2ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-rest-exception/zipball/0c3303e628c7b4514b39fe90cca1990cece2e2ea",
+                "reference": "0c3303e628c7b4514b39fe90cca1990cece2e2ea",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\Rest\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Small rest-exception script",
+            "homepage": "https://github.com/alexdodonov/mezon-rest-exception",
+            "time": "2020-02-19T20:34:07+00:00"
         },
         {
             "name": "mezon/router",

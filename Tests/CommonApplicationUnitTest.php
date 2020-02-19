@@ -132,7 +132,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $application = new TestCommonApplication();
         $output = '';
         try {
-            throw (new \Mezon\Service\ServiceRestTransport\RestException('', 0, 200, ''));
+            throw (new \Mezon\Rest\Exception('', 0, 200, ''));
         } catch (Exception $e) {
             // test body
             ob_start();

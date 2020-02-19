@@ -1,10 +1,16 @@
-# Base application class
+# Application classes [![Build Status](https://travis-ci.com/alexdodonov/mezon-application.svg?branch=master)](https://travis-ci.com/alexdodonov/mezon-application)
 
-##Intro
+## Installation
+
+Just type
+
+```
+composer require mezon/application
+```
+
+## Functionality
 
 All your applications will be derived from this class or will be using classes wich are siblings of this Application class.
-
-##Functionality
 
 This class provieds:
 
@@ -12,7 +18,7 @@ This class provieds:
 - transformation actionActionName methods into static routes /action-name/ wich handles GET and POST methods
 - loading routes from config file (php or json)
 
-###Loading routes from config file
+### Loading routes from config file
 
 With time your application will grow and number of routes will increase. So we have provided convinient way to store all routes in a standalone config file. So it is not necessary to initialize all routes in an Application (or any derived class) object's constructor.
 
