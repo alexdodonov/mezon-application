@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d8bee6a4edcf25b990d289b77bdc8ed",
+    "content-hash": "b6d9aa56c1b1c1c93e1d8b84dfecdb96",
     "packages": [
         {
             "name": "mezon/conf",
@@ -83,6 +83,47 @@
             "description": "Small and fast framework for functional programming",
             "homepage": "https://github.com/alexdodonov/mezon-functional",
             "time": "2020-02-13T21:26:22+00:00"
+        },
+        {
+            "name": "mezon/html-template",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-html-template.git",
+                "reference": "90cef7aa5f53f8715af044356116259665ad887b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-html-template/zipball/90cef7aa5f53f8715af044356116259665ad887b",
+                "reference": "90cef7aa5f53f8715af044356116259665ad887b",
+                "shasum": ""
+            },
+            "require": {
+                "mezon/conf": "^1.0.0",
+                "mezon/template-engine": "^1.0.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\HtmlTemplate\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Small html-template script",
+            "homepage": "https://github.com/alexdodonov/mezon-html-template",
+            "time": "2020-02-20T22:02:19+00:00"
         },
         {
             "name": "mezon/rest-exception",

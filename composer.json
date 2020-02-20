@@ -15,7 +15,8 @@
 		"mezon/template-engine" : "^1.0.0",
 		"mezon/conf" : "^1.0.0",
 		"mezon/router" : "^1.0.0",
-		"mezon/rest-exception": "^1.0.0"
+		"mezon/rest-exception": "^1.0.0",
+		"mezon/html-template": "^1.0.0"
 	},
 	"support": {
 		"email": "alexey@dodonov.pro",

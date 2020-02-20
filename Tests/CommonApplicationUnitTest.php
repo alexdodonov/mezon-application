@@ -32,7 +32,7 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
      */
     function __construct()
     {
-        parent::__construct(new \Mezon\Application\HtmlTemplate(__DIR__, 'index'));
+        parent::__construct(new \Mezon\HtmlTemplate\HtmlTemplate(__DIR__, 'index'));
     }
 
     function actionArrayResult()
