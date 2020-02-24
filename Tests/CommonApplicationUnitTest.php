@@ -115,7 +115,9 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         }
 
         // assertions
+        var_dump(str_replace('<pre>', '', $output));
         $output = json_decode(str_replace('<pre>', '', $output), true);
+        var_dump($output);
         $this->assertContains('message', $output);
         $this->assertContains('code', $output);
         $this->assertContains('call_stack', $output);
