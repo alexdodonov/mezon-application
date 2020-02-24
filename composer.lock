@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6d9aa56c1b1c1c93e1d8b84dfecdb96",
+    "content-hash": "8057f38eed6f9fbb3da42e29a0124f12",
     "packages": [
         {
             "name": "mezon/conf",
@@ -86,7 +86,7 @@
         },
         {
             "name": "mezon/html-template",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-html-template.git",
