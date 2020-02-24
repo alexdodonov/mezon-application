@@ -115,14 +115,10 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         }
 
         // assertions
-        var_dump(str_replace('<pre>', '', $output));
-        $output = json_decode(str_replace('<pre>', '', $output), true);
-        var_dump($output);
-        $this->assertContains('message', $output);
-        $this->assertContains('code', $output);
-        $this->assertContains('call_stack', $output);
-        $this->assertContains('host', $output);
-        $this->assertEquals('undefined', $output['host']);
+        $this->assertStringContainsString('"message"', $output);
+        $this->assertStringContainsString('"code"', $output);
+        $this->assertStringContainsString('"call_stack"', $output);
+        $this->assertStringContainsString('"host"', $output);
     }
 
     /**
@@ -144,12 +140,12 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         }
 
         // assertions
-        $output = json_decode(str_replace('<pre>', '', $output), true);
-        $this->assertContains('message', $output);
-        $this->assertContains('code', $output);
-        $this->assertContains('call_stack', $output);
-        $this->assertContains('host', $output);
-        $this->assertContains('httpBody', $output);
+        $this->assertStringContainsString('"message"', $output);
+        $this->assertStringContainsString('"code"', $output);
+        $this->assertStringContainsString('"call_stack"', $output);
+        $this->assertStringContainsString('"host"', $output);
+        $this->assertStringContainsString('"host"', $output);
+        $this->assertStringContainsString('"httpBody"', $output);
     }
 
     /**
