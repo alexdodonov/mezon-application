@@ -33,7 +33,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Running with correct router.
      */
-    public function testCorrectRoute()
+    public function testCorrectRoute(): void
     {
         $application = new TestApplication();
 
@@ -47,7 +47,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Running with incorrect router.
      */
-    public function testIncorrectRoute()
+    public function testIncorrectRoute(): void
     {
         $application = new TestApplication();
 
@@ -58,15 +58,13 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $output = ob_get_contents();
         ob_end_clean();
 
-        $this->assertTrue(
-            strpos($output, 'The processor was not found for the route') !== false,
-            'Invalid behavior with incorrect route');
+        $this->assertTrue(strpos($output, 'The processor was not found for the route') !== false, 'Invalid behavior with incorrect route');
     }
 
     /**
      * Test config structure validators.
      */
-    public function testConfigValidatorsRoute()
+    public function testConfigValidatorsRoute(): void
     {
         $application = new TestApplication();
 
@@ -81,7 +79,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Test config structure validators.
      */
-    public function testConfigValidatorsCallback()
+    public function testConfigValidatorsCallback(): void
     {
         $application = new TestApplication();
 
@@ -99,7 +97,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing loading routes from config file.
      */
-    public function testRoutesPhpConfig()
+    public function testRoutesPhpConfig(): void
     {
         $application = new TestApplication();
 
@@ -115,7 +113,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing loading routes from config file.
      */
-    public function testRoutesJsonConfig()
+    public function testRoutesJsonConfig(): void
     {
         $application = new TestApplication();
 
@@ -131,7 +129,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing loading POST routes from config file.
      */
-    public function testPostRoutesConfig()
+    public function testPostRoutesConfig(): void
     {
         $_SERVER['REQUEST_METHOD'] = 'POST';
 
@@ -149,7 +147,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Trying to load unexisting config.
      */
-    public function testLoadingFromUnexistingRoute()
+    public function testLoadingFromUnexistingRoute(): void
     {
         try {
             $application = new TestApplication();
@@ -165,7 +163,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Method returns mocko bject of the application.
      */
-    protected function getMock()
+    protected function getMock(): object
     {
         return $this->getMockBuilder(\Mezon\Application\Application::class)
             ->disableOriginalConstructor()
@@ -178,7 +176,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Trying to load unexisting config.
      */
-    public function testUnexistingRouter()
+    public function testUnexistingRouter(): void
     {
         $this->expectException(Exception::class);
 
@@ -191,7 +189,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing call of the method added onthe fly.
      */
-    public function testOnTheFlyMethod()
+    public function testOnTheFlyMethod(): void
     {
         $application = new \Mezon\Application\Application();
 
@@ -213,18 +211,36 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing call of the method added onthe fly.
+     * Testing call of the method added in runtime
      */
-    public function testOnTheFlyUnexistingMethod()
+    public function testOnTheFlyUnexistingMethod(): void
     {
+        // setup
         $application = new \Mezon\Application\Application();
 
-        $application->unexisting = function () {
+        $application->fly = function () {
             return 'OK!';
         };
 
+        // test body
         $application->fly();
 
+        // assertions
         $this->addToAssertionCount(1);
+    }
+
+    /**
+     * Testing unexisting method call
+     */
+    public function testUnexistingMethodCall(): void
+    {
+        // setup
+        $application = new \Mezon\Application\Application();
+        
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // test body
+        $application->unexistingMethod();
     }
 }

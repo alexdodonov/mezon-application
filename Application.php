@@ -141,19 +141,21 @@ class Application
             $function = $this->$method;
 
             return call_user_func_array($function, $args);
+        } else {
+            throw (new \Exception('Method ' . $method . ' was not found in the application ' . get_class($this)));
         }
     }
 
     /**
      * Method redirects user to another page
      *
-     * @param string $uRL
+     * @param string $url
      *            New page
      */
-    public function redirectTo($uRL): void
+    public function redirectTo($url): void
     {
         // @codeCoverageIgnoreStart
-        header('Location: ' . $uRL);
+        header('Location: ' . $url);
         exit(0);
         // @codeCoverageIgnoreEnd
     }
