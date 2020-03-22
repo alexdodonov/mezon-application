@@ -182,7 +182,7 @@ class CommonApplication extends \Mezon\Application\Application
      * @return \Mezon\HtmlTemplate\HtmlTemplate Application's template
      * @codeCoverageIgnore
      */
-    public function getRemplate(): \Mezon\HtmlTemplate\HtmlTemplate
+    public function getTemplate(): \Mezon\HtmlTemplate\HtmlTemplate
     {
         return $this->template;
     }

@@ -22,6 +22,10 @@ class Application
      */
     protected $router = null;
 
+    const DEFAULT_PHP_ROUTES_PATH = './conf/routes.php';
+
+    const DEFAULT_JSON_ROUTES_PATH = './conf/routes.json';
+
     /**
      * Constructor
      */
@@ -31,6 +35,13 @@ class Application
         $this->router = new \Mezon\Router\Router();
 
         $this->router->fetchActions($this);
+
+        if (file_exists(CommonApplication::DEFAULT_PHP_ROUTES_PATH)) {
+            $this->loadRoutesFromConfig(CommonApplication::DEFAULT_PHP_ROUTES_PATH);
+        }
+        if (file_exists(CommonApplication::DEFAULT_JSON_ROUTES_PATH)) {
+            $this->loadRoutesFromConfig(CommonApplication::DEFAULT_JSON_ROUTES_PATH);
+        }
     }
 
     /**
@@ -61,11 +72,16 @@ class Application
         if (isset($route['callback']) === false) {
             throw (new \Exception('Field "callback" must be set'));
         }
-        $class = isset($route['class']) ? new $route['class']() : $this;
-        $this->router->addRoute($route['route'], [
-            $class,
-            $route['callback']
-        ], isset($route['method']) ? $route['method'] : 'GET');
+
+        $Callback = $route['callback'];
+        if (is_array($Callback) === false) {
+            $class = isset($route['class']) ? new $route['class']() : $this;
+            $Callback = [
+                $class,
+                $Callback
+            ];
+        }
+        $this->router->addRoute($route['route'], $Callback, isset($route['method']) ? $route['method'] : 'GET');
     }
 
     /**
@@ -87,7 +103,7 @@ class Application
      * @param string $path
      *            Path of the config for routes
      */
-    public function loadRoutesFromConfig(string $path = './conf/routes.php'): void
+    public function loadRoutesFromConfig(string $path = CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
     {
         if (file_exists($path)) {
             if (substr($path, - 5) === '.json') {

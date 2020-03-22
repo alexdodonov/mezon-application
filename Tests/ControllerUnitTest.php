@@ -25,8 +25,9 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing constructor
      */
-    public function testConstructor()
+    public function testConstructor():void
     {
+        // setup
         $controller = new TestingController('Test');
 
         $this->assertEquals('Test', $controller->getControllerName(), 'Invalid constructor call');
@@ -35,11 +36,27 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing render
      */
-    public function testRender()
+    public function testRender():void
     {
+        // setup
         $controller = new TestingController('Test');
 
         $this->assertEquals('computed content', $controller->run(), 'Invalid controller execution');
         $this->assertEquals('computed content 2', $controller->run('test2'), 'Invalid controller execution');
     }
+
+    /**
+     * Testing default controller
+     */
+    public function testDefault():void{
+        // setup
+        $controller = new TestingController();
+
+        // assertions
+        $this->expectExceptionMessage('Controller Default was not found');
+
+        // test body
+        $controller->run();
+    }
+    
 }

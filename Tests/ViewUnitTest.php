@@ -25,21 +25,40 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing constructor
      */
-    public function testConstructor()
+    public function testConstructor():void
     {
+        // setup
         $view = new TestingView('test');
 
+        // test body and assertions
         $this->assertEquals('test', $view->getViewName(), 'Invalid constructor call');
     }
 
     /**
      * Testing render
      */
-    public function testRender()
+    public function testRender():void
     {
+        // setup
         $view = new TestingView('test');
 
+        // test body and assertions
         $this->assertEquals('rendered content', $view->render(), 'Invalid view renderring');
         $this->assertEquals('rendered content 2', $view->render('test2'), 'Invalid view renderring');
+    }
+    
+    /**
+     * Testing render
+     */
+    public function testDefault():void
+    {
+        // setup
+        $view = new TestingView();
+        
+        // assertions
+        $this->expectExceptionMessage('View Default was not found');
+
+        // test body
+        $view->render();
     }
 }

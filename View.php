@@ -49,7 +49,7 @@ class View implements \Mezon\Application\ViewInterface
         }
 
         if ($viewName === '') {
-            $viewName = 'default';
+            $viewName = 'Default';
         }
 
         if (method_exists($this, 'view' . $viewName)) {

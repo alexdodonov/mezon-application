@@ -63,8 +63,8 @@ Simple example:
 class           ExampleApplication extends CommonApplication
 {
 	/**
-	*	Constructor.
-	*/
+	 * Constructor.
+	 */
 	function			__construct( $template )
 	{
 		parent::__construct( $template );
@@ -88,8 +88,8 @@ More complex example:
 class           ExampleApplication extends CommonApplication
 {
 	/**
-	*	Constructor.
-	*/
+	 * Constructor.
+	 */
 	function			__construct($template)
 	{
 		parent::__construct($template);
@@ -106,30 +106,3 @@ class           ExampleApplication extends CommonApplication
 ```
 
 Here we pass instance of the class View (or any class derived from View) to the application page compilator. It will call View::render method wich must return compiled html content. 
-
-## Template resources class
-
-### Intro
-
-This class allows you to include css and js files to the 'head' tag of your DOM from any place os your source code.
-
-### Usage
-
-To use this class just create it's object:
-
-```PHP
-$resources = new TemplateResources();
-```
-
-Then add CSS and JS files:
-
-```PHP
-$resources->addJsFile( './include/js/file1.js' ); // one file
-$resources->addJsFiles( array( './include/js/file1.js' , './include/js/file2.js' ) ); // or many files at one call
-// and note that duplicate file file1.js will bi included into 'head' only once.
-
-$resources->addCssFile( './res/css/file1.css' ); // one file
-$resources->addCssFiles( array( './res/css/file2.css' , './res/css/file3.css' ) ); // or many files at one call
-```
-
-Quite simple.
