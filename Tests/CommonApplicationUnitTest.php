@@ -35,7 +35,7 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
         parent::__construct(new \Mezon\HtmlTemplate\HtmlTemplate(__DIR__, 'index'));
     }
 
-    function actionArrayResult()
+    function actionArrayResult(): array
     {
         return [
             'title' => 'Array result',
@@ -43,12 +43,22 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
         ];
     }
 
-    function actionViewResult()
+    function actionViewResult(): array
     {
         return [
             'title' => 'View result',
             'main' => new TestView('Test view result')
         ];
+    }
+
+    function actionInvalid(): string
+    {
+        return 'Invalid';
+    }
+
+    function actionRest(): array
+    {
+        throw (new \Mezon\Rest\Exception('exception', - 1, 502, 'body'));
     }
 }
 
@@ -171,5 +181,43 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         // assertions
         $output = json_decode(str_replace('<pre>', '', $output), true);
         $this->assertEquals('some hostsome uri', $output['host']);
+    }
+
+    /**
+     * Testing exception throwing after invalid route handling
+     */
+    public function testInvalidRouteException(): void
+    {
+        // setup and assertions
+        $_GET['r'] = 'invalid';
+        $application = $this->getMockBuilder(TestCommonApplication::class)
+            ->setMethods([
+            'handleException'
+        ])
+            ->getMock();
+        $application->expects($this->once())
+            ->method('handleException');
+
+        // test body
+        $application->run();
+    }
+
+    /**
+     * Testing exception throwing after invalid route handling
+     */
+    public function testRestException(): void
+    {
+        // setup and assertions
+        $_GET['r'] = 'rest';
+        $application = $this->getMockBuilder(TestCommonApplication::class)
+            ->setMethods([
+            'handleRestException'
+        ])
+            ->getMock();
+        $application->expects($this->once())
+            ->method('handleRestException');
+
+        // test body
+        $application->run();
     }
 }

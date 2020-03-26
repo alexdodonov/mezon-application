@@ -105,4 +105,57 @@ class           ExampleApplication extends CommonApplication
 }
 ```
 
-Here we pass instance of the class View (or any class derived from View) to the application page compilator. It will call View::render method wich must return compiled html content. 
+Here we pass instance of the class View (or any class derived from View) to the application page compilator. It will call View::render method wich must return compiled html content.
+
+### Routes config
+
+You can also keep al routes in configs. You can use json configs:
+
+```JS
+[
+	{
+		"route": "/route1/",
+		"callback": "route1",
+		"method": "GET"
+	},
+	{
+		"route": "/route2/",
+		"callback": "route2",
+		"method": ["GET","POST"]
+	}
+]
+```
+
+This data must be stored in the './conf/' dir of your project. Or load configs explicitly as shown below (using method loadRoutesFromConfig).
+
+And we also need these methods in the application class.
+
+```PHP
+class           ExampleApplication extends CommonApplication
+{
+	/**
+	 * Constructor.
+	 */
+	function			__construct($template)
+	{
+		parent::__construct($template);
+
+		// loading config on custom path
+		$this->loadRoutesFromConfig('./my-routes.json');
+	}
+
+    function            route1()
+    {
+        return [ 
+            // here result
+        ];
+    }
+
+    function            route2()
+    {
+        return [ 
+            // here result
+        ];
+    }
+}
+```

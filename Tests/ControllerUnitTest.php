@@ -8,12 +8,12 @@
 class TestingController extends \Mezon\Application\Controller
 {
 
-    public function controllerTest()
+    public function controllerTest(): string
     {
         return 'computed content';
     }
 
-    public function controllerTest2()
+    public function controllerTest2(): string
     {
         return 'computed content 2';
     }
@@ -25,9 +25,9 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing constructor
      */
-    public function testConstructor():void
+    public function testConstructor(): void
     {
-        // setup
+        // setupp
         $controller = new TestingController('Test');
 
         $this->assertEquals('Test', $controller->getControllerName(), 'Invalid constructor call');
@@ -36,9 +36,9 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing render
      */
-    public function testRender():void
+    public function testRender(): void
     {
-        // setup
+        // setupp
         $controller = new TestingController('Test');
 
         $this->assertEquals('computed content', $controller->run(), 'Invalid controller execution');
@@ -48,15 +48,33 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing default controller
      */
-    public function testDefault():void{
+    public function testDefault(): void
+    {
+        // setupp
+        $controller = new TestingController();
+
+        // assertionss
+        $this->expectExceptionMessage('Controller Default was not found');
+
+        // test bodyy
+        $controller->run();
+    }
+
+    /**
+     * Method tests buildRoute
+     */
+    public function testBuildRoute(): void
+    {
         // setup
         $controller = new TestingController();
 
-        // assertions
-        $this->expectExceptionMessage('Controller Default was not found');
-
         // test body
-        $controller->run();
+        $route = $controller->buildRoute('/test/', 'POST', 'controllerTest');
+
+        // assertions
+        $this->assertEquals('/test/', $route['route']);
+        $this->assertEquals('POST', $route['method']);
+        $this->assertInstanceOf(TestingController::class, $route['callback'][0]);
+        $this->assertEquals('controllerTest', $route['callback'][1]);
     }
-    
 }
