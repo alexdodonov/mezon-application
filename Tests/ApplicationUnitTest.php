@@ -27,6 +27,27 @@ class TestApplication extends \Mezon\Application\Application
     }
 }
 
+/**
+ * Application for testing purposes.
+ */
+class TestApplication2 extends \Mezon\Application\Application
+{
+
+    var $counter = 0;
+
+    /**
+     * Method loads routes from config file in *.php or *.json format
+     *
+     * @param string $configPath
+     *            Path of the config for routes
+     */
+    public function loadRoutesFromConfig(
+        string $configPath = \Mezon\Application\CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
+    {
+        $this->counter ++;
+    }
+}
+
 class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 {
 
@@ -58,7 +79,9 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $output = ob_get_contents();
         ob_end_clean();
 
-        $this->assertTrue(strpos($output, 'The processor was not found for the route') !== false, 'Invalid behavior with incorrect route');
+        $this->assertTrue(
+            strpos($output, 'The processor was not found for the route') !== false,
+            'Invalid behavior with incorrect route');
     }
 
     /**
@@ -236,11 +259,42 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     {
         // setup
         $application = new \Mezon\Application\Application();
-        
+
         // assertions
         $this->expectException(\Exception::class);
 
         // test body
         $application->unexistingMethod();
+    }
+
+    /**
+     * Testing loading configs from multyple files
+     */
+    public function testLoadRoutesFromConfigs(): void
+    {
+        // setup
+        $application = new TestApplication();
+
+        // test body
+        $application->loadRoutesFromConfigs([
+            __DIR__ . '/TestRoutes.php',
+            __DIR__ . '/TestRoutes.json'
+        ]);
+
+        // assertions
+        $this->assertTrue($application->routeExists('/php-route/'));
+        $this->assertTrue($application->routeExists('/json-route/'));
+    }
+
+    /**
+     * Testing method
+     */
+    public function testLoadingDefaultConfigs(): void
+    {
+        // setup and test body
+        $application = new TestApplication2();
+
+        // assertions
+        $this->assertEquals(2, $application->counter);
     }
 }

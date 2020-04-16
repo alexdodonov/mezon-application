@@ -73,15 +73,19 @@ class Application
             throw (new \Exception('Field "callback" must be set'));
         }
 
-        $Callback = $route['callback'];
-        if (is_array($Callback) === false) {
+        $callback = $route['callback'];
+
+        if (is_array($route['callback'])) {
+            $route['class'] = $route['callback'][0];
+            $route['callback'] = $route['callback'][1];
+        } else {
             $class = isset($route['class']) ? new $route['class']() : $this;
-            $Callback = [
+            $callback = [
                 $class,
-                $Callback
+                $callback
             ];
         }
-        $this->router->addRoute($route['route'], $Callback, isset($route['method']) ? $route['method'] : 'GET');
+        $this->router->addRoute($route['route'], $callback, isset($route['method']) ? $route['method'] : 'GET');
     }
 
     /**
@@ -100,22 +104,35 @@ class Application
     /**
      * Method loads routes from config file in *.php or *.json format
      *
-     * @param string $path
+     * @param string $configPath
      *            Path of the config for routes
      */
-    public function loadRoutesFromConfig(string $path = CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
+    public function loadRoutesFromConfig(string $configPath = CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
     {
-        if (file_exists($path)) {
-            if (substr($path, - 5) === '.json') {
+        if (file_exists($configPath)) {
+            if (substr($configPath, - 5) === '.json') {
                 // load config from json
-                $routes = json_decode(file_get_contents($path), true);
+                $routes = json_decode(file_get_contents($configPath), true);
             } else {
                 // loadconfig from php
-                $routes = (include ($path));
+                $routes = (include ($configPath));
             }
             $this->loadRoutes($routes);
         } else {
-            throw (new \Exception('Route ' . $path . ' was not found', 1));
+            throw (new \Exception('Route ' . $configPath . ' was not found', 1));
+        }
+    }
+
+    /**
+     * Method loads list of configs
+     *
+     * @param array $configPaths
+     *            paths to config files
+     */
+    public function loadRoutesFromConfigs(array $configPaths): void
+    {
+        foreach ($configPaths as $configPath) {
+            $this->loadRoutesFromConfig($configPath);
         }
     }
 
@@ -174,5 +191,17 @@ class Application
         header('Location: ' . $url);
         exit(0);
         // @codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Method validates that route exists
+     *
+     * @param string $route
+     *            route
+     * @return bool true if the route exists
+     */
+    public function routeExists(string $route): bool
+    {
+        return $this->router->routeExists($route);
     }
 }

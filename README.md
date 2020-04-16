@@ -159,3 +159,14 @@ class           ExampleApplication extends CommonApplication
     }
 }
 ```
+
+Note that you can load multiple configs with one call of the method loadRoutesFromConfigs
+
+```PHP
+function			__construct($template)
+	{
+		parent::__construct($template);
+
+		$this->loadRoutesFromConfigs(['./my-routes.json', './conf/my-routes.php']);
+	}
+```

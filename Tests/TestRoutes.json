@@ -7,5 +7,10 @@
 		"route": "/post-route/",
 		"callback": "actionExisting",
 		"method": "POST"
+	},
+	{
+		"route": "/json-route/",
+		"callback": "actionExisting",
+		"method": "POST"
 	}
 ]
