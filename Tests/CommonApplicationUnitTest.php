@@ -10,7 +10,7 @@ class TestView extends \Mezon\Application\View
 
     public function __construct(string $content)
     {
-        parent::__construct('default');
+        parent::__construct(null, 'default');
 
         $this->Content = $content;
     }

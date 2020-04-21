@@ -21,9 +21,9 @@ class TestApplication extends \Mezon\Application\Application
         return 'OK!';
     }
 
-    function drop_router()
+    function compound()
     {
-        $this->router = false;
+        return 'compond';
     }
 }
 
@@ -296,5 +296,24 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 
         // assertions
         $this->assertEquals(2, $application->counter);
+    }
+
+    /**
+     * Testing compound routes ['callback'=>[object, function-name]]
+     */
+    public function testCompondCallback(): void
+    {
+        // setup and test body
+        $application = new TestApplication();
+        $application->loadRoute([
+            'callback' => [
+                $this,
+                'compound'
+            ],
+            'route' => '/compound/'
+        ]);
+
+        // assertions
+        $this->assertTrue($application->routeExists('/compound/'));
     }
 }

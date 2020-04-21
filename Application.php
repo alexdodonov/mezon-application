@@ -39,6 +39,7 @@ class Application
         if (file_exists(CommonApplication::DEFAULT_PHP_ROUTES_PATH)) {
             $this->loadRoutesFromConfig(CommonApplication::DEFAULT_PHP_ROUTES_PATH);
         }
+
         if (file_exists(CommonApplication::DEFAULT_JSON_ROUTES_PATH)) {
             $this->loadRoutesFromConfig(CommonApplication::DEFAULT_JSON_ROUTES_PATH);
         }

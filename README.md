@@ -21,6 +21,8 @@ Let's find out how you can use it.
 First of all create config file ./conf/routes.php in your projects directory. It must look like this:
 
 ```PHP
+$callbackProvider = new SomeCallbackClass();
+
 return 
     [
         [
@@ -32,15 +34,25 @@ return
             'route' => '/news/[i:news_id]/' ,    // your route
             'callback' => 'displayExactNews' , // this must be the method name of your 
             'method' => 'POST'                   // Application derived class
+        ] , 
+        [
+        	'route' => '/some-route/' , 
+        	'method' => 'GET' , 
+        	'callback' => [ // here we specify callback as pair [object, method]
+        		callbackProvider , 
+        		'someMethod'
+        	]        	
         ]
     ];
 ```
 
 Note that the 'method' field is not set then it will be defaulted to GET.
 
-Then just call Application::loadRoutesFromConfig() method and it will load your ./conf/routes.php config.
-
 You can also specify your own config file.
+
+Then just call Application::loadRoutesFromConfig()
+
+
 
 ```PHP
 $app->loadRoutesFromConfig( './conf/my-config.php' );

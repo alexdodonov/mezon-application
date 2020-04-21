@@ -127,16 +127,16 @@
         },
         {
             "name": "mezon/rest-exception",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-rest-exception.git",
-                "reference": "0c3303e628c7b4514b39fe90cca1990cece2e2ea"
+                "reference": "232b7f13b147b7ce1b43b5a82058302ae4e8b7e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-rest-exception/zipball/0c3303e628c7b4514b39fe90cca1990cece2e2ea",
-                "reference": "0c3303e628c7b4514b39fe90cca1990cece2e2ea",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-rest-exception/zipball/232b7f13b147b7ce1b43b5a82058302ae4e8b7e6",
+                "reference": "232b7f13b147b7ce1b43b5a82058302ae4e8b7e6",
                 "shasum": ""
             },
             "require": {
@@ -162,7 +162,7 @@
             ],
             "description": "Small rest-exception script",
             "homepage": "https://github.com/alexdodonov/mezon-rest-exception",
-            "time": "2020-02-19T20:34:07+00:00"
+            "time": "2020-04-16T15:06:49+00:00"
         },
         {
             "name": "mezon/router",

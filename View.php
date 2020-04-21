@@ -22,17 +22,42 @@ class View implements \Mezon\Application\ViewInterface
      *
      * @var string
      */
-    protected $viewName = '';
+    private $viewName = '';
+
+    /**
+     * Active template
+     *
+     * @var \Mezon\HtmlTemplate\HtmlTemplate
+     */
+    private $template = null;
 
     /**
      * Constructor
      *
+     * @param \Mezon\HtmlTemplate\HtmlTemplate $template
+     *            template
      * @param string $viewName
      *            View name to be rendered
      */
-    public function __construct(string $viewName = '')
+    public function __construct(\Mezon\HtmlTemplate\HtmlTemplate $template = null, string $viewName = '')
     {
         $this->viewName = $viewName;
+
+        $this->template = $template;
+    }
+
+    /**
+     * Method returns template
+     *
+     * @return \Mezon\HtmlTemplate\HtmlTemplate template
+     */
+    public function getTemplate(): \Mezon\HtmlTemplate\HtmlTemplate
+    {
+        if ($this->template === null) {
+            throw (new \Exception('Template was not set for the view', - 1));
+        }
+
+        return $this->template;
     }
 
     /**
