@@ -316,4 +316,20 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         // assertions
         $this->assertTrue($application->routeExists('/compound/'));
     }
+
+    /**
+     * Testing loadRoutesFromDirectory method
+     */
+    public function testLoadRoutesFromDirectory(): void
+    {
+        // setup
+        $application = new TestApplication();
+
+        // test body
+        $application->loadRoutesFromDirectory(__DIR__.'/../conf');
+
+        // assertions
+        $this->assertTrue($application->routeExists('/php-route/'));
+        $this->assertTrue($application->routeExists('/json-route/'));
+    }
 }

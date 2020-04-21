@@ -1,2 +1,8 @@
 <?php
-return [];
+return [
+    [
+        "route" => "/php-route/",
+        "callback" => "actionExisting",
+        "method" => "POST"
+    ]
+];

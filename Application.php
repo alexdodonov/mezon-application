@@ -138,6 +138,23 @@ class Application
     }
 
     /**
+     * Method loads routes from the directory
+     *
+     * @param string $directory
+     *            path to the directory. Scanninng is recursive.
+     */
+    public function loadRoutesFromDirectory(string $directory): void
+    {
+        $paths = scandir($directory);
+
+        foreach ($paths as $path) {
+            if (is_file($directory . '/' . $path)) {
+                $this->loadRoutesFromConfig($directory . '/' . $path);
+            }
+        }
+    }
+
+    /**
      * Method processes exception
      *
      * @param \Exception $e

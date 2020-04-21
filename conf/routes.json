@@ -1,1 +1,7 @@
-[]
+[
+	{
+		"route": "/json-route/",
+		"callback": "actionExisting",
+		"method": "POST"
+	}
+]

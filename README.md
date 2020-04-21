@@ -179,6 +179,17 @@ function			__construct($template)
 	{
 		parent::__construct($template);
 
-		$this->loadRoutesFromConfigs(['./my-routes.json', './conf/my-routes.php']);
+		$this->loadRoutesFromConfigs(['./conf/my/routes.json', './conf/my-routes.php']);
+	}
+```
+
+Or the same:
+
+```PHP
+function			__construct($template)
+	{
+		parent::__construct($template);
+
+		$this->loadRoutesFromDirectory('./conf');
 	}
 ```
