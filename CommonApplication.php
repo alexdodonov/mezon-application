@@ -39,7 +39,7 @@ class CommonApplication extends \Mezon\Application\Application
      *
      * @var \Mezon\HtmlTemplate\HtmlTemplate
      */
-    protected $template = false;
+    private $template = false;
 
     /**
      * Constructor
@@ -53,7 +53,7 @@ class CommonApplication extends \Mezon\Application\Application
 
         $this->template = $template;
 
-        $this->router->setNoProcessorFoundErrorHandler([
+        $this->getRouter()->setNoProcessorFoundErrorHandler([
             $this,
             'noRouteFoundErrorHandler'
         ]);

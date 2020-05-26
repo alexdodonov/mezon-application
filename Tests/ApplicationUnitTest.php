@@ -6,15 +6,6 @@
 class TestApplication extends \Mezon\Application\Application
 {
 
-    function __construct()
-    {
-        if (is_object($this->router)) {
-            $this->router->clear();
-        }
-
-        parent::__construct();
-    }
-
     function actionExisting()
     {
         /* existing action */
@@ -326,7 +317,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $application = new TestApplication();
 
         // test body
-        $application->loadRoutesFromDirectory(__DIR__.'/../conf');
+        $application->loadRoutesFromDirectory(__DIR__ . '/../conf');
 
         // assertions
         $this->assertTrue($application->routeExists('/php-route/'));

@@ -22,7 +22,14 @@ class Controller implements \Mezon\Application\ControllerInterface
      *
      * @var string
      */
-    protected $controllerName = '';
+    private $controllerName = '';
+
+    /**
+     * Router
+     * 
+     * @var \Mezon\Router\Router
+     */
+    private $router = null;
 
     /**
      * Constructor
@@ -30,9 +37,11 @@ class Controller implements \Mezon\Application\ControllerInterface
      * @param string $controllerName
      *            Controller name to be executed
      */
-    public function __construct(string $controllerName = '')
+    public function __construct(string $controllerName = '', ?\Mezon\Router\Router $router = null)
     {
         $this->controllerName = $controllerName;
+
+        $this->router = $router;
     }
 
     /**

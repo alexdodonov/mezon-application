@@ -20,7 +20,7 @@ class Application
     /**
      * Router object
      */
-    protected $router = null;
+    private $router = null;
 
     const DEFAULT_PHP_ROUTES_PATH = './conf/routes.php';
 
@@ -221,5 +221,15 @@ class Application
     public function routeExists(string $route): bool
     {
         return $this->router->routeExists($route);
+    }
+
+    /**
+     * Method returns router
+     *
+     * @return \Mezon\Router\Router router
+     */
+    public function getRouter(): \Mezon\Router\Router
+    {
+        return $this->router;
     }
 }

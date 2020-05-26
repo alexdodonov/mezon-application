@@ -1,4 +1,6 @@
-# Base application class [![Build Status](https://travis-ci.com/alexdodonov/mezon-application.svg?branch=master)](https://travis-ci.com/alexdodonov/mezon-application) [![codecov](https://codecov.io/gh/alexdodonov/mezon-application/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdodonov/mezon-application)
+# Base application class
+
+[![Build Status](https://travis-ci.com/alexdodonov/mezon-application.svg?branch=master)](https://travis-ci.com/alexdodonov/mezon-application) [![codecov](https://codecov.io/gh/alexdodonov/mezon-application/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdodonov/mezon-application)
 
 ## Intro
 
@@ -61,9 +63,7 @@ $app->loadRoutesFromConfig( './conf/my-config.php' );
 
 ### Intro
 
-This class provides simple aplication routine. Using this class you can create veri simple applications with the [basic template](https://github.com/alexdodonov/mezon/tree/master/HtmlTemplate) wich looks like black text on white background.
-
-It can be simply used for prototyping.
+This class provides simple application routine with more complex rendering and error handling. 
 
 ### Extended routes processing
 
@@ -193,3 +193,11 @@ function			__construct($template)
 		$this->loadRoutesFromDirectory('./conf');
 	}
 ```
+
+# View
+
+tba
+
+# Controller
+
+tba
