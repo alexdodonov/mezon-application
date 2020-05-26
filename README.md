@@ -1,6 +1,6 @@
 # Base application class
 
-[![Build Status](https://travis-ci.com/alexdodonov/mezon-application.svg?branch=master)](https://travis-ci.com/alexdodonov/mezon-application) [![codecov](https://codecov.io/gh/alexdodonov/mezon-application/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdodonov/mezon-application)
+[![Build Status](https://travis-ci.com/alexdodonov/mezon-application.svg?branch=master)](https://travis-ci.com/alexdodonov/mezon-application) [![codecov](https://codecov.io/gh/alexdodonov/mezon-application/branch/master/graph/badge.svg)](https://codecov.io/gh/alexdodonov/mezon-application) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexdodonov/mezon-application/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexdodonov/mezon-application/?branch=master)
 
 ## Intro
 
