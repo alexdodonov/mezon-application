@@ -19,8 +19,17 @@ class Application
 
     /**
      * Router object
+     *
+     * @var \Mezon\Router\Router
      */
     private $router = null;
+
+    /**
+     * Params fetcher
+     *
+     * @var \Mezon\Transport\RequestParams
+     */
+    private $requestParams = null;
 
     const DEFAULT_PHP_ROUTES_PATH = './conf/routes.php';
 
@@ -43,6 +52,20 @@ class Application
         if (file_exists(CommonApplication::DEFAULT_JSON_ROUTES_PATH)) {
             $this->loadRoutesFromConfig(CommonApplication::DEFAULT_JSON_ROUTES_PATH);
         }
+    }
+
+    /**
+     * Method returns $this->requestParams and creates this object if necessery
+     *
+     * @return \Mezon\Transport\RequestParams
+     */
+    public function getRequestParamsFetcher(): \Mezon\Transport\RequestParams
+    {
+        if ($this->requestParams === null) {
+            $this->requestParams = new \Mezon\Transport\HttpRequestParams($this->router);
+        }
+
+        return $this->requestParams;
     }
 
     /**

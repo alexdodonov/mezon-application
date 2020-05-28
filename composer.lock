@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70b229d4809f97b5bb912458f4ee8cff",
+    "content-hash": "193f07e692cd932fc97484cfe7cc9acd",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -182,17 +182,57 @@
             "time": "2020-04-21T15:45:27+00:00"
         },
         {
-            "name": "mezon/request-params",
+            "name": "mezon/http-request-params",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alexdodonov/mezon-request-params.git",
-                "reference": "6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7"
+                "url": "https://github.com/alexdodonov/mezon-http-request-params.git",
+                "reference": "fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7",
-                "reference": "6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45",
+                "reference": "fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45",
+                "shasum": ""
+            },
+            "require": {
+                "mezon/request-params": "^1.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\Transport\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Small script for parameters fetcher",
+            "homepage": "https://github.com/alexdodonov/mezon-http-request-params",
+            "time": "2020-05-26T07:05:40+00:00"
+        },
+        {
+            "name": "mezon/request-params",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-request-params.git",
+                "reference": "b6d15f46a716d23797644750e9f24f7581356cc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/b6d15f46a716d23797644750e9f24f7581356cc4",
+                "reference": "b6d15f46a716d23797644750e9f24f7581356cc4",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +259,7 @@
             ],
             "description": "Small script for parameters fetcher",
             "homepage": "https://github.com/alexdodonov/mezon-request-params",
-            "time": "2020-05-25T06:59:36+00:00"
+            "time": "2020-05-28T12:36:43+00:00"
         },
         {
             "name": "mezon/rest-exception",

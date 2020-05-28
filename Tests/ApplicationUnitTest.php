@@ -109,18 +109,33 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing loading routes from config file.
+     * Method constructs application with the default routes
+     *
+     * @return \Mezon\Application\Application
      */
-    public function testRoutesPhpConfig(): void
+    protected function getTestApplicationWithTestRoutes(): \Mezon\Application\Application
     {
         $application = new TestApplication();
 
         $application->loadRoutesFromConfig(__DIR__ . '/TestRoutes.php');
 
+        return $application;
+    }
+
+    /**
+     * Testing loading routes from config file.
+     */
+    public function testRoutesPhpConfig(): void
+    {
+        // setup
+        $application = $this->getTestApplicationWithTestRoutes();
+
         $_GET['r'] = '/get-route/';
 
+        // assertions
         $this->expectOutputString('OK!');
 
+        // test body
         $application->run();
     }
 
@@ -129,14 +144,17 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testRoutesJsonConfig(): void
     {
+        // setup
         $application = new TestApplication();
 
         $application->loadRoutesFromConfig(__DIR__ . '/TestRoutes.json');
 
         $_GET['r'] = '/get-route/';
 
+        // assertions
         $this->expectOutputString('OK!');
 
+        // test body
         $application->run();
     }
 
@@ -145,16 +163,17 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testPostRoutesConfig(): void
     {
+        // setup
         $_SERVER['REQUEST_METHOD'] = 'POST';
 
-        $application = new TestApplication();
-
-        $application->loadRoutesFromConfig(__DIR__ . '/TestRoutes.php');
+        $application = $this->getTestApplicationWithTestRoutes();
 
         $_GET['r'] = '/post-route/';
 
+        // assertions
         $this->expectOutputString('OK!');
 
+        // test body
         $application->run();
     }
 
@@ -322,5 +341,20 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         // assertions
         $this->assertTrue($application->routeExists('/php-route/'));
         $this->assertTrue($application->routeExists('/json-route/'));
+    }
+
+    /**
+     * Testing method getRequestParamsFetcher
+     */
+    public function testGetRequestParamsFetcher(): void
+    {
+        // setup
+        $application = new \Mezon\Application\Application();
+
+        // test body
+        $requestParams = $application->getRequestParamsFetcher();
+
+        // assertions
+        $this->assertInstanceOf(\Mezon\Transport\HttpRequestParams::class, $requestParams);
     }
 }

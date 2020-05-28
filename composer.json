@@ -16,7 +16,7 @@
 		"mezon/conf" : "^1.0",
 		"mezon/rest-exception": "^1.0",
 		"mezon/html-template": "^1.0",
-		"mezon/request-params": "^1.0"
+		"mezon/http-request-params": "^1.0"
 	},
 	"support": {
 		"email": "alexey@dodonov.pro",
