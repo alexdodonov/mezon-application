@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8057f38eed6f9fbb3da42e29a0124f12",
+    "content-hash": "70b229d4809f97b5bb912458f4ee8cff",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -180,6 +180,46 @@
             "description": "Small html-template script",
             "homepage": "https://github.com/alexdodonov/mezon-html-template",
             "time": "2020-04-21T15:45:27+00:00"
+        },
+        {
+            "name": "mezon/request-params",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-request-params.git",
+                "reference": "6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7",
+                "reference": "6b70639e07d0d4e2c5981ac30bdc3a3fa475eee7",
+                "shasum": ""
+            },
+            "require": {
+                "mezon/router": "^1.0",
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\Transport\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Small script for parameters fetcher",
+            "homepage": "https://github.com/alexdodonov/mezon-request-params",
+            "time": "2020-05-25T06:59:36+00:00"
         },
         {
             "name": "mezon/rest-exception",

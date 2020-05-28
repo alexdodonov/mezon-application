@@ -26,22 +26,23 @@ class Controller implements \Mezon\Application\ControllerInterface
 
     /**
      * Router
-     * 
-     * @var \Mezon\Router\Router
+     *
+     * @var \Mezon\Transport\RequestParams
      */
-    private $router = null;
+    private $requestParams = null;
 
     /**
      * Constructor
      *
      * @param string $controllerName
      *            Controller name to be executed
+     * @param ?\Mezon\Transport\RequestParams $requestParams request params fetcher
      */
-    public function __construct(string $controllerName = '', ?\Mezon\Router\Router $router = null)
+    public function __construct(string $controllerName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
     {
         $this->controllerName = $controllerName;
 
-        $this->router = $router;
+        $this->requestParams = $requestParams;
     }
 
     /**
@@ -100,10 +101,13 @@ class Controller implements \Mezon\Application\ControllerInterface
 
     /**
      * Method builds route data
-     * 
-     * @param string $route route
-     * @param string $method HTTP method
-     * @param string $function controller's function name
+     *
+     * @param string $route
+     *            route
+     * @param string $method
+     *            HTTP method
+     * @param string $function
+     *            controller's function name
      * @return array built route data
      */
     public function buildRoute(string $route, string $method, string $function): array
