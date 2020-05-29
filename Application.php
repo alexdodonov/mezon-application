@@ -44,12 +44,12 @@ class Application
         $reflector = new \ReflectionClass(get_class($this));
         $classPath = dirname($reflector->getFileName());
 
-        if (file_exists($classPath.'/conf/routes.php')) {
-            $this->loadRoutesFromConfig($classPath.'/conf/routes.php');
+        if (file_exists($classPath . '/conf/routes.php')) {
+            $this->loadRoutesFromConfig($classPath . '/conf/routes.php');
         }
 
-        if (file_exists($classPath.'/conf/routes.json')) {
-            $this->loadRoutesFromConfig($classPath.'/conf/routes.json');
+        if (file_exists($classPath . '/conf/routes.json')) {
+            $this->loadRoutesFromConfig($classPath . '/conf/routes.json');
         }
     }
 
@@ -184,7 +184,7 @@ class Application
      */
     public function handleException(\Exception $e): void
     {
-        print('<pre>' . $e->getMessage().'<br/>'.$this->formatCallStack($e));
+        print('<pre>' . $e->getMessage() . '<br/>' . implode('<br/>', $this->formatCallStack($e)));
     }
 
     /**
@@ -264,12 +264,12 @@ class Application
     protected function formatCallStack($e): array
     {
         $stack = $e->getTrace();
-        
+
         foreach ($stack as $i => $call) {
             $stack[$i] = (@$call['file'] == '' ? 'lambda : ' : @$call['file'] . ' (' . $call['line'] . ') : ') .
-            (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
+                (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
         }
-        
+
         return $stack;
     }
 }
