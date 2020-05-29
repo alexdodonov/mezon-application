@@ -31,10 +31,6 @@ class Application
      */
     private $requestParams = null;
 
-    const DEFAULT_PHP_ROUTES_PATH = './conf/routes.php';
-
-    const DEFAULT_JSON_ROUTES_PATH = './conf/routes.json';
-
     /**
      * Constructor
      */
@@ -45,12 +41,15 @@ class Application
 
         $this->router->fetchActions($this);
 
-        if (file_exists(CommonApplication::DEFAULT_PHP_ROUTES_PATH)) {
-            $this->loadRoutesFromConfig(CommonApplication::DEFAULT_PHP_ROUTES_PATH);
+        $reflector = new \ReflectionClass(get_class($this));
+        $classPath = dirname($reflector->getFileName());
+
+        if (file_exists($classPath.'/conf/routes.php')) {
+            $this->loadRoutesFromConfig($classPath.'/conf/routes.php');
         }
 
-        if (file_exists(CommonApplication::DEFAULT_JSON_ROUTES_PATH)) {
-            $this->loadRoutesFromConfig(CommonApplication::DEFAULT_JSON_ROUTES_PATH);
+        if (file_exists($classPath.'/conf/routes.json')) {
+            $this->loadRoutesFromConfig($classPath.'/conf/routes.json');
         }
     }
 
@@ -131,7 +130,7 @@ class Application
      * @param string $configPath
      *            Path of the config for routes
      */
-    public function loadRoutesFromConfig(string $configPath = CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
+    public function loadRoutesFromConfig(string $configPath): void
     {
         if (file_exists($configPath)) {
             if (substr($configPath, - 5) === '.json') {

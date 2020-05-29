@@ -12,8 +12,8 @@
 	],
 	"require": {
 		"php": ">=7.2.0",
-		"mezon/template-engine" : "^1.0",
-		"mezon/conf" : "^1.0",
+		"mezon/template-engine": "^1.0",
+		"mezon/conf": "^1.0",
 		"mezon/rest-exception": "^1.0",
 		"mezon/html-template": "^1.0",
 		"mezon/http-request-params": "^1.0"
@@ -30,5 +30,8 @@
 		"psr-4": {
 			"Mezon\\Application\\": ""
 		}
+	},
+	"scripts": {
+		"test": "php ./vendor/phpunit/phpunit/phpunit"
 	}
 }

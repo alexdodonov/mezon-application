@@ -32,8 +32,7 @@ class TestApplication2 extends \Mezon\Application\Application
      * @param string $configPath
      *            Path of the config for routes
      */
-    public function loadRoutesFromConfig(
-        string $configPath = \Mezon\Application\CommonApplication::DEFAULT_PHP_ROUTES_PATH): void
+    public function loadRoutesFromConfig(string $configPath): void
     {
         $this->counter ++;
     }
@@ -336,7 +335,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $application = new TestApplication();
 
         // test body
-        $application->loadRoutesFromDirectory(__DIR__ . '/../conf');
+        $application->loadRoutesFromDirectory(__DIR__ . '/conf');
 
         // assertions
         $this->assertTrue($application->routeExists('/php-route/'));
