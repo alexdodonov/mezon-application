@@ -183,16 +183,16 @@
         },
         {
             "name": "mezon/http-request-params",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-http-request-params.git",
-                "reference": "fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45"
+                "reference": "03d9a30f7011a59ed25f3642f2f862f80f71a765"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45",
-                "reference": "fd3b54ac8a0cb6e0cc27303ad4f1bab496a7de45",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/03d9a30f7011a59ed25f3642f2f862f80f71a765",
+                "reference": "03d9a30f7011a59ed25f3642f2f862f80f71a765",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
             ],
             "description": "Small script for parameters fetcher",
             "homepage": "https://github.com/alexdodonov/mezon-http-request-params",
-            "time": "2020-05-26T07:05:40+00:00"
+            "time": "2020-05-29T10:43:17+00:00"
         },
         {
             "name": "mezon/request-params",

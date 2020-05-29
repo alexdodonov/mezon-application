@@ -1,6 +1,8 @@
 <?php
 namespace Mezon\Application;
 
+use Mezon\HtmlTemplate\HtmlTemplate;
+
 /**
  * Class View
  *
@@ -27,19 +29,19 @@ class View implements \Mezon\Application\ViewInterface
     /**
      * Active template
      *
-     * @var \Mezon\HtmlTemplate\HtmlTemplate
+     * @var HtmlTemplate
      */
     private $template = null;
 
     /**
      * Constructor
      *
-     * @param \Mezon\HtmlTemplate\HtmlTemplate $template
+     * @param HtmlTemplate $template
      *            template
      * @param string $viewName
      *            View name to be rendered
      */
-    public function __construct(\Mezon\HtmlTemplate\HtmlTemplate $template = null, string $viewName = '')
+    public function __construct(HtmlTemplate $template = null, string $viewName = '')
     {
         $this->viewName = $viewName;
 
@@ -49,9 +51,9 @@ class View implements \Mezon\Application\ViewInterface
     /**
      * Method returns template
      *
-     * @return \Mezon\HtmlTemplate\HtmlTemplate template
+     * @return HtmlTemplate template
      */
-    public function getTemplate(): \Mezon\HtmlTemplate\HtmlTemplate
+    public function getTemplate(): HtmlTemplate
     {
         if ($this->template === null) {
             throw (new \Exception('Template was not set for the view', - 1));

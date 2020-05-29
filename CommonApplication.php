@@ -1,6 +1,9 @@
 <?php
 namespace Mezon\Application;
 
+use Mezon\HtmlTemplate\HtmlTemplate;
+use Mezon\Rest;
+
 /**
  * Class CommonApplication
  *
@@ -31,23 +34,23 @@ namespace Mezon\Application;
  * }
  * ]
  */
-class CommonApplication extends \Mezon\Application\Application
+class CommonApplication extends Application
 {
 
     /**
      * Application's template
      *
-     * @var \Mezon\HtmlTemplate\HtmlTemplate
+     * @var HtmlTemplate
      */
     private $template = false;
 
     /**
      * Constructor
      *
-     * @param \Mezon\HtmlTemplate\HtmlTemplate $template
+     * @param HtmlTemplate $template
      *            Template
      */
-    public function __construct(\Mezon\HtmlTemplate\HtmlTemplate $template)
+    public function __construct(HtmlTemplate $template)
     {
         parent::__construct();
 
@@ -62,10 +65,9 @@ class CommonApplication extends \Mezon\Application\Application
     /**
      * Method handles 404 errors
      *
-     * @param string $route
      * @codeCoverageIgnore
      */
-    public function noRouteFoundErrorHandler(string $route): void
+    public function noRouteFoundErrorHandler(): void
     {
         $this->redirectTo('/404');
     }
@@ -104,10 +106,10 @@ class CommonApplication extends \Mezon\Application\Application
     /**
      * Method processes exception.
      *
-     * @param \Mezon\Rest\Exception $e
+     * @param Rest\Exception $e
      *            RestException object.
      */
-    public function handleRestException(\Mezon\Rest\Exception $e): void
+    public function handleRestException(Rest\Exception $e): void
     {
         $error = $this->baseFormatter($e);
 
@@ -144,14 +146,14 @@ class CommonApplication extends \Mezon\Application\Application
 
             if (is_array($result)) {
                 foreach ($result as $key => $value) {
-                    $content = $value instanceof \Mezon\Application\ViewInterface ? $value->render() : $value;
+                    $content = $value instanceof ViewInterface ? $value->render() : $value;
 
                     $this->template->setPageVar($key, $content);
                 }
             }
 
             print($this->template->compile());
-        } catch (\Mezon\Rest\Exception $e) {
+        } catch (Rest\Exception $e) {
             $this->handleRestException($e);
         } catch (\Exception $e) {
             $this->handleException($e);
@@ -161,10 +163,10 @@ class CommonApplication extends \Mezon\Application\Application
     /**
      * Getting template
      *
-     * @return \Mezon\HtmlTemplate\HtmlTemplate Application's template
+     * @return HtmlTemplate Application's template
      * @codeCoverageIgnore
      */
-    public function getTemplate(): \Mezon\HtmlTemplate\HtmlTemplate
+    public function getTemplate(): HtmlTemplate
     {
         return $this->template;
     }
@@ -172,11 +174,11 @@ class CommonApplication extends \Mezon\Application\Application
     /**
      * Setting template
      *
-     * @param \Mezon\HtmlTemplate\HtmlTemplate $template
+     * @param HtmlTemplate $template
      *            Template
      * @codeCoverageIgnore
      */
-    public function setTemplate(\Mezon\HtmlTemplate\HtmlTemplate $template): void
+    public function setTemplate(HtmlTemplate $template): void
     {
         $this->template = $template;
     }

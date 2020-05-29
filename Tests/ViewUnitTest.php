@@ -1,11 +1,13 @@
 <?php
+use Mezon\HtmlTemplate\HtmlTemplate;
+use Mezon\Application\View;
 
 /**
  * View class for testing purposes
  *
  * @author Dodonov A.A.
  */
-class TestingView extends \Mezon\Application\View
+class TestingView extends View
 {
 
     public function viewTest(): string
@@ -68,10 +70,10 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
     public function testGetTemplate(): void
     {
         // setupp
-        $view = new TestingView(new \Mezon\HtmlTemplate\HtmlTemplate(__DIR__ . '/res/templates/'));
+        $view = new TestingView(new HtmlTemplate(__DIR__ . '/res/templates/'));
 
         // test body and assertions
-        $this->assertInstanceOf(\Mezon\HtmlTemplate\HtmlTemplate::class, $view->getTemplate());
+        $this->assertInstanceOf(HtmlTemplate::class, $view->getTemplate());
     }
 
     /**

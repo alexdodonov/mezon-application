@@ -1,4 +1,6 @@
 <?php
+use Mezon\HtmlTemplate\HtmlTemplate;
+use Mezon\Rest;
 
 /**
  * View class
@@ -32,7 +34,7 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
      */
     function __construct()
     {
-        parent::__construct(new \Mezon\HtmlTemplate\HtmlTemplate(__DIR__, 'index'));
+        parent::__construct(new HtmlTemplate(__DIR__, 'index'));
     }
 
     function actionArrayResult(): array
@@ -58,7 +60,7 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
 
     function actionRest(): array
     {
-        throw (new \Mezon\Rest\Exception('exception', - 1, 502, 'body'));
+        throw (new Rest\Exception('exception', - 1, 502, 'body'));
     }
 }
 
@@ -114,15 +116,13 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         // setup
         $application = new TestCommonApplication();
         $output = '';
-        try {
-            throw (new Exception('', 0));
-        } catch (Exception $e) {
-            // test body
-            ob_start();
-            $application->handleException($e);
-            $output = ob_get_contents();
-            ob_end_clean();
-        }
+        $e = new Exception('', 0);
+
+        // test body
+        ob_start();
+        $application->handleException($e);
+        $output = ob_get_contents();
+        ob_end_clean();
 
         // assertions
         $this->assertStringContainsString('"message"', $output);
@@ -138,16 +138,13 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
     {
         // setup
         $application = new TestCommonApplication();
-        $output = '';
-        try {
-            throw (new \Mezon\Rest\Exception('', 0, 200, ''));
-        } catch (Exception $e) {
-            // test body
-            ob_start();
-            $application->handleRestException($e);
-            $output = ob_get_contents();
-            ob_end_clean();
-        }
+
+        $e = new Rest\Exception('', 0, 200, '');
+        // test body
+        ob_start();
+        $application->handleRestException($e);
+        $output = ob_get_contents();
+        ob_end_clean();
 
         // assertions
         $this->assertStringContainsString('"message"', $output);
