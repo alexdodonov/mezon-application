@@ -33,7 +33,7 @@ trait AjaxMethodsTrait
             "code" => 0
         ]));
 
-        exit(0);
+        die(0);
     }
 
     /**
@@ -43,7 +43,7 @@ trait AjaxMethodsTrait
     {
         print(json_encode($result));
 
-        exit(0);
+        die(0);
     }
 
     /**
@@ -61,6 +61,6 @@ trait AjaxMethodsTrait
             "code" => $code
         ]));
 
-        exit(0);
+        die(0);
     }
 }

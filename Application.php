@@ -184,7 +184,7 @@ class Application
      */
     public function handleException(\Exception $e): void
     {
-        print('<pre>' . $e);
+        print('<pre>' . $e->getMessage().'<br/>'.$this->formatCallStack($e));
     }
 
     /**
@@ -253,5 +253,23 @@ class Application
     public function getRouter(): \Mezon\Router\Router
     {
         return $this->router;
+    }
+
+    /**
+     * Formatting call stack
+     *
+     * @param mixed $e
+     *            Exception object
+     */
+    protected function formatCallStack($e): array
+    {
+        $stack = $e->getTrace();
+        
+        foreach ($stack as $i => $call) {
+            $stack[$i] = (@$call['file'] == '' ? 'lambda : ' : @$call['file'] . ' (' . $call['line'] . ') : ') .
+            (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
+        }
+        
+        return $stack;
     }
 }

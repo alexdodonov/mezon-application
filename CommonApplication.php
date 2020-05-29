@@ -81,24 +81,6 @@ class CommonApplication extends \Mezon\Application\Application
     }
 
     /**
-     * Formatting call stack
-     *
-     * @param mixed $e
-     *            Exception object
-     */
-    protected function formatCallStack($e): array
-    {
-        $stack = $e->getTrace();
-
-        foreach ($stack as $i => $call) {
-            $stack[$i] = (@$call['file'] == '' ? 'lambda : ' : @$call['file'] . ' (' . $call['line'] . ') : ') .
-                (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
-        }
-
-        return $stack;
-    }
-
-    /**
      * Method formats exception object
      *
      * @param \Exception $e
