@@ -21,7 +21,7 @@ class TestingView extends View
     }
 }
 
-class ViewUnitTest extends \PHPUnit\Framework\TestCase
+class ViewStaticUnitTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -29,10 +29,10 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructor(): void
     {
-        // setupp
+        // setup
         $view = new TestingView(null, 'test');
 
-        // test body and assertionss
+        // test body and assertions
         $this->assertEquals('test', $view->getViewName(), 'Invalid constructor call');
     }
 
@@ -41,10 +41,10 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testRender(): void
     {
-        // setupp
+        // setup
         $view = new TestingView(null, 'test');
 
-        // test body and assertionss
+        // test body and assertions
         $this->assertEquals('rendered content', $view->render(), 'Invalid view renderring');
         $this->assertEquals('rendered content 2', $view->render('test2'), 'Invalid view renderring');
     }
@@ -54,13 +54,13 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault(): void
     {
-        // setupp
+        // setup
         $view = new TestingView();
 
-        // assertionss
+        // assertions
         $this->expectExceptionMessage('View Default was not found');
 
-        // test bodyy
+        // test body
         $view->render();
     }
 
@@ -69,7 +69,7 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetTemplate(): void
     {
-        // setupp
+        // setup
         $view = new TestingView(new HtmlTemplate(__DIR__ . '/res/templates/'));
 
         // test body and assertions

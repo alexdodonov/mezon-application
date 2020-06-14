@@ -1,6 +1,8 @@
 <?php
 namespace Mezon\Application;
 
+// TODO Fatal error: Uncaught Exception: Method formatCallStack was not found in the application Game\AjaxKernel in C:\xampp\game.local\vendor\mezon\application\Application.php on line 196
+
 /**
  * Class Application
  *

@@ -196,7 +196,18 @@ function			__construct($template)
 
 # View
 
-tba
+## Static view
+You can simply output content of the *.tpl file as common view. It can be usefull if you ned to render static pages or static page parts. It will let you to avoid creating separate class and separate view methods for these purposes.
+
+It is quite simple:
+
+```php
+// here $template is an instance of the \Mezon\HtmlTemplate\HtmlTemplate class
+// and 'block-name' is a block name in this class
+$view = new \Mezon\Application\ViewStatic($template, 'block-name');
+```
+
+For more details about MEzon templates [see](https://github.com/alexdodonov/mezon-html-template)
 
 # Controller
 

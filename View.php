@@ -16,7 +16,7 @@ use Mezon\HtmlTemplate\HtmlTemplate;
 /**
  * Base class for all views
  */
-class View implements \Mezon\Application\ViewInterface
+class View extends ViewBase
 {
 
     /**
@@ -25,13 +25,6 @@ class View implements \Mezon\Application\ViewInterface
      * @var string
      */
     private $viewName = '';
-
-    /**
-     * Active template
-     *
-     * @var HtmlTemplate
-     */
-    private $template = null;
 
     /**
      * Constructor
@@ -43,23 +36,9 @@ class View implements \Mezon\Application\ViewInterface
      */
     public function __construct(HtmlTemplate $template = null, string $viewName = '')
     {
+        parent::__construct($template);
+
         $this->viewName = $viewName;
-
-        $this->template = $template;
-    }
-
-    /**
-     * Method returns template
-     *
-     * @return HtmlTemplate template
-     */
-    public function getTemplate(): HtmlTemplate
-    {
-        if ($this->template === null) {
-            throw (new \Exception('Template was not set for the view', - 1));
-        }
-
-        return $this->template;
     }
 
     /**
