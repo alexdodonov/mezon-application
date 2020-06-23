@@ -2,10 +2,10 @@
 namespace Mezon\Application;
 
 /**
- * Class Controller
+ * Class Presenter
  *
  * @package Mezon
- * @subpackage Controller
+ * @subpackage Presenter
  * @author Dodonov A.A.
  * @version v.1.0 (2020/01/12)
  * @copyright Copyright (c) 2020, aeon.org
@@ -16,7 +16,7 @@ namespace Mezon\Application;
  *
  * @deprecated since 2020-06-26
  */
-class Controller extends \Mezon\Application\ControllerInterface
+class Presenter extends \Mezon\Application\AbstractPresenter
 {
 
     /**
@@ -29,14 +29,14 @@ class Controller extends \Mezon\Application\ControllerInterface
     /**
      * Constructor
      *
-     * @param string $controllerName
-     *            Controller name to be executed
+     * @param string $presenterName
+     *            Presenter name to be executed
      * @param ?\Mezon\Transport\RequestParams $requestParams
      *            request params fetcher
      */
-    public function __construct(string $controllerName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
+    public function __construct(string $presenterName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
     {
-        $this->setControllerName($controllerName);
+        $this->setPresenterName($presenterName);
 
         $this->requestParams = $requestParams;
     }
@@ -45,28 +45,28 @@ class Controller extends \Mezon\Application\ControllerInterface
      * Method runs controller
      *
      * @param
-     *            string ControllerName
-     *            Controller name to be run
+     *            string PresenterName
+     *            Presenter name to be run
      * @return mixed result of the controller
      */
-    public function run(string $controllerName = '')
+    public function run(string $presenterName = '')
     {
-        if ($controllerName === '') {
-            $controllerName = $this->getControllerName();
+        if ($presenterName === '') {
+            $presenterName = $this->getPresenterName();
         }
 
-        if ($controllerName === '') {
-            $controllerName = 'Default';
+        if ($presenterName === '') {
+            $presenterName = 'Default';
         }
 
-        if (method_exists($this, 'controller' . $controllerName)) {
+        if (method_exists($this, 'presenter' . $presenterName)) {
             return call_user_func([
                 $this,
-                'controller' . $controllerName
+                'presenter' . $presenterName
             ]);
         }
 
-        throw (new \Exception('Controller ' . $controllerName . ' was not found'));
+        throw (new \Exception('Presenter ' . $presenterName . ' was not found'));
     }
 
     /**

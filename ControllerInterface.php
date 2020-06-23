@@ -13,8 +13,9 @@ namespace Mezon\Application;
 
 /**
  * Base interface for all controllers
+ * @deprecated since 2020-06-26
  */
-interface ControllerInterface
+abstract class ControllerInterface extends AbstractPresenter
 {
 
     /**
@@ -24,12 +25,26 @@ interface ControllerInterface
      *            Controller name to be run
      * @return mixed Controller execution result
      */
-    public function run(string $controllerName = '');
+    abstract public function run(string $controllerName = '');
 
     /**
      * Method returns controller's name
      *
      * @return string controller's name
      */
-    public function getControllerName(): string;
+    public function getControllerName(): string
+    {
+        return $this->getPresenterName();
+    }
+
+    /**
+     * Method sets controller's name
+     *
+     * @param string $controllerName
+     *            controller's name
+     */
+    public function setControllerName(string $controllerName): void
+    {
+        $this->setPresenterName($controllerName);
+    }
 }

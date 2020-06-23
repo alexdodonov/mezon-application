@@ -1,5 +1,6 @@
 <?php
 use Mezon\HtmlTemplate\HtmlTemplate;
+use Mezon\Application\Presenter;
 use Mezon\Application\View;
 
 /**
@@ -87,5 +88,35 @@ class ViewStaticUnitTest extends \PHPUnit\Framework\TestCase
 
         // test body
         $view->getTemplate();
+    }
+
+    /**
+     * Testing method getPresenter
+     */
+    public function testExceptionInPresenterFetcher(): void
+    {
+        // setup
+        $view = new View(null, '', null);
+
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // test body
+        $view->getPresenter();
+    }
+
+    /**
+     * Testing method getPresenter
+     */
+    public function testNoExceptionInPresenterFetcher(): void
+    {
+        // setup
+        $view = new View(null, '', new Presenter());
+
+        // test body
+        $presenter = $view->getPresenter();
+
+        // assertions
+        $this->assertInstanceOf(Presenter::class, $presenter);
     }
 }
