@@ -77,4 +77,19 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(TestingController::class, $route['callback'][0]);
         $this->assertEquals('controllerTest', $route['callback'][1]);
     }
+
+    /**
+     * Testing method setControllerName
+     */
+    public function testSetControllerName(): void
+    {
+        // setup
+        $controller = new TestingController();
+
+        // test body
+        $controller->setControllerName('SomeName');
+
+        // assertions
+        $this->assertEquals('SomeName', $controller->getControllerName());
+    }
 }

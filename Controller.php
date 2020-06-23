@@ -36,7 +36,8 @@ class Controller implements \Mezon\Application\ControllerInterface
      *
      * @param string $controllerName
      *            Controller name to be executed
-     * @param ?\Mezon\Transport\RequestParams $requestParams request params fetcher
+     * @param ?\Mezon\Transport\RequestParams $requestParams
+     *            request params fetcher
      */
     public function __construct(string $controllerName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
     {
@@ -81,6 +82,17 @@ class Controller implements \Mezon\Application\ControllerInterface
     public function getControllerName(): string
     {
         return $this->controllerName;
+    }
+
+    /**
+     * Method sets controller name
+     *
+     * @param string $controllerName
+     *            controller name
+     */
+    public function setControllerName(string $controllerName)
+    {
+        $this->controllerName = $controllerName;
     }
 
     /**
