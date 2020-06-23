@@ -39,4 +39,18 @@ interface PresenterInterface
      * @return string presenter's name
      */
     public function setPresenterName(string $presenterName): void;
+
+    /**
+     * Method returns code of the last error
+     *
+     * @return int code of the last error
+     */
+    public function getErrorCode(): int;
+
+    /**
+     * Method return last error description
+     *
+     * @return string last error description
+     */
+    public function getErrorMessage(): string;
 }

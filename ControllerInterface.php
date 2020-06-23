@@ -13,6 +13,7 @@ namespace Mezon\Application;
 
 /**
  * Base interface for all controllers
+ * 
  * @deprecated since 2020-06-26
  */
 abstract class ControllerInterface extends AbstractPresenter
