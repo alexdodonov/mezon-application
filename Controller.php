@@ -107,4 +107,50 @@ class Controller extends \Mezon\Application\ControllerInterface
             ]
         ];
     }
+
+    /**
+     * Method returns code of the last error
+     *
+     * @return int code of the last error
+     * @codeCoverageIgnore
+     */
+    public function getErrorCode(): int
+    {
+        return $this->errorCode;
+    }
+
+    /**
+     * Method sets code of the last error
+     *
+     * @param int $code
+     *            code of the last error
+     * @codeCoverageIgnore
+     */
+    public function setErrorCode(int $errorCode): void
+    {
+        $this->errorCode = $errorCode;
+    }
+
+    /**
+     * Method return last error description
+     *
+     * @return string last error description
+     * @codeCoverageIgnore
+     */
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    /**
+     * Method sets last error description
+     *
+     * @param
+     *            string last error description
+     * @codeCoverageIgnore
+     */
+    public function setErrorMessage(string $errorMessage): void
+    {
+        $this->errorMessage = $errorMessage;
+    }
 }

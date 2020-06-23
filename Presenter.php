@@ -149,7 +149,7 @@ class Presenter extends \Mezon\Application\AbstractPresenter
      *            string last error description
      * @codeCoverageIgnore
      */
-    public function getErrorMessage(string $errorMessage): void
+    public function setErrorMessage(string $errorMessage): void
     {
         $this->errorMessage = $errorMessage;
     }
