@@ -1,4 +1,6 @@
 <?php
+use Mezon\Transport\HttpRequestParams;
+use Mezon\Router\Router;
 
 /**
  * Presenter class for testing purposes
@@ -91,5 +93,36 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 
         // assertions
         $this->assertEquals('SomeName', $presenter->getPresenterName());
+    }
+
+    /**
+     * Testing method getParamsFetcher
+     */
+    public function testGetParamsFetcher(): void
+    {
+        // setup
+        $router = new Router();
+        $presenter = new TestingPresenter('', new HttpRequestParams($router));
+
+        // test body
+        $fetcher = $presenter->getParamsFetcher();
+
+        // assertions
+        $this->assertInstanceOf(HttpRequestParams::class, $fetcher);
+    }
+
+    /**
+     * Testing method getParamsFetcher with exception
+     */
+    public function testGetParamsFetcherWithException() : void
+    {
+        // setup
+        $presenter = new TestingPresenter();
+
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // test body
+        $presenter->getParamsFetcher();
     }
 }

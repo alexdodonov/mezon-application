@@ -1,5 +1,8 @@
 <?php
 
+use Mezon\Transport\HttpRequestParams;
+use Mezon\Router\Router;
+
 /**
  * Controller class for testing purposes
  *
@@ -91,5 +94,36 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
 
         // assertions
         $this->assertEquals('SomeName', $controller->getControllerName());
+    }
+
+    /**
+     * Testing method getParamsFetcher
+     */
+    public function testGetParamsFetcher(): void
+    {
+        // setup
+        $router = new Router();
+        $controller = new TestingController('', new HttpRequestParams($router));
+
+        // test body
+        $fetcher = $controller->getParamsFetcher();
+
+        // assertions
+        $this->assertInstanceOf(HttpRequestParams::class, $fetcher);
+    }
+
+    /**
+     * Testing method getParamsFetcher with exception
+     */
+    public function testGetParamsFetcherWithException() : void
+    {
+        // setup
+        $controller = new TestingController();
+
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // test body
+        $controller->getParamsFetcher();
     }
 }

@@ -1,6 +1,8 @@
 <?php
 namespace Mezon\Application;
 
+use Mezon\Transport\RequestParamsInterface;
+
 /**
  * Class Presenter
  *
@@ -39,6 +41,20 @@ class Presenter extends \Mezon\Application\AbstractPresenter
         $this->setPresenterName($presenterName);
 
         $this->requestParams = $requestParams;
+    }
+
+    /**
+     * Method return $requestParams and thrown exception if it was not set
+     *
+     * @return RequestParamsInterface request params fetcher
+     */
+    public function getParamsFetcher(): RequestParamsInterface
+    {
+        if ($this->requestParams === null) {
+            throw (new \Exception('Param fetcher was not setup'));
+        }
+
+        return $this->requestParams;
     }
 
     /**

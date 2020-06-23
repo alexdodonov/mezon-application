@@ -1,6 +1,9 @@
 <?php
 namespace Mezon\Application;
 
+use Mezon\Transport\RequestParamsInterface;
+use Mezon\Application\ControllerInterface;
+
 /**
  * Class Controller
  *
@@ -16,13 +19,13 @@ namespace Mezon\Application;
  *
  * @deprecated since 2020-06-26
  */
-class Controller extends \Mezon\Application\ControllerInterface
+class Controller extends ControllerInterface
 {
 
     /**
      * Router
      *
-     * @var \Mezon\Transport\RequestParams
+     * @var RequestParamsInterface
      */
     private $requestParams = null;
 
@@ -31,14 +34,28 @@ class Controller extends \Mezon\Application\ControllerInterface
      *
      * @param string $controllerName
      *            Controller name to be executed
-     * @param ?\Mezon\Transport\RequestParams $requestParams
+     * @param ?RequestParamsInterface $requestParams
      *            request params fetcher
      */
-    public function __construct(string $controllerName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
+    public function __construct(string $controllerName = '', ?RequestParamsInterface $requestParams = null)
     {
         $this->setControllerName($controllerName);
 
         $this->requestParams = $requestParams;
+    }
+
+    /**
+     * Method return $requestParams and thrown exception if it was not set
+     *
+     * @return RequestParamsInterface request params fetcher
+     */
+    public function getParamsFetcher(): RequestParamsInterface
+    {
+        if ($this->requestParams === null) {
+            throw (new \Exception('Param fetcher was not setup'));
+        }
+
+        return $this->requestParams;
     }
 
     /**
