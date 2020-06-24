@@ -2,7 +2,6 @@
 namespace Mezon\Application;
 
 use Mezon\Transport\RequestParamsInterface;
-use Mezon\Application\ControllerInterface;
 
 /**
  * Class Controller
