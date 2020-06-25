@@ -20,14 +20,6 @@ abstract class AjaxApplication extends \Mezon\Application\Application
     use \Mezon\Application\AjaxMethodsTrait;
 
     /**
-     * Formatting call stack
-     *
-     * @param mixed $e
-     *            Exception object
-     */
-    abstract protected function formatCallStack($e): array;
-
-    /**
      * Method processes exception.
      *
      * @param \Exception $e
