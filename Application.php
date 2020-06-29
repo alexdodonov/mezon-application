@@ -228,6 +228,10 @@ class Application
     public function redirectTo($url): void
     {
         // @codeCoverageIgnoreStart
+        if (isset($_GET['redirect-to'])) {
+            $url = str_replace('{redirect-to}', urldecode($_GET['redirect-to']), $url);
+        }
+
         header('Location: ' . $url);
         exit(0);
         // @codeCoverageIgnoreEnd

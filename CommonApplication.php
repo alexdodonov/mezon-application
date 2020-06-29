@@ -132,12 +132,26 @@ class CommonApplication extends Application
     }
 
     /**
+     * Method sets GET parameter as template var
+     *
+     * @param string $fieldName
+     *            name of the GET parameter
+     */
+    protected function setGetVar(string $fieldName): void
+    {
+        if (isset($_GET[$fieldName])) {
+            $this->template->setPageVar($fieldName, $_GET[$fieldName]);
+        }
+    }
+
+    /**
      * Running application.
      */
     public function run(): void
     {
         try {
             $callRouteResult = $this->callRoute();
+
             if (is_array($callRouteResult) === false) {
                 throw (new \Exception('Route was not called properly'));
             }
@@ -151,6 +165,8 @@ class CommonApplication extends Application
                     $this->template->setPageVar($key, $content);
                 }
             }
+
+            $this->setGetVar('redirect-to');
 
             print($this->template->compile());
         } catch (Rest\Exception $e) {

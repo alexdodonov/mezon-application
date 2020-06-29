@@ -14,12 +14,12 @@ class TestView extends \Mezon\Application\View
     {
         parent::__construct(null, 'default');
 
-        $this->Content = $content;
+        $this->content = $content;
     }
 
     public function render(string $viewName = ''): string
     {
-        return $this->Content;
+        return $this->content;
     }
 }
 
@@ -30,7 +30,7 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
 {
 
     /**
-     * Constructor.
+     * Constructor
      */
     function __construct()
     {
@@ -61,6 +61,10 @@ class TestCommonApplication extends \Mezon\Application\CommonApplication
     function actionRest(): array
     {
         throw (new Rest\Exception('exception', - 1, 502, 'body'));
+    }
+
+    function redirectTo($url):void{
+        // do nothing
     }
 }
 
@@ -96,6 +100,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
 
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $_GET['r'] = '/view-result/';
+        $_GET['redirect-to'] = 'redirectTo';
 
         // test body
         ob_start();
@@ -104,8 +109,9 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         ob_end_clean();
 
         // assertions
-        $this->assertStringContainsString('View result', $output, 'Template compilation failed (3)');
-        $this->assertStringContainsString('Test view result', $output, 'Template compilation failed (4)');
+        $this->assertStringContainsString('View result', $output);
+        $this->assertStringContainsString('Test view result', $output);
+        $this->assertStringContainsString('redirectTo', $output);
     }
 
     /**
