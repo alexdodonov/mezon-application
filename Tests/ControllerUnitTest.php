@@ -97,7 +97,7 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing method getParamsFetcher
+     * Testing method getRequestParamsFetcher
      */
     public function testGetParamsFetcher(): void
     {
@@ -106,14 +106,14 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
         $controller = new TestingController('', new HttpRequestParams($router));
 
         // test body
-        $fetcher = $controller->getParamsFetcher();
+        $fetcher = $controller->getRequestParamsFetcher();
 
         // assertions
         $this->assertInstanceOf(HttpRequestParams::class, $fetcher);
     }
 
     /**
-     * Testing method getParamsFetcher with exception
+     * Testing method getRequestParamsFetcher with exception
      */
     public function testGetParamsFetcherWithException() : void
     {
@@ -124,6 +124,6 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Exception::class);
 
         // test body
-        $controller->getParamsFetcher();
+        $controller->getRequestParamsFetcher();
     }
 }

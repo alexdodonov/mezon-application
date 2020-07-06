@@ -1,6 +1,10 @@
 <?php
 namespace Mezon\Application;
 
+use Mezon\Transport\RequestParamsInterface;
+use Mezon\Transport\HttpRequestParams;
+use Mezon\Router\Router;
+
 /**
  * Class Application
  *
@@ -20,14 +24,14 @@ class Application
     /**
      * Router object
      *
-     * @var \Mezon\Router\Router
+     * @var Router
      */
     private $router = null;
 
     /**
      * Params fetcher
      *
-     * @var \Mezon\Transport\RequestParams
+     * @var HttpRequestParams
      */
     private $requestParams = null;
 
@@ -37,7 +41,7 @@ class Application
     function __construct()
     {
         // getting application's actions
-        $this->router = new \Mezon\Router\Router();
+        $this->router = new Router();
 
         $this->router->fetchActions($this);
 
@@ -56,12 +60,12 @@ class Application
     /**
      * Method returns $this->requestParams and creates this object if necessery
      *
-     * @return \Mezon\Transport\RequestParams
+     * @return RequestParamsInterface
      */
-    public function getRequestParamsFetcher(): \Mezon\Transport\RequestParams
+    public function getRequestParamsFetcher(): RequestParamsInterface
     {
         if ($this->requestParams === null) {
-            $this->requestParams = new \Mezon\Transport\HttpRequestParams($this->router);
+            $this->requestParams = new HttpRequestParams($this->router);
         }
 
         return $this->requestParams;
