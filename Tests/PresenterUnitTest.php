@@ -96,7 +96,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing method getParamsFetcher
+     * Testing method getRequestParamsFetcher
      */
     public function testGetParamsFetcher(): void
     {
@@ -105,14 +105,14 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
         $presenter = new TestingPresenter('', new HttpRequestParams($router));
 
         // test body
-        $fetcher = $presenter->getParamsFetcher();
+        $fetcher = $presenter->getRequestParamsFetcher();
 
         // assertions
         $this->assertInstanceOf(HttpRequestParams::class, $fetcher);
     }
 
     /**
-     * Testing method getParamsFetcher with exception
+     * Testing method getRequestParamsFetcher with exception
      */
     public function testGetParamsFetcherWithException() : void
     {
@@ -123,6 +123,6 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
         $this->expectException(\Exception::class);
 
         // test body
-        $presenter->getParamsFetcher();
+        $presenter->getRequestParamsFetcher();
     }
 }

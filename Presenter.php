@@ -47,8 +47,20 @@ class Presenter extends \Mezon\Application\AbstractPresenter
      * Method return $requestParams and thrown exception if it was not set
      *
      * @return RequestParamsInterface request params fetcher
+     * @deprecated since 2020-07-06 use getRequestParamsFetcher
+     * @codeCoverageIgnore
      */
     public function getParamsFetcher(): RequestParamsInterface
+    {
+        return $this->getRequestParamsFetcher();
+    }
+
+    /**
+     * Method returns $this->requestParams and creates this object if necessery
+     *
+     * @return RequestParamsInterface
+     */
+    public function getRequestParamsFetcher(): RequestParamsInterface
     {
         if ($this->requestParams === null) {
             throw (new \Exception('Param fetcher was not setup'));
