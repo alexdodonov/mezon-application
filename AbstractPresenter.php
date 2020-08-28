@@ -34,6 +34,22 @@ abstract class AbstractPresenter implements PresenterInterface
     private $view = null;
 
     /**
+     * Error code
+     *
+     * @var integer
+     * @deprecated Must be removed after the Controller class will be removed.
+     */
+    private $errorCode = 0;
+
+    /**
+     * Error message
+     *
+     * @var string
+     * @deprecated Must be removed after the Controller class will be removed.
+     */
+    private $errorMessage = '';
+
+    /**
      * Constructor
      *
      * @param ViewInterface $view
@@ -72,7 +88,7 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function getErrorCode(): int
     {
-        return $this->view->getErrorCode();
+        return $this->view === null ? $this->errorCode : $this->view->getErrorCode();
     }
 
     /**
@@ -84,7 +100,11 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function setErrorCode(int $errorCode): void
     {
-        $this->view->setErrorCode($errorCode);
+        if ($this->view === null) {
+            $this->errorCode = $errorCode;
+        } else {
+            $this->view->setErrorCode($errorCode);
+        }
     }
 
     /**
@@ -95,7 +115,7 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function getErrorMessage(): string
     {
-        return $this->view->getErrorMessage();
+        return $this->view === null ? $this->errorMessage : $this->view->getErrorMessage();
     }
 
     /**
@@ -107,6 +127,10 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function setErrorMessage(string $errorMessage): void
     {
-        $this->view->setErrorMessage($errorMessage);
+        if ($this->view === null) {
+            $this->errorMessage = $errorMessage;
+        } else {
+            $this->view->setErrorMessage($errorMessage);
+        }
     }
 }
