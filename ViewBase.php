@@ -18,6 +18,19 @@ use Mezon\HtmlTemplate\HtmlTemplate;
  */
 abstract class ViewBase implements \Mezon\Application\ViewInterface
 {
+    /**
+     * Template variable
+     * 
+     * @var string
+     */
+    const ERROR_CODE = 'error-code';
+
+    /**
+     * Template variable
+     *
+     * @var string
+     */
+    const ERROR_MESSAGE = 'error-message';
 
     /**
      * Active template
@@ -25,6 +38,20 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
      * @var HtmlTemplate
      */
     private $template = null;
+
+    /**
+     * Error code
+     *
+     * @var integer
+     */
+    private $errorCode = 0;
+
+    /**
+     * Error message
+     *
+     * @var string
+     */
+    private $errorMessage = '';
 
     /**
      * Constructor
@@ -49,5 +76,51 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
         }
 
         return $this->template;
+    }
+
+    /**
+     * Method returns code of the last error
+     *
+     * @return int code of the last error
+     */
+    public function getErrorCode(): int
+    {
+        return $this->errorCode;
+    }
+
+    /**
+     * Method sets code of the last error
+     *
+     * @param int $code
+     *            code of the last error
+     */
+    public function setErrorCode(int $errorCode): void
+    {
+        $this->errorCode = $errorCode;
+
+        $this->getTemplate()->setPageVar(ViewBase::ERROR_CODE, $errorCode);
+    }
+
+    /**
+     * Method return last error description
+     *
+     * @return string last error description
+     */
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    /**
+     * Method sets last error description
+     *
+     * @param
+     *            string last error description
+     */
+    public function setErrorMessage(string $errorMessage): void
+    {
+        $this->errorMessage = $errorMessage;
+
+        $this->getTemplate()->setPageVar(ViewBase::ERROR_MESSAGE, $errorMessage);
     }
 }

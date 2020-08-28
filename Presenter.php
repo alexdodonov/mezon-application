@@ -14,9 +14,7 @@ use Mezon\Transport\RequestParamsInterface;
  */
 
 /**
- * Base class for all views
- *
- * @deprecated since 2020-06-26
+ * Base class for all controllers
  */
 class Presenter extends \Mezon\Application\AbstractPresenter
 {
@@ -31,13 +29,20 @@ class Presenter extends \Mezon\Application\AbstractPresenter
     /**
      * Constructor
      *
+     * @param ViewInterface $view
+     *            view object
      * @param string $presenterName
      *            Presenter name to be executed
      * @param ?\Mezon\Transport\RequestParams $requestParams
      *            request params fetcher
      */
-    public function __construct(string $presenterName = '', ?\Mezon\Transport\RequestParams $requestParams = null)
+    public function __construct(
+        ViewInterface $view,
+        string $presenterName = '',
+        ?\Mezon\Transport\RequestParams $requestParams = null)
     {
+        parent::__construct($view);
+
         $this->setPresenterName($presenterName);
 
         $this->requestParams = $requestParams;
@@ -98,10 +103,6 @@ class Presenter extends \Mezon\Application\AbstractPresenter
     }
 
     /**
-     * May be these functions should be excluded to base class common with View
-     */
-
-    /**
      * Method redirects user to another page
      *
      * @param string $url
@@ -123,6 +124,7 @@ class Presenter extends \Mezon\Application\AbstractPresenter
      * @param string $function
      *            controller's function name
      * @return array built route data
+     * @deprecated Deprecated since 2020-08-28, use Application::buildRoute
      */
     public function buildRoute(string $route, string $method, string $function): array
     {

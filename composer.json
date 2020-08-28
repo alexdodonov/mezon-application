@@ -28,7 +28,8 @@
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
-			"Mezon\\Application\\": ""
+			"Mezon\\Application\\": "",
+			"Mezon\\Application\\Tests\\": ""
 		}
 	},
 	"scripts": {

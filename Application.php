@@ -280,4 +280,29 @@ class Application
 
         return $stack;
     }
+
+    /**
+     * Method builds route data
+     *
+     * @param string $route
+     *            route
+     * @param string $method
+     *            HTTP method
+     * @param object $handler
+     *            object wich handles request
+     * @param string $function
+     *            controller's function name
+     * @return array built route data
+     */
+    public static function buildRoute(string $route, string $method, object $handler, string $function): array
+    {
+        return [
+            'route' => $route,
+            'method' => $method,
+            'callback' => [
+                $handler,
+                $function
+            ]
+        ];
+    }
 }

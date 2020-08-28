@@ -32,4 +32,36 @@ interface ViewInterface
      * @return string view name
      */
     public function getViewName(): string;
+
+    /**
+     * Method returns code of the last error
+     *
+     * @return int code of the last error
+     */
+    public function getErrorCode(): int;
+
+    /**
+     * Method sets code of the last error
+     *
+     * @param int $code
+     *            code of the last error
+     * @codeCoverageIgnore
+     */
+    public function setErrorCode(int $errorCode): void;
+
+    /**
+     * Method return last error description
+     *
+     * @return string last error description
+     */
+    public function getErrorMessage(): string;
+
+    /**
+     * Method sets last error description
+     *
+     * @param
+     *            string last error description
+     * @codeCoverageIgnore
+     */
+    public function setErrorMessage(string $errorMessage): void;
 }

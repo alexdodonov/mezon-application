@@ -18,9 +18,9 @@ trait AjaxMethodsTrait
 {
 
     /**
-     * Validating authorization for ajax requests
+     * Validating authorization for ajax requests.
      *
-     * Must be overriden in the base class
+     * Must be overriden in the derived class.
      */
     abstract protected function validateAuthorizationForAjaxRequests();
 

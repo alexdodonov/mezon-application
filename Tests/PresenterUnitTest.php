@@ -1,25 +1,8 @@
 <?php
+namespace Mezon\Application\Tests;
+
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
-
-/**
- * Presenter class for testing purposes
- *
- * @author Dodonov A.A.
- */
-class TestingPresenter extends \Mezon\Application\Presenter
-{
-
-    public function presenterTest(): string
-    {
-        return 'computed content';
-    }
-
-    public function presenterTest2(): string
-    {
-        return 'computed content 2';
-    }
-}
 
 class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -30,7 +13,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     public function testConstructor(): void
     {
         // setupp
-        $presenter = new TestingPresenter('Test');
+        $presenter = new TestingPresenter(new TestingView(), 'Test');
 
         $this->assertEquals('Test', $presenter->getPresenterName(), 'Invalid constructor call');
     }
@@ -41,7 +24,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     public function testRender(): void
     {
         // setupp
-        $presenter = new TestingPresenter('Test');
+        $presenter = new TestingPresenter(new TestingView(), 'Test');
 
         $this->assertEquals('computed content', $presenter->run(), 'Invalid controller execution');
         $this->assertEquals('computed content 2', $presenter->run('test2'), 'Invalid controller execution');
@@ -53,7 +36,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     public function testDefault(): void
     {
         // setupp
-        $presenter = new TestingPresenter();
+        $presenter = new TestingPresenter(new TestingView());
 
         // assertionss
         $this->expectExceptionMessage('Presenter Default was not found');
@@ -68,7 +51,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     public function testBuildRoute(): void
     {
         // setup
-        $presenter = new TestingPresenter();
+        $presenter = new TestingPresenter(new TestingView());
 
         // test body
         $route = $presenter->buildRoute('/test/', 'POST', 'controllerTest');
@@ -86,7 +69,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     public function testSetPresenterName(): void
     {
         // setup
-        $presenter = new TestingPresenter();
+        $presenter = new TestingPresenter(new TestingView());
 
         // test body
         $presenter->setPresenterName('SomeName');
@@ -102,7 +85,7 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     {
         // setup
         $router = new Router();
-        $presenter = new TestingPresenter('', new HttpRequestParams($router));
+        $presenter = new TestingPresenter(new TestingView(), '', new HttpRequestParams($router));
 
         // test body
         $fetcher = $presenter->getRequestParamsFetcher();
@@ -114,10 +97,10 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing method getRequestParamsFetcher with exception
      */
-    public function testGetParamsFetcherWithException() : void
+    public function testGetParamsFetcherWithException(): void
     {
         // setup
-        $presenter = new TestingPresenter();
+        $presenter = new TestingPresenter(new TestingView());
 
         // assertions
         $this->expectException(\Exception::class);

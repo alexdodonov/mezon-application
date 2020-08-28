@@ -11,6 +11,8 @@ namespace Mezon\Application;
  * @copyright Copyright (c) 2020, aeon.org
  */
 
+// TODO move all methods of the Presenter method after the Controller class will be removed
+
 /**
  * Base class for all presenters
  */
@@ -25,18 +27,22 @@ abstract class AbstractPresenter implements PresenterInterface
     private $presenterName = '';
 
     /**
-     * Error code
-     * 
-     * @var integer
+     * View object
+     *
+     * @var ViewInterface
      */
-    private $errorCode = 0;
+    private $view = null;
 
     /**
-     * Error message
-     * 
-     * @var string
+     * Constructor
+     *
+     * @param ViewInterface $view
+     *            view object
      */
-    private $errorMessage = '';
+    public function __construct(ViewInterface $view)
+    {
+        $this->view = $view;
+    }
 
     /**
      * Method returns presenter's name
@@ -57,7 +63,7 @@ abstract class AbstractPresenter implements PresenterInterface
     {
         $this->presenterName = $presenterName;
     }
-    
+
     /**
      * Method returns code of the last error
      *
@@ -66,7 +72,7 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function getErrorCode(): int
     {
-        return $this->errorCode;
+        return $this->view->getErrorCode();
     }
 
     /**
@@ -78,7 +84,7 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function setErrorCode(int $errorCode): void
     {
-        $this->errorCode = $errorCode;
+        $this->view->setErrorCode($errorCode);
     }
 
     /**
@@ -89,7 +95,7 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function getErrorMessage(): string
     {
-        return $this->errorMessage;
+        return $this->view->getErrorMessage();
     }
 
     /**
@@ -101,6 +107,6 @@ abstract class AbstractPresenter implements PresenterInterface
      */
     public function setErrorMessage(string $errorMessage): void
     {
-        $this->errorMessage = $errorMessage;
+        $this->view->setErrorMessage($errorMessage);
     }
 }

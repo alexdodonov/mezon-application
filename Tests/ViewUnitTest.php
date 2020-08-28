@@ -1,28 +1,11 @@
 <?php
+namespace Mezon\Application\Tests;
+
 use Mezon\HtmlTemplate\HtmlTemplate;
 use Mezon\Application\Presenter;
 use Mezon\Application\View;
 
-/**
- * View class for testing purposes
- *
- * @author Dodonov A.A.
- */
-class TestingView extends View
-{
-
-    public function viewTest(): string
-    {
-        return 'rendered content';
-    }
-
-    public function viewTest2(): string
-    {
-        return 'rendered content 2';
-    }
-}
-
-class ViewStaticUnitTest extends \PHPUnit\Framework\TestCase
+class ViewUnitTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -91,32 +74,36 @@ class ViewStaticUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing method getPresenter
+     * Testing method setErrorCode
      */
-    public function testExceptionInPresenterFetcher(): void
+    public function testSetErrorCode(): void
     {
         // setup
-        $view = new View(null, '', null);
-
-        // assertions
-        $this->expectException(\Exception::class);
+        $view = new TestingView(new HtmlTemplate(__DIR__));
 
         // test body
-        $view->getPresenter();
+        $view->setErrorCode(111);
+
+        // assertions
+        $this->assertEquals(111, $view->getErrorCode());
+        $this->assertEquals(111, $view->getTemplate()
+            ->getPageVar(TestingView::ERROR_CODE));
     }
 
     /**
-     * Testing method getPresenter
+     * Testing method setErrorMessage
      */
-    public function testNoExceptionInPresenterFetcher(): void
+    public function testSetErrorMessage(): void
     {
         // setup
-        $view = new View(null, '', new Presenter());
+        $view = new TestingView(new HtmlTemplate(__DIR__));
 
         // test body
-        $presenter = $view->getPresenter();
+        $view->setErrorMessage('111');
 
         // assertions
-        $this->assertInstanceOf(Presenter::class, $presenter);
+        $this->assertEquals('111', $view->getErrorMessage());
+        $this->assertEquals('111', $view->getTemplate()
+            ->getPageVar(TestingView::ERROR_MESSAGE));
     }
 }

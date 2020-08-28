@@ -20,13 +20,6 @@ class View extends ViewBase
 {
 
     /**
-     * Presenter
-     *
-     * @var Presenter
-     */
-    private $presenter = null;
-
-    /**
      * View's name
      *
      * @var string
@@ -40,14 +33,10 @@ class View extends ViewBase
      *            template
      * @param string $viewName
      *            View name to be rendered
-     * @param
-     *            ?Presenter presenter
      */
-    public function __construct(HtmlTemplate $template = null, string $viewName = '', Presenter $presenter = null)
+    public function __construct(HtmlTemplate $template = null, string $viewName = '')
     {
         parent::__construct($template);
-
-        $this->presenter = $presenter;
 
         $this->viewName = $viewName;
     }
@@ -88,18 +77,4 @@ class View extends ViewBase
     {
         return $this->viewName;
     }
-
-    /**
-     * Method return presenter or throws exception if it was not setup
-     *
-     * @return Presenter presenter
-     */
-    public function getPresenter(): Presenter
-    {
-        if ($this->presenter === null) {
-            throw (new \Exception('Presenter was not setup', - 1));
-        }
-
-        return $this->presenter;//@codeCoverageIgnoreStart
-    }//@codeCoverageIgnoreEnd
 }
