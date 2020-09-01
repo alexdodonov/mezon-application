@@ -18,9 +18,10 @@ use Mezon\HtmlTemplate\HtmlTemplate;
  */
 abstract class ViewBase implements \Mezon\Application\ViewInterface
 {
+
     /**
      * Template variable
-     * 
+     *
      * @var string
      */
     const ERROR_CODE = 'error-code';
@@ -89,6 +90,16 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     }
 
     /**
+     * Method checks if the template was setup
+     *
+     * @return bool true if the method was setup, false otherwise
+     */
+    public function templateWasSetup(): bool
+    {
+        return $this->template !== null;
+    }
+
+    /**
      * Method sets code of the last error
      *
      * @param int $code
@@ -98,7 +109,9 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     {
         $this->errorCode = $errorCode;
 
-        $this->getTemplate()->setPageVar(ViewBase::ERROR_CODE, $errorCode);
+        if ($this->templateWasSetup()) {
+            $this->getTemplate()->setPageVar(ViewBase::ERROR_CODE, $errorCode);
+        }
     }
 
     /**
@@ -121,6 +134,8 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     {
         $this->errorMessage = $errorMessage;
 
-        $this->getTemplate()->setPageVar(ViewBase::ERROR_MESSAGE, $errorMessage);
+        if ($this->templateWasSetup()) {
+            $this->getTemplate()->setPageVar(ViewBase::ERROR_MESSAGE, $errorMessage);
+        }
     }
 }
