@@ -317,16 +317,16 @@
         },
         {
             "name": "mezon/router",
-            "version": "1.2.3",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-router.git",
-                "reference": "f3dde31870a605f600dd01fe8014ef884975f40a"
+                "reference": "3873f00d5b674a893f2dec107860ec230b31c923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-router/zipball/f3dde31870a605f600dd01fe8014ef884975f40a",
-                "reference": "f3dde31870a605f600dd01fe8014ef884975f40a",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-router/zipball/3873f00d5b674a893f2dec107860ec230b31c923",
+                "reference": "3873f00d5b674a893f2dec107860ec230b31c923",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,7 @@
             ],
             "description": "Small and fast routing framework",
             "homepage": "https://github.com/alexdodonov/mezon-router",
-            "time": "2020-08-28T15:28:08+00:00"
+            "time": "2020-09-03T06:17:23+00:00"
         },
         {
             "name": "mezon/template-engine",
