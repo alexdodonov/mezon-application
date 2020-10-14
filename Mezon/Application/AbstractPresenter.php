@@ -12,6 +12,7 @@ namespace Mezon\Application;
  */
 
 // TODO move all methods of the Presenter method after the Controller class will be removed
+// TODO create methods 'setMessage' 'getMessage' because we have not only error messages but success notifications also
 
 /**
  * Base class for all presenters

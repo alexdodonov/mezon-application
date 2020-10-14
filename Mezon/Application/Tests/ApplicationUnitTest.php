@@ -1,44 +1,7 @@
 <?php
+namespace Mezon\Application\Tests;
 
 use Mezon\Application\Application;
-
-/**
- * Application for testing purposes.
- */
-class TestApplication extends \Mezon\Application\Application
-{
-
-    function actionExisting()
-    {
-        /* existing action */
-        return 'OK!';
-    }
-
-    function compound()
-    {
-        return 'compond';
-    }
-}
-
-/**
- * Application for testing purposes.
- */
-class TestApplication2 extends \Mezon\Application\Application
-{
-
-    var $counter = 0;
-
-    /**
-     * Method loads routes from config file in *.php or *.json format
-     *
-     * @param string $configPath
-     *            Path of the config for routes
-     */
-    public function loadRoutesFromConfig(string $configPath): void
-    {
-        $this->counter ++;
-    }
-}
 
 class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -85,7 +48,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 
         $msg = '';
 
-        $this->expectException(Exception::class);
+        $this->expectException(\Exception::class);
         $application->loadRoutesFromConfig(__DIR__ . '/TestInvalidRoutes1.php');
 
         $this->assertEquals('Field "route" must be set', $msg, 'Invalid behavior for config validation');
@@ -102,7 +65,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 
         try {
             $application->loadRoutesFromConfig(__DIR__ . '/TestInvalidRoutes2.php');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $msg = $e->getMessage();
         }
 
@@ -189,7 +152,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
             $application->loadRoutesFromConfig('unexisting');
 
             $this->assertEquals(true, false, 'Exception was not thrown');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(true, true, 'OK');
         }
     }
@@ -212,10 +175,10 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testUnexistingRouter(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(\Exception::class);
 
         $application = $this->getMock();
-        $application->method('handleException')->willThrowException(new Exception());
+        $application->method('handleException')->willThrowException(new \Exception());
 
         $application->run();
     }
@@ -362,7 +325,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing method
      */
-    public function testBuildRoute() : void
+    public function testBuildRoute(): void
     {
         // test body
         $result = Application::buildRoute('/route/', 'GET', $this, 'func');

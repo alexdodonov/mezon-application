@@ -1,72 +1,8 @@
 <?php
-use Mezon\HtmlTemplate\HtmlTemplate;
+namespace Mezon\Application\Tests;
+
 use Mezon\Rest;
-
-/**
- * View class
- *
- * @author Dodonov A.A.
- */
-class TestView extends \Mezon\Application\View
-{
-
-    public function __construct(string $content)
-    {
-        parent::__construct(null, 'default');
-
-        $this->content = $content;
-    }
-
-    public function render(string $viewName = ''): string
-    {
-        return $this->content;
-    }
-}
-
-/**
- * Application for testing purposes.
- */
-class TestCommonApplication extends \Mezon\Application\CommonApplication
-{
-
-    /**
-     * Constructor
-     */
-    function __construct()
-    {
-        parent::__construct(new HtmlTemplate(__DIR__, 'index'));
-    }
-
-    function actionArrayResult(): array
-    {
-        return [
-            'title' => 'Array result',
-            'main' => 'Route main'
-        ];
-    }
-
-    function actionViewResult(): array
-    {
-        return [
-            'title' => 'View result',
-            'main' => new TestView('Test view result')
-        ];
-    }
-
-    function actionInvalid(): string
-    {
-        return 'Invalid';
-    }
-
-    function actionRest(): array
-    {
-        throw (new Rest\Exception('exception', - 1, 502, 'body'));
-    }
-
-    function redirectTo($url):void{
-        // do nothing
-    }
-}
+use Mezon\Application\View;
 
 class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -115,6 +51,20 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Method asserts exception field
+     *
+     * @param string $output
+     *            textual representation of the exception
+     */
+    protected function assertExceptionFields(string $output): void
+    {
+        $this->assertStringContainsString('"message"', $output);
+        $this->assertStringContainsString('"code"', $output);
+        $this->assertStringContainsString('"call_stack"', $output);
+        $this->assertStringContainsString('"host"', $output);
+    }
+
+    /**
      * Testing handleException method
      */
     public function testHandleException()
@@ -122,7 +72,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         // setup
         $application = new TestCommonApplication();
         $output = '';
-        $e = new Exception('', 0);
+        $e = new \Exception('', 0);
 
         // test body
         ob_start();
@@ -131,10 +81,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         ob_end_clean();
 
         // assertions
-        $this->assertStringContainsString('"message"', $output);
-        $this->assertStringContainsString('"code"', $output);
-        $this->assertStringContainsString('"call_stack"', $output);
-        $this->assertStringContainsString('"host"', $output);
+        $this->assertExceptionFields($output);
     }
 
     /**
@@ -153,11 +100,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         ob_end_clean();
 
         // assertions
-        $this->assertStringContainsString('"message"', $output);
-        $this->assertStringContainsString('"code"', $output);
-        $this->assertStringContainsString('"call_stack"', $output);
-        $this->assertStringContainsString('"host"', $output);
-        $this->assertStringContainsString('"host"', $output);
+        $this->assertExceptionFields($output);
         $this->assertStringContainsString('"httpBody"', $output);
     }
 
@@ -172,8 +115,8 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $_SERVER['HTTP_HOST'] = 'some host';
         $_SERVER['REQUEST_URI'] = 'some uri';
         try {
-            throw (new Exception('', 0));
-        } catch (Exception $e) {
+            throw (new \Exception('', 0));
+        } catch (\Exception $e) {
             // test body
             ob_start();
             $application->handleException($e);
@@ -222,5 +165,103 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
 
         // test body
         $application->run();
+    }
+
+    /**
+     * Data provider
+     *
+     * @return array data provider
+     */
+    public function resultMethodDataProvider(): array
+    {
+        $presenter = new TestingPresenter(new View(), 'Result');
+        return [
+            [ // #0 testing controller
+                function (): TestCommonApplication {
+                    return new TestCommonApplication();
+                },
+                new TestingController('Result'),
+                function (array $params) {
+                    $this->assertTrue($params[0]->wasCalled);
+                }
+            ],
+            [ // #1 testing presenter
+                function (): TestCommonApplication {
+                    return new TestCommonApplication();
+                },
+                $presenter,
+                function (array $params) {
+                    $this->assertTrue($params[0]->wasCalled);
+                }
+            ],
+            [ // #2 testing action message setup
+                function (): TestCommonApplication {
+                    $_GET['action-message'] = 'test-error';
+                    return new TestCommonApplication();
+                },
+                $presenter,
+                function (array $params): void {
+                    $this->assertEquals('error', $params[1]->getTemplate()
+                        ->getPageVar('action-message'));
+                }
+            ],
+            [ // #3 no file with the messages
+                function (): TestCommonApplication {
+                    $_GET['action-message'] = 'test-error';
+                    $application = new TestCommonApplication();
+                    $application->hasMessages = false;
+                    return $application;
+                },
+                $presenter,
+                function (array $params): void {
+                    $this->assertEquals('', $params[1]->getTemplate()
+                        ->getPageVar('action-message'));
+                }
+            ]
+        ];
+    }
+
+    /**
+     * Testing result() method
+     *
+     * @param callable $setup
+     *            setup of the test
+     * @param object $handler
+     *            controller or presenter
+     * @param callable $assert
+     *            asserter
+     * @dataProvider resultMethodDataProvider
+     */
+    public function testResultMethod(callable $setup, object $handler, callable $assert = null): void
+    {
+        // setup
+        $application = $setup();
+
+        // test body
+        $application->result($handler);
+
+        // assertions
+        if ($assert !== null) {
+            $assert([
+                $handler,
+                $application
+            ]);
+        }
+    }
+
+    /**
+     * Testing exception wile action-message parsing
+     */
+    public function testUnexistingException(): void
+    {
+        // assertions
+        $this->expectException(\Exception::class);
+
+        // setup
+        $_GET['action-message'] = 'unexisting-message';
+        $application = new TestCommonApplication();
+
+        // test body
+        $application->result();
     }
 }

@@ -2,8 +2,6 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\HtmlTemplate\HtmlTemplate;
-use Mezon\Application\Presenter;
-use Mezon\Application\View;
 
 class ViewUnitTest extends \PHPUnit\Framework\TestCase
 {

@@ -18,4 +18,11 @@ class TestingPresenter extends \Mezon\Application\Presenter
     {
         return 'computed content 2';
     }
+
+    public $wasCalled = false;
+
+    public function presenterResult(): void
+    {
+        $this->wasCalled = true;
+    }
 }

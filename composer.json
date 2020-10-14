@@ -28,14 +28,10 @@
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
-			"Mezon\\Application\\": ""
+			"Mezon\\": "./Mezon/"
 		}
 	},
 	"scripts": {
-		"test": [
-			"composer update",
-			"composer dump-autoload -o",
-			"php ./vendor/phpunit/phpunit/phpunit"
-		]
+		"test": "php ./vendor/phpunit/phpunit/phpunit"
 	}
 }

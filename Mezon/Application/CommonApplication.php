@@ -198,4 +198,67 @@ class CommonApplication extends Application
     {
         $this->template = $template;
     }
+
+    /**
+     * Method returns localized error message by it's key
+     *
+     * @param string $actionMessageCode
+     *            key of the message
+     * @return string localized error message by it's key
+     */
+    protected function getActionMessage(string $actionMessageCode): string
+    {
+        $classPath = $this->getClassPath();
+
+        if (file_exists($classPath.'/res/action-messages.json')) {
+            $messages = json_decode(file_get_contents($classPath . '/res/action-messages.json'), true);
+
+            if (isset($messages[$actionMessageCode])) {
+                return $messages[$actionMessageCode];
+            } else {
+                throw (new \Exception('The message with locator "' . $actionMessageCode . '" was not found', - 1));
+            }
+        }
+
+        return '';
+    }
+
+    /**
+     * Method returns action-message or '' if not set
+     *
+     * @return string
+     */
+    protected function getActionMessageCode(): string
+    {
+        return $_GET['action-message'] ?? '';
+    }
+
+    /**
+     * Method sets message variable
+     *
+     * @param string $actionMessageCode
+     *            message code
+     */
+    protected function setSuccessMessage(string $actionMessageCode): void
+    {
+        $this->getTemplate()->setPageVar('action-message', $this->getActionMessage($actionMessageCode));
+    }
+
+    /**
+     * Method compiles result record
+     *
+     * @param mixed $controller
+     *            main area controller
+     * @return array result record
+     */
+    public function result($controller = null): void
+    {
+        if ($actionMessage = $this->getActionMessageCode()) {
+            $this->setSuccessMessage($actionMessage);
+        }
+
+        if ($controller !== null) {
+            $controller->run();
+        }
+    }
 }

@@ -45,8 +45,7 @@ class Application
 
         $this->router->fetchActions($this);
 
-        $reflector = new \ReflectionClass(get_class($this));
-        $classPath = dirname($reflector->getFileName());
+        $classPath = $this->getClassPath();
 
         if (file_exists($classPath . '/conf/routes.php')) {
             $this->loadRoutesFromConfig($classPath . '/conf/routes.php');
@@ -55,6 +54,17 @@ class Application
         if (file_exists($classPath . '/conf/routes.json')) {
             $this->loadRoutesFromConfig($classPath . '/conf/routes.json');
         }
+    }
+
+    /**
+     * Method returns class path
+     *
+     * @return string
+     */
+    protected function getClassPath(): string
+    {
+        $reflector = new \ReflectionClass(get_class($this));
+        return dirname($reflector->getFileName());
     }
 
     /**

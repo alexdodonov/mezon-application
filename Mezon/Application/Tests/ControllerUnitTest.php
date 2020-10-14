@@ -1,28 +1,11 @@
 <?php
+namespace Mezon\Application\Tests;
 
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Controller class for testing purposes
- *
- * @author Dodonov A.A.
- */
-class TestingController extends \Mezon\Application\Controller
-{
-
-    public function controllerTest(): string
-    {
-        return 'computed content';
-    }
-
-    public function controllerTest2(): string
-    {
-        return 'computed content 2';
-    }
-}
-
-class ControllerUnitTest extends \PHPUnit\Framework\TestCase
+class ControllerUnitTest extends TestCase
 {
 
     /**
@@ -115,7 +98,7 @@ class ControllerUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing method getRequestParamsFetcher with exception
      */
-    public function testGetParamsFetcherWithException() : void
+    public function testGetParamsFetcherWithException(): void
     {
         // setup
         $controller = new TestingController();
