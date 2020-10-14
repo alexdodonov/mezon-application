@@ -194,6 +194,14 @@ function			__construct($template)
 	}
 ```
 
+## Action messages
+
+You can create file with the list of messages which will be substituted in the template variable `action-message`
+
+This file must be stored in the directory `%your-application-class-directory%/res/action-messages.json`
+
+Then if the class will find `$_GET['action-message']` parameter, then `action-message` substitution will be triggered.
+
 # View
 
 ## Static view
