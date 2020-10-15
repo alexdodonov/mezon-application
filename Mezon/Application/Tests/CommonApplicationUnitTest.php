@@ -45,8 +45,8 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
         ob_end_clean();
 
         // assertions
-        $this->assertStringContainsString('View result', $output);
-        $this->assertStringContainsString('Test view result', $output);
+        $this->assertStringContainsString('Page title', $output);
+        $this->assertStringContainsString('View rendered content', $output);
         $this->assertStringContainsString('redirectTo', $output);
     }
 

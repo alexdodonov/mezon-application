@@ -30,8 +30,8 @@ class TestCommonApplication extends CommonApplication
     function actionViewResult(): array
     {
         return [
-            'title' => 'View result',
-            'main' => new TestView('Test view result')
+            'title' => 'Page title',
+            'main' => new TestingView(new HtmlTemplate(__DIR__, 'index'), 'test3')
         ];
     }
 

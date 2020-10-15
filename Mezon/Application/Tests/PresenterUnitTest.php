@@ -3,6 +3,7 @@ namespace Mezon\Application\Tests;
 
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
+use Mezon\HtmlTemplate\HtmlTemplate;
 
 class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -107,5 +108,56 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 
         // test body
         $presenter->getRequestParamsFetcher();
+    }
+
+    /**
+     * Testing get/set method
+     */
+    public function testNullViewInPresenterConstructor(): void
+    {
+        // setup
+        $presenter = new TestingPresenter(null);
+
+        // test body
+        $presenter->setErrorCode(11);
+        $presenter->setErrorMessage('msg1');
+
+        // assertions
+        $this->assertEquals(11, $presenter->getErrorCode());
+        $this->assertEquals('msg1', $presenter->getErrorMessage());
+    }
+
+    /**
+     * Testing get/set method
+     */
+    public function testUnsetViewInPresenterConstructor(): void
+    {
+        // setup
+        $presenter = new TestingPresenter();
+
+        // test body
+        $presenter->setErrorCode(12);
+        $presenter->setErrorMessage('msg2');
+
+        // assertions
+        $this->assertEquals(12, $presenter->getErrorCode());
+        $this->assertEquals('msg2', $presenter->getErrorMessage());
+    }
+
+    /**
+     * Testing get/set method
+     */
+    public function testGetSetDataWithRealTemplate(): void
+    {
+        // setup
+        $presenter = new TestingPresenter(new TestingView(new HtmlTemplate(__DIR__, 'index')));
+
+        // test body
+        $presenter->setErrorCode(13);
+        $presenter->setErrorMessage('msg3');
+
+        // assertions
+        $this->assertEquals(13, $presenter->getErrorCode());
+        $this->assertEquals('msg3', $presenter->getErrorMessage());
     }
 }

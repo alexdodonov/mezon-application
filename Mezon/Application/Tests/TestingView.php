@@ -2,6 +2,7 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\Application\View;
+use Mezon\HtmlTemplate\HtmlTemplate;
 
 /**
  * View class for testing purposes
@@ -11,6 +12,11 @@ use Mezon\Application\View;
 class TestingView extends View
 {
 
+    public function __construct(?HtmlTemplate $template = null, string $viewName = 'default')
+    {
+        parent::__construct($template, $viewName);
+    }
+
     public function viewTest(): string
     {
         return 'rendered content';
@@ -19,5 +25,15 @@ class TestingView extends View
     public function viewTest2(): string
     {
         return 'rendered content 2';
+    }
+    
+    public function viewTest3(): string
+    {
+        return 'View rendered content';
+    }
+    
+    public function viewDefault(): string
+    {
+        return 'Default';
     }
 }

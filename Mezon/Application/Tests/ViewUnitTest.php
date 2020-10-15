@@ -34,13 +34,13 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing render
      */
-    public function testDefault(): void
+    public function testUnexistingDefault(): void
     {
         // setup
-        $view = new TestingView();
+        $view = new TestingViewUnexistingDefault();
 
         // assertions
-        $this->expectExceptionMessage('View Default was not found');
+        $this->expectExceptionMessage('View "Default" was not found');
 
         // test body
         $view->render();

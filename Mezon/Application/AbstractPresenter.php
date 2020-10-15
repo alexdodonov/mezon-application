@@ -38,7 +38,6 @@ abstract class AbstractPresenter implements PresenterInterface
      * Error code
      *
      * @var integer
-     * @deprecated Must be removed after the Controller class will be removed.
      */
     private $errorCode = 0;
 
@@ -46,17 +45,16 @@ abstract class AbstractPresenter implements PresenterInterface
      * Error message
      *
      * @var string
-     * @deprecated Must be removed after the Controller class will be removed.
      */
     private $errorMessage = '';
 
     /**
      * Constructor
      *
-     * @param ViewInterface $view
+     * @param ?ViewInterface $view
      *            view object
      */
-    public function __construct(ViewInterface $view)
+    public function __construct(?ViewInterface $view = null)
     {
         $this->view = $view;
     }
@@ -85,7 +83,6 @@ abstract class AbstractPresenter implements PresenterInterface
      * Method returns code of the last error
      *
      * @return int code of the last error
-     * @codeCoverageIgnore
      */
     public function getErrorCode(): int
     {
@@ -97,7 +94,6 @@ abstract class AbstractPresenter implements PresenterInterface
      *
      * @param int $code
      *            code of the last error
-     * @codeCoverageIgnore
      */
     public function setErrorCode(int $errorCode): void
     {
@@ -112,7 +108,6 @@ abstract class AbstractPresenter implements PresenterInterface
      * Method return last error description
      *
      * @return string last error description
-     * @codeCoverageIgnore
      */
     public function getErrorMessage(): string
     {
@@ -124,7 +119,6 @@ abstract class AbstractPresenter implements PresenterInterface
      *
      * @param
      *            string last error description
-     * @codeCoverageIgnore
      */
     public function setErrorMessage(string $errorMessage): void
     {

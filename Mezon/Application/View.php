@@ -65,7 +65,7 @@ class View extends ViewBase
             ]);
         }
 
-        throw (new \Exception('View ' . $viewName . ' was not found'));
+        throw (new \Exception('View "' . $viewName . '" was not found', -1));
     }
 
     /**

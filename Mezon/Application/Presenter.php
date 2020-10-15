@@ -2,6 +2,7 @@
 namespace Mezon\Application;
 
 use Mezon\Transport\RequestParamsInterface;
+use Mezon\Transport\RequestParams;
 
 /**
  * Class Presenter
@@ -16,13 +17,13 @@ use Mezon\Transport\RequestParamsInterface;
 /**
  * Base class for all controllers
  */
-class Presenter extends \Mezon\Application\AbstractPresenter
+class Presenter extends AbstractPresenter
 {
 
     /**
      * Router
      *
-     * @var \Mezon\Transport\RequestParams
+     * @var RequestParams
      */
     private $requestParams = null;
 
@@ -33,13 +34,13 @@ class Presenter extends \Mezon\Application\AbstractPresenter
      *            view object
      * @param string $presenterName
      *            Presenter name to be executed
-     * @param ?\Mezon\Transport\RequestParams $requestParams
+     * @param ?RequestParams $requestParams
      *            request params fetcher
      */
     public function __construct(
-        ViewInterface $view,
+        ?ViewInterface $view = null,
         string $presenterName = '',
-        ?\Mezon\Transport\RequestParams $requestParams = null)
+        ?RequestParams $requestParams = null)
     {
         parent::__construct($view);
 
