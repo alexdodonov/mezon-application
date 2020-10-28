@@ -300,13 +300,18 @@ class CommonApplication extends Application
             return $result;
         };
 
-        $this->loadRoute([
-            'route' => Utils::convertMethodNameToRoute($method),
-            'callback' => [
-                $this,
-                $method
-            ]
-        ]);
+        $this->loadRoute(
+            [
+                'route' => Utils::convertMethodNameToRoute($method),
+                'callback' => [
+                    $this,
+                    $method
+                ],
+                'method' => [
+                    'GET',
+                    'POST'
+                ]
+            ]);
     }
 
     /**
