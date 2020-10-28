@@ -26,14 +26,19 @@ class TestingView extends View
     {
         return 'rendered content 2';
     }
-    
+
     public function viewTest3(): string
     {
         return 'View rendered content';
     }
-    
+
     public function viewDefault(): string
     {
         return 'Default';
+    }
+
+    public function viewMainFromConfig(): string
+    {
+        return 'Main From Config';
     }
 }

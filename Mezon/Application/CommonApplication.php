@@ -3,6 +3,7 @@ namespace Mezon\Application;
 
 use Mezon\HtmlTemplate\HtmlTemplate;
 use Mezon\Rest;
+use Mezon\Router\Utils;
 
 /**
  * Class CommonApplication
@@ -298,6 +299,14 @@ class CommonApplication extends Application
 
             return $result;
         };
+
+        $this->loadRoute([
+            'route' => Utils::convertMethodNameToRoute($method),
+            'callback' => [
+                $this,
+                $method
+            ]
+        ]);
     }
 
     /**
@@ -311,12 +320,11 @@ class CommonApplication extends Application
             $files = scandir($classPath . '/actions');
 
             foreach ($files as $file) {
-                if (is_file($classPath . '/actions/' . $file)) {
-                    if (strpos($file, '.json') !== false) {
-                        $this->createActionFromJsonConfig($classPath . '/actions/' . $file);
-                    }
+                if (is_file($classPath . '/actions/' . $file) && strpos($file, '.json') !== false) {
+                    $this->createActionFromJsonConfig($classPath . '/actions/' . $file);
                 }
             }
         }
     }
 }
+

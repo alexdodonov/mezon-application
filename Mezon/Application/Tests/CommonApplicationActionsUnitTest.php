@@ -15,17 +15,18 @@ class CommonApplicationActionsUnitTest extends TestCase
     public function testActionsJson()
     {
         // setup
+        $_GET['r'] = 'from-config';
         $application = new TestCommonApplication();
 
         // test body
-        $result = $application->actionFromConfig();
+        ob_start();
+        $application->run();
+        $result = ob_get_flush();
+        ob_clean();
 
         // assertions
-        $this->assertArrayHasKey('title', $result);
-        $this->assertEquals('Some title', $result['title']);
-
-        $this->assertArrayHasKey('main', $result);
-        $this->assertInstanceOf(View::class, $result['main']);
+        $this->assertStringContainsString('Some title', $result);
+        $this->assertStringContainsString('Main From Config', $result);
 
         $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
     }
