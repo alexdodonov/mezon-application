@@ -10,14 +10,14 @@ class TestingController extends Controller
     {
         return 'computed content';
     }
-    
+
     public function controllerTest2(): string
     {
         return 'computed content 2';
     }
 
     public $wasCalled = false;
-    
+
     public function controllerResult(): void
     {
         $this->wasCalled = true;

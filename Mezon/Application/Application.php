@@ -89,7 +89,7 @@ class Application
         $route = explode('/', trim(@$_GET['r'], '/'));
 
         if ($this->router === null) {
-            throw (new \Exception('this->Router was not set', - 2));
+            throw (new \Exception('this->router was not set', - 2));
         }
 
         return $this->router->callRoute($route);

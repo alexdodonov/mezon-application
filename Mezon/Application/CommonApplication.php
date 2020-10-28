@@ -60,6 +60,8 @@ class CommonApplication extends Application
             $this,
             'noRouteFoundErrorHandler'
         ]);
+
+        $this->loadActoinsFromConfig();
     }
 
     /**
@@ -210,7 +212,7 @@ class CommonApplication extends Application
     {
         $classPath = $this->getClassPath();
 
-        if (file_exists($classPath.'/res/action-messages.json')) {
+        if (file_exists($classPath . '/res/action-messages.json')) {
             $messages = json_decode(file_get_contents($classPath . '/res/action-messages.json'), true);
 
             if (isset($messages[$actionMessageCode])) {
@@ -247,18 +249,74 @@ class CommonApplication extends Application
     /**
      * Method compiles result record
      *
-     * @param mixed $controller
-     *            main area controller
+     * @param mixed $presenter
+     *            main area presenter
      * @return array result record
      */
-    public function result($controller = null): void
+    public function result($presenter = null): void
     {
+        if ($presenter !== null) {
+            $presenter->run();
+        }
+
         if ($actionMessage = $this->getActionMessageCode()) {
             $this->setSuccessMessage($actionMessage);
         }
+    }
 
-        if ($controller !== null) {
-            $controller->run();
+    /**
+     * Method creates action from JSON config
+     *
+     * @param string $path
+     *            path to JSON config
+     */
+    private function createActionFromJsonConfig(string $path): void
+    {
+        $method = 'action' . basename($path, '.json');
+
+        $this->$method = function () use ($path): array {
+            $result = [];
+            $views = [];
+            $presenter = null;
+            $config = json_decode(file_get_contents($path), true);
+
+            foreach ($config as $key => $value) {
+                if (is_string($value)) {
+                    $result[$key] = $value;
+                } elseif ($key === 'presenter') {
+                    $presenter = new $value['class'](
+                        $views[$value['view']],
+                        $value['name'],
+                        $this->getRequestParamsFetcher());
+                } else {
+                    $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
+                    $result[$value['placeholder']] = $views[$key];
+                }
+            }
+
+            $this->result($presenter);
+
+            return $result;
+        };
+    }
+
+    /**
+     * Method loads all actions from ./actions directory
+     */
+    private function loadActoinsFromConfig(): void
+    {
+        $classPath = $this->getClassPath();
+
+        if (file_exists($classPath . '/actions')) {
+            $files = scandir($classPath . '/actions');
+
+            foreach ($files as $file) {
+                if (is_file($classPath . '/actions/' . $file)) {
+                    if (strpos($file, '.json') !== false) {
+                        $this->createActionFromJsonConfig($classPath . '/actions/' . $file);
+                    }
+                }
+            }
         }
     }
 }
