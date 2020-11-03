@@ -71,4 +71,25 @@ interface PresenterInterface
      * @codeCoverageIgnore
      */
     public function setErrorMessage(string $errorMessage): void;
+
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @param mixed $value
+     *            var value
+     * @param bool $setTemplateVar
+     *            do we need to set template parameter
+     */
+    public function setViewParameter(string $name, $value, bool $setTemplateVar);
+
+    /**
+     * Method gets view's var
+     *
+     * @param string $name
+     *            var name
+     * @return mixed view's variable
+     */
+    public function getViewParameter(string $name);
 }

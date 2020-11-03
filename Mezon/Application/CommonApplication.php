@@ -286,7 +286,7 @@ class CommonApplication extends Application
                     $result[$key] = $value;
                 } elseif ($key === 'presenter') {
                     $presenter = new $value['class'](
-                        $views[$value['view']],
+                        isset($value['view']) && isset($views[$value['view']]) ? $views[$value['view']] : null,
                         $value['name'],
                         $this->getRequestParamsFetcher());
                 } else {

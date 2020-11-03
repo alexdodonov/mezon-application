@@ -4,6 +4,8 @@ namespace Mezon\Application\Tests;
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
 use Mezon\HtmlTemplate\HtmlTemplate;
+use Mezon\Application\ViewInterface;
+use Mezon\Application\View;
 
 class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -159,5 +161,43 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
         // assertions
         $this->assertEquals(13, $presenter->getErrorCode());
         $this->assertEquals('msg3', $presenter->getErrorMessage());
+    }
+
+    /**
+     * Data provider for the test testSetViewParameter
+     * 
+     * @return array
+     */
+    public function setViewParemeterDataProvider(): array
+    {
+        return [
+            [
+                new TestingView(new HtmlTemplate(__DIR__, 'index')),
+                'val'
+            ],
+            [
+                null,
+                null
+            ]
+        ];
+    }
+
+    /**
+     * Testing method setViewParameter
+     *
+     * @param ?ViewInterface View
+     * @param mixed $var expected variable name
+     * @dataProvider setViewParemeterDataProvider
+     */
+    public function testSetViewParameter(?ViewInterface $view, $var): void
+    {
+        // setup
+        $presenter = new TestingPresenter($view);
+
+        // test body
+        $presenter->setViewParameter('var', 'val', true);
+
+        // assertions
+        $this->assertEquals($var, $presenter->getViewParameter('var'));
     }
 }

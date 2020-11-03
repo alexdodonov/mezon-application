@@ -64,4 +64,25 @@ interface ViewInterface
      * @codeCoverageIgnore
      */
     public function setErrorMessage(string $errorMessage): void;
+
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @param mixed $value
+     *            var value
+     * @param bool $setTemplateVar
+     *            do we need to set template parameter
+     */
+    public function setViewParameter(string $name, $value, bool $setTemplateVar): void;
+
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @return mixed view's variable value
+     */
+    public function getViewParameter(string $name);
 }

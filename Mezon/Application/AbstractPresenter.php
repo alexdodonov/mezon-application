@@ -128,4 +128,37 @@ abstract class AbstractPresenter implements PresenterInterface
             $this->view->setErrorMessage($errorMessage);
         }
     }
+
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @param mixed $value
+     *            var value
+     * @param bool $setTemplateVar
+     *            do we need to set template parameter
+     */
+    public function setViewParameter(string $name, $value, bool $setTemplateVar): void
+    {
+        if ($this->view !== null) {
+            $this->view->setViewParameter($name, $value, $setTemplateVar);
+        }
+    }
+
+    /**
+     * Method gets view's var
+     *
+     * @param string $name
+     *            var name
+     * @return mixed view's variable
+     */
+    public function getViewParameter(string $name)
+    {
+        if ($this->view !== null) {
+            return $this->view->getViewParameter($name);
+        }
+
+        return null;
+    }
 }

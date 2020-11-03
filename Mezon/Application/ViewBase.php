@@ -55,6 +55,13 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     private $errorMessage = '';
 
     /**
+     * View variables
+     * 
+     * @var array
+     */
+    private $variables = [];
+
+    /**
      * Constructor
      *
      * @param HtmlTemplate $template
@@ -137,5 +144,36 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
         if ($this->templateWasSetup()) {
             $this->getTemplate()->setPageVar(ViewBase::ERROR_MESSAGE, $errorMessage);
         }
+    }
+    
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @param mixed $value
+     *            var value
+     * @param bool $setTemplateVar
+     *            do we need to set template parameter
+     */
+    public function setViewParameter(string $name, $value, bool $setTemplateVar): void
+    {
+        if ($this->template !== null && $setTemplateVar) {
+            $this->template->setPageVar($name, $value);
+        }
+        
+        $this->variables[$name] = $value;
+    }
+    
+    /**
+     * Method sets view's var
+     *
+     * @param string $name
+     *            var name
+     * @return mixed view's variable value
+     */
+    public function getViewParameter(string $name)
+    {
+        return $this->variables[$name] ?? null;
     }
 }
