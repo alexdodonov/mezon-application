@@ -315,21 +315,29 @@ class CommonApplication extends Application
     }
 
     /**
+     * Method loads actions from path
+     *
+     * @param string $path
+     */
+    protected function loadActionsFromDirectory(string $path): void
+    {
+        if (file_exists($path . '/actions')) {
+            $files = scandir($path . '/actions');
+
+            foreach ($files as $file) {
+                if (is_file($path . '/actions/' . $file) && strpos($file, '.json') !== false) {
+                    $this->createActionFromJsonConfig($path . '/actions/' . $file);
+                }
+            }
+        }
+    }
+
+    /**
      * Method loads all actions from ./actions directory
      */
     private function loadActoinsFromConfig(): void
     {
-        $classPath = $this->getClassPath();
-
-        if (file_exists($classPath . '/actions')) {
-            $files = scandir($classPath . '/actions');
-
-            foreach ($files as $file) {
-                if (is_file($classPath . '/actions/' . $file) && strpos($file, '.json') !== false) {
-                    $this->createActionFromJsonConfig($classPath . '/actions/' . $file);
-                }
-            }
-        }
+        $this->loadActionsFromDirectory($this->getClassPath());
     }
 }
 

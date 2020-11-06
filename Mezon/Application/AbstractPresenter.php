@@ -139,7 +139,7 @@ abstract class AbstractPresenter implements PresenterInterface
      * @param bool $setTemplateVar
      *            do we need to set template parameter
      */
-    public function setViewParameter(string $name, $value, bool $setTemplateVar): void
+    public function setViewParameter(string $name, $value, bool $setTemplateVar = true): void
     {
         if ($this->view !== null) {
             $this->view->setViewParameter($name, $value, $setTemplateVar);
