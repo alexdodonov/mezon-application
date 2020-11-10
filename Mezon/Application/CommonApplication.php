@@ -282,7 +282,10 @@ class CommonApplication extends Application
             $config = json_decode(file_get_contents($path), true);
 
             foreach ($config as $key => $value) {
-                if (is_string($value)) {
+                if ($key === 'layout') {
+                    $this->getTemplate()->resetLayout($value);
+                } elseif (is_string($value)) {
+                    // string content
                     $result[$key] = $value;
                 } elseif ($key === 'presenter') {
                     $presenter = new $value['class'](

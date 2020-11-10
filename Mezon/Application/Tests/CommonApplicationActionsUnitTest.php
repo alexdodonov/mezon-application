@@ -10,12 +10,51 @@ class CommonApplicationActionsUnitTest extends TestCase
 {
 
     /**
-     * Running with actions
+     * Data provider for the test testActionsJson
+     *
+     * @return array testing data
      */
-    public function testActionsJson()
+    public function actionsJsonDataProvider(): array
+    {
+        return [
+            // #0, default behaviour, layout is not set
+            [
+                'from-config',
+                function (string $result) {
+                    $this->assertStringContainsString('Some title', $result);
+                    $this->assertStringContainsString('Main From Config', $result);
+                    $this->assertStringContainsString('<!-- index1 -->', $result);
+
+                    $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+                }
+            ],
+            // #1, default behaviour, layout is set
+            [
+                'from-config2',
+                function (string $result) {
+                    $this->assertStringContainsString('Some title', $result);
+                    $this->assertStringContainsString('Main From Config', $result);
+                    $this->assertStringContainsString('<!-- index2 -->', $result);
+                    
+                    $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+                }
+                ]
+        ];
+    }
+
+    /**
+     * Running with actions
+     *
+     * @param string $page
+     *            - loading page
+     * @param callable $asserter
+     *            asserting method
+     * @dataProvider actionsJsonDataProvider
+     */
+    public function testActionsJson(string $page, callable $asserter): void
     {
         // setup
-        $_GET['r'] = 'from-config';
+        $_GET['r'] = $page;
         $application = new TestCommonApplication();
 
         // test body
@@ -25,9 +64,6 @@ class CommonApplicationActionsUnitTest extends TestCase
         ob_clean();
 
         // assertions
-        $this->assertStringContainsString('Some title', $result);
-        $this->assertStringContainsString('Main From Config', $result);
-
-        $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+        $asserter($result);
     }
 }
