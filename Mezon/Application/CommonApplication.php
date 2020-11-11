@@ -293,7 +293,11 @@ class CommonApplication extends Application
                         $value['name'],
                         $this->getRequestParamsFetcher());
                 } else {
-                    $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
+                    if (isset($value['name'])) {
+                        $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
+                    } else {
+                        $views[$key] = new $value['class']($this->getTemplate());
+                    }
                     $result[$value['placeholder']] = $views[$key];
                 }
             }

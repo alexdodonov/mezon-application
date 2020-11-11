@@ -28,17 +28,18 @@ class CommonApplicationActionsUnitTest extends TestCase
                     $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
                 }
             ],
-            // #1, default behaviour, layout is set
+            // #1, default behaviour, layout is set, no name is defined for the other-view
             [
                 'from-config2',
                 function (string $result) {
                     $this->assertStringContainsString('Some title', $result);
                     $this->assertStringContainsString('Main From Config', $result);
                     $this->assertStringContainsString('<!-- index2 -->', $result);
-                    
+
                     $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+                    $this->assertTrue(TestingView::$defaultViewWasRendered);
                 }
-                ]
+            ]
         ];
     }
 
