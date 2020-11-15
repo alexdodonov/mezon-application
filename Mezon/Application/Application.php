@@ -47,6 +47,7 @@ class Application
 
         $classPath = $this->getClassPath();
 
+        // TODO read configs from /Config/
         if (file_exists($classPath . '/conf/routes.php')) {
             $this->loadRoutesFromConfig($classPath . '/conf/routes.php');
         }

@@ -215,26 +215,29 @@
         },
         {
             "name": "mezon/http-request-params",
-            "version": "1.0.1",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-http-request-params.git",
-                "reference": "03d9a30f7011a59ed25f3642f2f862f80f71a765"
+                "reference": "2e0df274108b64cef291652243c17eda58806bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/03d9a30f7011a59ed25f3642f2f862f80f71a765",
-                "reference": "03d9a30f7011a59ed25f3642f2f862f80f71a765",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/2e0df274108b64cef291652243c17eda58806bda",
+                "reference": "2e0df274108b64cef291652243c17eda58806bda",
                 "shasum": ""
             },
             "require": {
                 "mezon/request-params": "^1.0",
                 "php": ">=7.2.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mezon\\Transport\\": ""
+                    "Mezon\\Transport\\": "./Mezon/Transport/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -256,7 +259,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-http-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-http-request-params"
             },
-            "time": "2020-05-29T10:43:17+00:00"
+            "time": "2020-11-14T14:25:51+00:00"
         },
         {
             "name": "mezon/request-params",
@@ -442,16 +445,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.10.1",
+            "version": "1.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
+                "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
                 "shasum": ""
             },
             "require": {
@@ -488,7 +491,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.x"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.10.2"
             },
             "funding": [
                 {
@@ -496,7 +499,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-29T13:22:24+00:00"
+            "time": "2020-11-13T09:40:50+00:00"
         },
         {
             "name": "phar-io/manifest",

@@ -10,6 +10,23 @@ class CommonApplicationActionsUnitTest extends TestCase
 {
 
     /**
+     * Asserting that page was generated
+     *
+     * @param string $result
+     *            page generation result
+     * @param string $layout
+     *            substring to be found
+     */
+    public function assertCommonCall(string $result, string $layout): void
+    {
+        $this->assertStringContainsString('Some title', $result);
+        $this->assertStringContainsString('Main From Config', $result);
+        $this->assertStringContainsString($layout, $result);
+
+        $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+    }
+
+    /**
      * Data provider for the test testActionsJson
      *
      * @return array testing data
@@ -21,22 +38,24 @@ class CommonApplicationActionsUnitTest extends TestCase
             [
                 'from-config',
                 function (string $result) {
-                    $this->assertStringContainsString('Some title', $result);
-                    $this->assertStringContainsString('Main From Config', $result);
-                    $this->assertStringContainsString('<!-- index1 -->', $result);
-
-                    $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+                    $this->assertCommonCall($result, '<!-- index1 -->');
                 }
             ],
             // #1, default behaviour, layout is set, no name is defined for the other-view
             [
                 'from-config2',
                 function (string $result) {
-                    $this->assertStringContainsString('Some title', $result);
-                    $this->assertStringContainsString('Main From Config', $result);
-                    $this->assertStringContainsString('<!-- index2 -->', $result);
+                    $this->assertCommonCall($result, '<!-- index2 -->');
 
-                    $this->assertTrue(TestingPresenter::$actionPresenterFromConfigWasCalled);
+                    $this->assertTrue(TestingView::$defaultViewWasRendered);
+                }
+            ],
+            // #2, inherit from from-config2
+            [
+                'from-config3',
+                function (string $result) {
+                    $this->assertCommonCall($result, '<!-- index1 -->');
+
                     $this->assertTrue(TestingView::$defaultViewWasRendered);
                 }
             ]

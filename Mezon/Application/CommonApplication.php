@@ -266,6 +266,69 @@ class CommonApplication extends Application
     }
 
     /**
+     * Overriding defined config
+     *
+     * @param string $path
+     *            path to the current config
+     * @param array $config
+     *            config itself
+     */
+    private function constructOverrideHandler(string $path, array &$config): void
+    {
+        if (isset($config['override'])) {
+
+            $path = pathinfo($path, PATHINFO_DIRNAME);
+
+            $baseConfig = json_decode(file_get_contents($path . '/' . $config['override']), true);
+
+            $config = array_merge($baseConfig, $config);
+        }
+    }
+
+    /**
+     * Constructing view
+     *
+     * @param array $result
+     *            compiled result
+     * @param string $key
+     *            config key
+     * @param mixed $value
+     *            config value
+     * @param array $views
+     *            list of views
+     */
+    private function constructOtherView(array &$result, string $key, $value, array &$views): void
+    {
+        // any other view
+        if (isset($value['name'])) {
+            $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
+        } else {
+            $views[$key] = new $value['class']($this->getTemplate());
+        }
+        $result[$value['placeholder']] = $views[$key];
+    }
+
+    /**
+     * Method returns fabric method for action processing
+     *
+     * @param string $key
+     *            config key name
+     * @param mixed $value
+     *            config key value
+     * @return callable|NULL callback
+     */
+    private function getActionBuilderMethod(string $key, $value): ?callable
+    {
+        if ($key === 'override') {
+            return ActionBuilder::ignoreKey();
+        } elseif ($key === 'layout') {
+            return ActionBuilder::resetLayout($this->getTemplate(), $value);
+        }
+
+        return null;
+    }
+
+    /**
      * Method creates action from JSON config
      *
      * @param string $path
@@ -281,9 +344,13 @@ class CommonApplication extends Application
             $presenter = null;
             $config = json_decode(file_get_contents($path), true);
 
+            $this->constructOverrideHandler($path, $config);
+
             foreach ($config as $key => $value) {
-                if ($key === 'layout') {
-                    $this->getTemplate()->resetLayout($value);
+                $callback = $this->getActionBuilderMethod($key, $value);
+
+                if ($callback !== null) {
+                    $callback();
                 } elseif (is_string($value)) {
                     // string content
                     $result[$key] = $value;
@@ -293,12 +360,7 @@ class CommonApplication extends Application
                         $value['name'],
                         $this->getRequestParamsFetcher());
                 } else {
-                    if (isset($value['name'])) {
-                        $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
-                    } else {
-                        $views[$key] = new $value['class']($this->getTemplate());
-                    }
-                    $result[$value['placeholder']] = $views[$key];
+                    $this->constructOtherView($result, $key, $value, $views);
                 }
             }
 
@@ -328,12 +390,12 @@ class CommonApplication extends Application
      */
     protected function loadActionsFromDirectory(string $path): void
     {
-        if (file_exists($path . '/actions')) {
-            $files = scandir($path . '/actions');
+        if (file_exists($path)) {
+            $files = scandir($path);
 
             foreach ($files as $file) {
-                if (is_file($path . '/actions/' . $file) && strpos($file, '.json') !== false) {
-                    $this->createActionFromJsonConfig($path . '/actions/' . $file);
+                if (is_file($path . '/' . $file) && strpos($file, '.json') !== false) {
+                    $this->createActionFromJsonConfig($path . '/' . $file);
                 }
             }
         }
@@ -344,7 +406,8 @@ class CommonApplication extends Application
      */
     private function loadActoinsFromConfig(): void
     {
-        $this->loadActionsFromDirectory($this->getClassPath());
+        // TODO read actions from /Actions/
+        $this->loadActionsFromDirectory($this->getClassPath() . '/actions/');
     }
 }
 
