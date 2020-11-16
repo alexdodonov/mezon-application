@@ -6,6 +6,7 @@ use Mezon\Router\Router;
 use Mezon\HtmlTemplate\HtmlTemplate;
 use Mezon\Application\ViewInterface;
 use Mezon\Application\View;
+use Mezon\Application\AbstractPresenter;
 
 class PresenterUnitTest extends \PHPUnit\Framework\TestCase
 {
@@ -129,43 +130,39 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('msg1', $presenter->getErrorMessage());
     }
 
+    public function getSetMessagesDataProvider(): array
+    {
+        return [
+            [
+                new TestingPresenter()
+            ],
+            [
+                new TestingPresenter(new TestingView(new HtmlTemplate(__DIR__, 'index')))
+            ]
+        ];
+    }
+
     /**
      * Testing get/set method
+     *
+     * @dataProvider getSetMessagesDataProvider
      */
-    public function testUnsetViewInPresenterConstructor(): void
+    public function testGetSetMessages(AbstractPresenter $presenter): void
     {
-        // setup
-        $presenter = new TestingPresenter();
-
         // test body
         $presenter->setErrorCode(12);
         $presenter->setErrorMessage('msg2');
+        $presenter->setSuccessMessage('msg4');
 
         // assertions
         $this->assertEquals(12, $presenter->getErrorCode());
         $this->assertEquals('msg2', $presenter->getErrorMessage());
-    }
-
-    /**
-     * Testing get/set method
-     */
-    public function testGetSetDataWithRealTemplate(): void
-    {
-        // setup
-        $presenter = new TestingPresenter(new TestingView(new HtmlTemplate(__DIR__, 'index')));
-
-        // test body
-        $presenter->setErrorCode(13);
-        $presenter->setErrorMessage('msg3');
-
-        // assertions
-        $this->assertEquals(13, $presenter->getErrorCode());
-        $this->assertEquals('msg3', $presenter->getErrorMessage());
+        $this->assertEquals('msg4', $presenter->getSuccessMessage());
     }
 
     /**
      * Data provider for the test testSetViewParameter
-     * 
+     *
      * @return array
      */
     public function setViewParemeterDataProvider(): array
@@ -185,8 +182,10 @@ class PresenterUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Testing method setViewParameter
      *
-     * @param ?ViewInterface View
-     * @param mixed $var expected variable name
+     * @param
+     *            ?ViewInterface View
+     * @param mixed $var
+     *            expected variable name
      * @dataProvider setViewParemeterDataProvider
      */
     public function testSetViewParameter(?ViewInterface $view, $var): void

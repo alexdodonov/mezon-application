@@ -11,9 +11,6 @@ namespace Mezon\Application;
  * @copyright Copyright (c) 2020, aeon.org
  */
 
-// TODO move all methods of the Presenter method after the Controller class will be removed
-// TODO create methods 'setMessage' 'getMessage' because we have not only error messages but success notifications also
-
 /**
  * Base class for all presenters
  */
@@ -47,6 +44,13 @@ abstract class AbstractPresenter implements PresenterInterface
      * @var string
      */
     private $errorMessage = '';
+
+    /**
+     * Method sets success message
+     *
+     * @var string
+     */
+    private $successMessage = '';
 
     /**
      * Constructor
@@ -126,6 +130,31 @@ abstract class AbstractPresenter implements PresenterInterface
             $this->errorMessage = $errorMessage;
         } else {
             $this->view->setErrorMessage($errorMessage);
+        }
+    }
+
+    /**
+     * Method return success message
+     *
+     * @return string success message
+     */
+    public function getSuccessMessage(): string
+    {
+        return $this->view === null ? $this->successMessage : $this->view->getSuccessMessage();
+    }
+
+    /**
+     * Method sets success message
+     *
+     * @param $message string
+     *            message
+     */
+    public function setSuccessMessage(string $successMessage): void
+    {
+        if ($this->view === null) {
+            $this->successMessage = $successMessage;
+        } else {
+            $this->view->setSuccessMessage($successMessage);
         }
     }
 

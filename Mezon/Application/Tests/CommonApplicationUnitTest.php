@@ -176,16 +176,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
     {
         $presenter = new TestingPresenter(new View(), 'Result');
         return [
-            [ // #0 testing controller
-                function (): TestCommonApplication {
-                    return new TestCommonApplication();
-                },
-                new TestingController('Result'),
-                function (array $params) {
-                    $this->assertTrue($params[0]->wasCalled);
-                }
-            ],
-            [ // #1 testing presenter
+            [ // #0 testing presenter
                 function (): TestCommonApplication {
                     return new TestCommonApplication();
                 },
@@ -194,7 +185,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
                     $this->assertTrue($params[0]->wasCalled);
                 }
             ],
-            [ // #2 testing action message setup
+            [ // #1 testing action message setup
                 function (): TestCommonApplication {
                     $_GET['action-message'] = 'test-error';
                     return new TestCommonApplication();
@@ -205,7 +196,7 @@ class CommonApplicationUnitTest extends \PHPUnit\Framework\TestCase
                         ->getPageVar('action-message'));
                 }
             ],
-            [ // #3 no file with the messages
+            [ // #2 no file with the messages
                 function (): TestCommonApplication {
                     $_GET['action-message'] = 'test-error';
                     $application = new TestCommonApplication();

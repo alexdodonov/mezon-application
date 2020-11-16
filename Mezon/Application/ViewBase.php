@@ -34,6 +34,13 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     const ERROR_MESSAGE = 'error-message';
 
     /**
+     * Template variable
+     *
+     * @var string
+     */
+    const SUCCESS_MESSAGE = 'success-message';
+
+    /**
      * Active template
      *
      * @var HtmlTemplate
@@ -55,8 +62,15 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
     private $errorMessage = '';
 
     /**
+     * Success message
+     *
+     * @var string
+     */
+    private $successMessage = '';
+
+    /**
      * View variables
-     * 
+     *
      * @var array
      */
     private $variables = [];
@@ -145,7 +159,32 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
             $this->getTemplate()->setPageVar(ViewBase::ERROR_MESSAGE, $errorMessage);
         }
     }
-    
+
+    /**
+     * Method return success message
+     *
+     * @return string success message
+     */
+    public function getSuccessMessage(): string
+    {
+        return $this->successMessage;
+    }
+
+    /**
+     * Method sets success message
+     *
+     * @param string $successMessage
+     *            success message
+     */
+    public function setSuccessMessage(string $successMessage): void
+    {
+        $this->successMessage = $successMessage;
+
+        if ($this->templateWasSetup()) {
+            $this->getTemplate()->setPageVar(ViewBase::SUCCESS_MESSAGE, $successMessage);
+        }
+    }
+
     /**
      * Method sets view's var
      *
@@ -161,10 +200,10 @@ abstract class ViewBase implements \Mezon\Application\ViewInterface
         if ($this->template !== null && $setTemplateVar) {
             $this->template->setPageVar($name, $value);
         }
-        
+
         $this->variables[$name] = $value;
     }
-    
+
     /**
      * Method sets view's var
      *
