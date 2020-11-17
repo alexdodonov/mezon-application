@@ -47,13 +47,12 @@ class Application
 
         $classPath = $this->getClassPath();
 
-        // TODO read configs from /Config/
-        if (file_exists($classPath . '/conf/routes.php')) {
-            $this->loadRoutesFromConfig($classPath . '/conf/routes.php');
+        if (file_exists($classPath . '/Conf/routes.php')) {
+            $this->loadRoutesFromConfig($classPath . '/Conf/routes.php');
         }
 
-        if (file_exists($classPath . '/conf/routes.json')) {
-            $this->loadRoutesFromConfig($classPath . '/conf/routes.json');
+        if (file_exists($classPath . '/Conf/routes.json')) {
+            $this->loadRoutesFromConfig($classPath . '/Conf/routes.json');
         }
     }
 

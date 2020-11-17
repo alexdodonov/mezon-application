@@ -213,8 +213,8 @@ class CommonApplication extends Application
     {
         $classPath = $this->getClassPath();
 
-        if (file_exists($classPath . '/res/action-messages.json')) {
-            $messages = json_decode(file_get_contents($classPath . '/res/action-messages.json'), true);
+        if (file_exists($classPath . '/Res/action-messages.json')) {
+            $messages = json_decode(file_get_contents($classPath . '/Res/action-messages.json'), true);
 
             if (isset($messages[$actionMessageCode])) {
                 return $messages[$actionMessageCode];
@@ -406,8 +406,7 @@ class CommonApplication extends Application
      */
     private function loadActoinsFromConfig(): void
     {
-        // TODO read actions from /Actions/
-        $this->loadActionsFromDirectory($this->getClassPath() . '/actions/');
+        $this->loadActionsFromDirectory($this->getClassPath() . '/Actions/');
     }
 }
 
