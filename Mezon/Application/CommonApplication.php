@@ -391,6 +391,7 @@ class CommonApplication extends Application
     protected function loadActionsFromDirectory(string $path): void
     {
         if (file_exists($path)) {
+            // TODO scan recursively
             $files = scandir($path);
 
             foreach ($files as $file) {

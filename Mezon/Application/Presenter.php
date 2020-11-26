@@ -4,6 +4,7 @@ namespace Mezon\Application;
 use Mezon\Transport\RequestParamsInterface;
 use Mezon\Transport\RequestParams;
 
+// TODO move Presenter to the separate package
 /**
  * Class Presenter
  *
@@ -100,7 +101,7 @@ class Presenter extends AbstractPresenter
             ]);
         }
 
-        throw (new \Exception('Presenter ' . $presenterName . ' was not found'));
+        throw (new \Exception('Presenter ' . $presenterName . ' was not found in the class ' . get_class($this)));
     }
 
     /**

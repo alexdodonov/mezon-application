@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "719533ab5abb5cb7b3384b87a80c708a",
+    "content-hash": "c8ef84cfb334d61946c5620172134242",
     "packages": [
         {
             "name": "mezon/conf",
@@ -99,16 +99,16 @@
         },
         {
             "name": "mezon/html-template",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-html-template.git",
-                "reference": "8f302d8ddd294e1ca4139416a65a6329ee6e8f33"
+                "reference": "636da2417007922066a9d44dc0504ae0ca9835db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-html-template/zipball/8f302d8ddd294e1ca4139416a65a6329ee6e8f33",
-                "reference": "8f302d8ddd294e1ca4139416a65a6329ee6e8f33",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-html-template/zipball/636da2417007922066a9d44dc0504ae0ca9835db",
+                "reference": "636da2417007922066a9d44dc0504ae0ca9835db",
                 "shasum": ""
             },
             "require": {
@@ -144,7 +144,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-html-template/issues",
                 "source": "https://github.com/alexdodonov/mezon-html-template"
             },
-            "time": "2020-11-17T17:01:43+00:00"
+            "time": "2020-11-25T13:17:05+00:00"
         },
         {
             "name": "mezon/http-request-params",
@@ -196,16 +196,16 @@
         },
         {
             "name": "mezon/request-params",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-request-params.git",
-                "reference": "ab614eba4d8db4dc4a6b2263f204a6e5eb5c0e62"
+                "reference": "5f16bc5e80f655ef80465a2d2bf4eac9b90a5699"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/ab614eba4d8db4dc4a6b2263f204a6e5eb5c0e62",
-                "reference": "ab614eba4d8db4dc4a6b2263f204a6e5eb5c0e62",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/5f16bc5e80f655ef80465a2d2bf4eac9b90a5699",
+                "reference": "5f16bc5e80f655ef80465a2d2bf4eac9b90a5699",
                 "shasum": ""
             },
             "require": {
@@ -237,7 +237,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-request-params"
             },
-            "time": "2020-06-01T08:27:45+00:00"
+            "time": "2020-11-18T06:08:02+00:00"
         },
         {
             "name": "mezon/rest-exception",
