@@ -391,12 +391,15 @@ class CommonApplication extends Application
     protected function loadActionsFromDirectory(string $path): void
     {
         if (file_exists($path)) {
-            // TODO scan recursively
             $files = scandir($path);
 
             foreach ($files as $file) {
-                if (is_file($path . '/' . $file) && strpos($file, '.json') !== false) {
+                if ($file === '.' || $file === '..') {
+                    // do nothing
+                } elseif (is_file($path . '/' . $file) && strpos($file, '.json') !== false) {
                     $this->createActionFromJsonConfig($path . '/' . $file);
+                } else {
+                    $this->loadActionsFromDirectory($path . '/' . $file);
                 }
             }
         }

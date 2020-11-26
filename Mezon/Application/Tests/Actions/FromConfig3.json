@@ -1,4 +1,4 @@
 {
-	"override": "./FromConfig2.json",
+	"override": "./sub-dir/FromConfig2.json",
 	"layout": "index"
 }
