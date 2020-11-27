@@ -52,7 +52,7 @@ class ViewUnitTest extends \PHPUnit\Framework\TestCase
     public function testGetTemplate(): void
     {
         // setup
-        $view = new TestingView(new HtmlTemplate(__DIR__ . '/res/templates/'));
+        $view = new TestingView(new HtmlTemplate(__DIR__ . '/Res/Templates/'));
 
         // test body and assertions
         $this->assertInstanceOf(HtmlTemplate::class, $view->getTemplate());

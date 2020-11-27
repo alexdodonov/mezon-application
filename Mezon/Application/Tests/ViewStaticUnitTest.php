@@ -14,7 +14,7 @@ class ViewStaticUnitTest extends TestCase
     public function testRender(): void
     {
         // setup
-        $template = new HtmlTemplate(__DIR__ . '/res/');
+        $template = new HtmlTemplate(__DIR__ . '/Res/');
         $template->setPageVar('block', 'BLOCK!!!');
         $view = new ViewStatic($template, 'block');
 
@@ -33,7 +33,7 @@ class ViewStaticUnitTest extends TestCase
     {
         // setup
         $this->expectException(\Exception::class);
-        $template = new HtmlTemplate(__DIR__ . '/res/');
+        $template = new HtmlTemplate(__DIR__ . '/Res/');
         $view = new ViewStatic($template);
 
         // test body and assertions
