@@ -18,7 +18,7 @@ use Mezon\Router\Utils;
 /**
  * Common application with any available template
  *
- * To load routes from the config call $this->load_routes_from_config('./conf/routes.json');
+ * To load routes from the config call $this->load_routes_from_config('./Conf/routes.json');
  *
  * The format of the *.json config must be like this:
  *

@@ -300,7 +300,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
         $application = new TestApplication();
 
         // test body
-        $application->loadRoutesFromDirectory(__DIR__ . '/Сonf');
+        $application->loadRoutesFromDirectory(__DIR__ . '/Сonf/');
 
         // assertions
         $this->assertTrue($application->routeExists('/php-route/'));
