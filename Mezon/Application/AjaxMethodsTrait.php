@@ -18,15 +18,6 @@ trait AjaxMethodsTrait
 {
 
     /**
-     * Validating authorization for ajax requests.
-     *
-     * Must be overriden in the derived class.
-     * TODO remove this method, it is not used within this trait so it 
-     * forces client code to implement it 
-     */
-    abstract protected function validateAuthorizationForAjaxRequests();
-
-    /**
      * Method finishes ajax requests processing
      */
     protected function ajaxRequestSuccess()
