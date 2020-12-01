@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8ef84cfb334d61946c5620172134242",
+    "content-hash": "da83a9490162311ec54df45ee718f131",
     "packages": [
         {
             "name": "mezon/conf",
@@ -148,16 +148,16 @@
         },
         {
             "name": "mezon/http-request-params",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-http-request-params.git",
-                "reference": "2e0df274108b64cef291652243c17eda58806bda"
+                "reference": "915a73d5ee832009097e82878927ad861a749edd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/2e0df274108b64cef291652243c17eda58806bda",
-                "reference": "2e0df274108b64cef291652243c17eda58806bda",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/915a73d5ee832009097e82878927ad861a749edd",
+                "reference": "915a73d5ee832009097e82878927ad861a749edd",
                 "shasum": ""
             },
             "require": {
@@ -192,30 +192,82 @@
                 "issues": "https://github.com/alexdodonov/mezon-http-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-http-request-params"
             },
-            "time": "2020-11-14T14:25:51+00:00"
+            "time": "2020-12-01T09:04:49+00:00"
         },
         {
-            "name": "mezon/request-params",
-            "version": "1.0.3",
+            "name": "mezon/presenter",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alexdodonov/mezon-request-params.git",
-                "reference": "5f16bc5e80f655ef80465a2d2bf4eac9b90a5699"
+                "url": "https://github.com/alexdodonov/mezon-presenter.git",
+                "reference": "b52f41c2013361d496d86de3a007e286067ccc09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/5f16bc5e80f655ef80465a2d2bf4eac9b90a5699",
-                "reference": "5f16bc5e80f655ef80465a2d2bf4eac9b90a5699",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-presenter/zipball/b52f41c2013361d496d86de3a007e286067ccc09",
+                "reference": "b52f41c2013361d496d86de3a007e286067ccc09",
+                "shasum": ""
+            },
+            "require": {
+                "mezon/http-request-params": "1.0.*",
+                "mezon/view": "1.0.*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\": "./Mezon/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Presenters",
+            "homepage": "https://github.com/alexdodonov/mezon-presenter",
+            "support": {
+                "email": "alexey@dodonov.pro",
+                "issues": "https://github.com/alexdodonov/mezon-presenter/issues",
+                "source": "https://github.com/alexdodonov/mezon-presenter"
+            },
+            "time": "2020-12-01T12:43:48+00:00"
+        },
+        {
+            "name": "mezon/request-params",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-request-params.git",
+                "reference": "be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06",
+                "reference": "be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06",
                 "shasum": ""
             },
             "require": {
                 "mezon/router": "^1.0",
                 "php": ">=7.2.0"
             },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Mezon\\Transport\\": ""
+                    "Mezon\\Transport\\": "./Mezon/Transport/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -237,7 +289,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-request-params"
             },
-            "time": "2020-11-18T06:08:02+00:00"
+            "time": "2020-12-01T09:01:38+00:00"
         },
         {
             "name": "mezon/rest-exception",
@@ -375,6 +427,55 @@
                 "source": "https://github.com/alexdodonov/mezon-template-engine"
             },
             "time": "2020-02-25T21:18:55+00:00"
+        },
+        {
+            "name": "mezon/view",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-view.git",
+                "reference": "c1acb7c8903de1486db2e6ab84332fc01bdfa050"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-view/zipball/c1acb7c8903de1486db2e6ab84332fc01bdfa050",
+                "reference": "c1acb7c8903de1486db2e6ab84332fc01bdfa050",
+                "shasum": ""
+            },
+            "require": {
+                "mezon/html-template": "1.1.*",
+                "mezon/http-request-params": "1.0.*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\": "./Mezon/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "View classes",
+            "homepage": "https://github.com/alexdodonov/mezon-view",
+            "support": {
+                "email": "alexey@dodonov.pro",
+                "issues": "https://github.com/alexdodonov/mezon-view/issues",
+                "source": "https://github.com/alexdodonov/mezon-view"
+            },
+            "time": "2020-12-01T12:33:16+00:00"
         }
     ],
     "packages-dev": [
@@ -1140,16 +1241,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.12",
+            "version": "8.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f40cf5be80a7d177494592ad1b2db3f64ea1dee3"
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f40cf5be80a7d177494592ad1b2db3f64ea1dee3",
-                "reference": "f40cf5be80a7d177494592ad1b2db3f64ea1dee3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e86be391a58104ef86037ba8a846524528d784e",
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e",
                 "shasum": ""
             },
             "require": {
@@ -1221,7 +1322,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.12"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.13"
             },
             "funding": [
                 {
@@ -1233,7 +1334,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T12:23:30+00:00"
+            "time": "2020-12-01T04:53:52+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
