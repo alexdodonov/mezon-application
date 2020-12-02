@@ -34,11 +34,12 @@ class CommonApplicationActionsUnitTest extends TestCase
     public function actionsJsonDataProvider(): array
     {
         return [
-            // #0, default behaviour, layout is not set
+            // #0, default behaviour, layout is not set, extra view variable is set
             [
                 'from-config',
                 function (string $result) {
                     $this->assertCommonCall($result, '<!-- index1 -->');
+                    $this->assertStringContainsString('someVarValue', $result);
                 }
             ],
             // #1, default behaviour, layout is set, no name is defined for the other-view

@@ -8,7 +8,8 @@
 	"main": {
 		"placeholder": "main",
 		"class": "\\Mezon\\Application\\Tests\\TestingView",
-		"name": "MainFromConfig"
+		"name": "MainFromConfig",
+		"someVar": "someVarValue"
 	},
 	"presenter": {
 		"class": "\\Mezon\\Application\\Tests\\TestingPresenter",

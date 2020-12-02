@@ -305,6 +305,17 @@ class CommonApplication extends Application
         } else {
             $views[$key] = new $value['class']($this->getTemplate());
         }
+
+        foreach ($value as $configKey => $configValue) {
+            if (! in_array($configKey, [
+                'class',
+                'name',
+                'placeholder'
+            ])) {
+                $views[$key]->setViewParameter($configKey, $configValue, true);
+            }
+        }
+
         $result[$value['placeholder']] = $views[$key];
     }
 
