@@ -4,6 +4,7 @@ namespace Mezon\Application;
 use Mezon\Transport\RequestParamsInterface;
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
+use Mezon\Transport\Request;
 
 /**
  * Class Application
@@ -42,6 +43,7 @@ class Application
     {
         // getting application's actions
         $this->router = new Router();
+        Request::registerRouter($this->router);
 
         $this->router->fetchActions($this);
 

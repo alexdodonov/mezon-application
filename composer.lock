@@ -148,16 +148,16 @@
         },
         {
             "name": "mezon/http-request-params",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-http-request-params.git",
-                "reference": "915a73d5ee832009097e82878927ad861a749edd"
+                "reference": "51f2f85582ef0c8963cb1bc51a04f0a0d96983c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/915a73d5ee832009097e82878927ad861a749edd",
-                "reference": "915a73d5ee832009097e82878927ad861a749edd",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-http-request-params/zipball/51f2f85582ef0c8963cb1bc51a04f0a0d96983c8",
+                "reference": "51f2f85582ef0c8963cb1bc51a04f0a0d96983c8",
                 "shasum": ""
             },
             "require": {
@@ -192,7 +192,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-http-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-http-request-params"
             },
-            "time": "2020-12-01T09:04:49+00:00"
+            "time": "2020-12-04T21:19:53+00:00"
         },
         {
             "name": "mezon/presenter",
@@ -245,16 +245,16 @@
         },
         {
             "name": "mezon/request-params",
-            "version": "1.0.5",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-request-params.git",
-                "reference": "be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06"
+                "reference": "5ab2f0135d3ec9215a607a432879e4673c107f87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06",
-                "reference": "be26ff5ddb2e7ca94ef21e1ab2a44ce4f2538e06",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-request-params/zipball/5ab2f0135d3ec9215a607a432879e4673c107f87",
+                "reference": "5ab2f0135d3ec9215a607a432879e4673c107f87",
                 "shasum": ""
             },
             "require": {
@@ -262,6 +262,7 @@
                 "php": ">=7.2.0"
             },
             "require-dev": {
+                "phpunit/php-token-stream": "3.1.2",
                 "phpunit/phpunit": "^8.5"
             },
             "type": "library",
@@ -289,7 +290,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-request-params/issues",
                 "source": "https://github.com/alexdodonov/mezon-request-params"
             },
-            "time": "2020-12-01T09:01:38+00:00"
+            "time": "2020-12-04T16:40:04+00:00"
         },
         {
             "name": "mezon/rest-exception",
@@ -430,16 +431,16 @@
         },
         {
             "name": "mezon/view",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdodonov/mezon-view.git",
-                "reference": "c1acb7c8903de1486db2e6ab84332fc01bdfa050"
+                "reference": "624bd89052eac338e78e192004082a8f3958d405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdodonov/mezon-view/zipball/c1acb7c8903de1486db2e6ab84332fc01bdfa050",
-                "reference": "c1acb7c8903de1486db2e6ab84332fc01bdfa050",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-view/zipball/624bd89052eac338e78e192004082a8f3958d405",
+                "reference": "624bd89052eac338e78e192004082a8f3958d405",
                 "shasum": ""
             },
             "require": {
@@ -475,7 +476,7 @@
                 "issues": "https://github.com/alexdodonov/mezon-view/issues",
                 "source": "https://github.com/alexdodonov/mezon-view"
             },
-            "time": "2020-12-01T12:33:16+00:00"
+            "time": "2020-12-02T14:50:25+00:00"
         }
     ],
     "packages-dev": [
@@ -944,16 +945,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "7.0.13",
+            "version": "7.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ad0dcd7b184e76f7198a1fe07685bfbec3ae911a"
+                "reference": "bb7c9a210c72e4709cdde67f8b7362f672f2225c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ad0dcd7b184e76f7198a1fe07685bfbec3ae911a",
-                "reference": "ad0dcd7b184e76f7198a1fe07685bfbec3ae911a",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/bb7c9a210c72e4709cdde67f8b7362f672f2225c",
+                "reference": "bb7c9a210c72e4709cdde67f8b7362f672f2225c",
                 "shasum": ""
             },
             "require": {
@@ -962,7 +963,7 @@
                 "php": ">=7.2",
                 "phpunit/php-file-iterator": "^2.0.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^3.1.1",
+                "phpunit/php-token-stream": "^3.1.1 || ^4.0",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
                 "sebastian/environment": "^4.2.2",
                 "sebastian/version": "^2.0.1",
@@ -1005,7 +1006,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/7.0.13"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/7.0.14"
             },
             "funding": [
                 {
@@ -1013,7 +1014,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-11-30T08:35:22+00:00"
+            "time": "2020-12-02T13:39:03+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1181,29 +1182,29 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.1.2",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "472b687829041c24b25f475e14c2f38a09edf1c2"
+                "reference": "a853a0e183b9db7eed023d7933a858fa1c8d25a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/472b687829041c24b25f475e14c2f38a09edf1c2",
-                "reference": "472b687829041c24b25f475e14c2f38a09edf1c2",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/a853a0e183b9db7eed023d7933a858fa1c8d25a3",
+                "reference": "a853a0e183b9db7eed023d7933a858fa1c8d25a3",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=7.1"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.0"
+                "phpunit/phpunit": "^9.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "4.0-dev"
                 }
             },
             "autoload": {
@@ -1228,7 +1229,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-token-stream/issues",
-                "source": "https://github.com/sebastianbergmann/php-token-stream/tree/3.1.2"
+                "source": "https://github.com/sebastianbergmann/php-token-stream/tree/master"
             },
             "funding": [
                 {
@@ -1237,7 +1238,7 @@
                 }
             ],
             "abandoned": true,
-            "time": "2020-11-30T08:38:46+00:00"
+            "time": "2020-08-04T08:28:15+00:00"
         },
         {
             "name": "phpunit/phpunit",
