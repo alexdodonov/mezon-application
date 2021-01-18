@@ -17,6 +17,10 @@ class TestCommonApplication extends CommonApplication
     function __construct()
     {
         parent::__construct(new HtmlTemplate(__DIR__, 'index'));
+
+        $this->getTemplate()->addPaths([
+            __DIR__ . '/Res/'
+        ]);
     }
 
     function actionArrayResult(): array
@@ -52,12 +56,12 @@ class TestCommonApplication extends CommonApplication
 
     public $hasMessages = true;
 
-    protected function getClassPath(): string
+    protected function fileExists(string $fileName): bool
     {
         if ($this->hasMessages) {
-            return parent::getClassPath();
+            return parent::fileExists($fileName);
         } else {
-            return './unexisting-path';
+            return false;
         }
     }
 }

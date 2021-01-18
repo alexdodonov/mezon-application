@@ -5,6 +5,7 @@ use Mezon\HtmlTemplate\HtmlTemplate;
 use Mezon\Rest;
 use Mezon\Router\Utils;
 
+// TODO fetch CommonApplication in separate package
 /**
  * Class CommonApplication
  *
@@ -203,6 +204,18 @@ class CommonApplication extends Application
     }
 
     /**
+     * Does file exists
+     *
+     * @param string $fileName
+     *            file name
+     * @return bool true if the file exists, false otherwise
+     */
+    protected function fileExists(string $fileName): bool
+    {
+        return $this->getTemplate()->fileExists($fileName);
+    }
+
+    /**
      * Method returns localized error message by it's key
      *
      * @param string $actionMessageCode
@@ -211,10 +224,9 @@ class CommonApplication extends Application
      */
     protected function getActionMessage(string $actionMessageCode): string
     {
-        $classPath = $this->getClassPath();
-
-        if (file_exists($classPath . '/Res/action-messages.json')) {
-            $messages = json_decode(file_get_contents($classPath . '/Res/action-messages.json'), true);
+        if ($this->fileExists('action-messages.json')) {
+            $messages = $this->getTemplate()->getFile('action-messages.json');
+            $messages = json_decode($messages, true);
 
             if (isset($messages[$actionMessageCode])) {
                 return $messages[$actionMessageCode];
@@ -239,12 +251,23 @@ class CommonApplication extends Application
     /**
      * Method sets message variable
      *
-     * @param string $actionMessageCode
+     * @param string $successMessageLocator
      *            message code
      */
-    protected function setSuccessMessage(string $actionMessageCode): void
+    public function setSuccessMessage(string $successMessageLocator): void
     {
-        $this->getTemplate()->setPageVar('action-message', $this->getActionMessage($actionMessageCode));
+        $this->getTemplate()->setPageVar('action-message', $this->getActionMessage($successMessageLocator));
+    }
+
+    /**
+     * Method sets message variable
+     *
+     * @param string $errorMessageLocator
+     *            message code
+     */
+    public function setErrorMessage(string $errorMessageLocator): void
+    {
+        $this->getTemplate()->setPageVar('action-message', $this->getActionMessage($errorMessageLocator));
     }
 
     /**
@@ -266,80 +289,6 @@ class CommonApplication extends Application
     }
 
     /**
-     * Overriding defined config
-     *
-     * @param string $path
-     *            path to the current config
-     * @param array $config
-     *            config itself
-     */
-    private function constructOverrideHandler(string $path, array &$config): void
-    {
-        if (isset($config['override'])) {
-
-            $path = pathinfo($path, PATHINFO_DIRNAME);
-
-            $baseConfig = json_decode(file_get_contents($path . '/' . $config['override']), true);
-
-            $config = array_merge($baseConfig, $config);
-        }
-    }
-
-    /**
-     * Constructing view
-     *
-     * @param array $result
-     *            compiled result
-     * @param string $key
-     *            config key
-     * @param mixed $value
-     *            config value
-     * @param array $views
-     *            list of views
-     */
-    private function constructOtherView(array &$result, string $key, $value, array &$views): void
-    {
-        // any other view
-        if (isset($value['name'])) {
-            $views[$key] = new $value['class']($this->getTemplate(), $value['name']);
-        } else {
-            $views[$key] = new $value['class']($this->getTemplate());
-        }
-
-        foreach ($value as $configKey => $configValue) {
-            if (! in_array($configKey, [
-                'class',
-                'name',
-                'placeholder'
-            ])) {
-                $views[$key]->setViewParameter($configKey, $configValue, true);
-            }
-        }
-
-        $result[$value['placeholder']] = $views[$key];
-    }
-
-    /**
-     * Method returns fabric method for action processing
-     *
-     * @param string $key
-     *            config key name
-     * @param mixed $value
-     *            config key value
-     * @return callable|NULL callback
-     */
-    private function getActionBuilderMethod(string $key, $value): ?callable
-    {
-        if ($key === 'override') {
-            return ActionBuilder::ignoreKey();
-        } elseif ($key === 'layout') {
-            return ActionBuilder::resetLayout($this->getTemplate(), $value);
-        }
-
-        return null;
-    }
-
-    /**
      * Method creates action from JSON config
      *
      * @param string $path
@@ -351,14 +300,16 @@ class CommonApplication extends Application
 
         $this->$method = function () use ($path): array {
             $result = [];
-            $views = [];
+
+            // TODO extract method and put in the ActionBuilder
             $presenter = null;
             $config = json_decode(file_get_contents($path), true);
+            $views = [];
 
-            $this->constructOverrideHandler($path, $config);
+            ActionBuilder::constructOverrideHandler($path, $config);
 
             foreach ($config as $key => $value) {
-                $callback = $this->getActionBuilderMethod($key, $value);
+                $callback = ActionBuilder::getActionBuilderMethod($this, $key, $value);
 
                 if ($callback !== null) {
                     $callback();
@@ -371,7 +322,7 @@ class CommonApplication extends Application
                         $value['name'],
                         $this->getRequestParamsFetcher());
                 } else {
-                    $this->constructOtherView($result, $key, $value, $views);
+                    ActionBuilder::constructOtherView($this, $result, $key, $value, $views);
                 }
             }
 
@@ -409,7 +360,7 @@ class CommonApplication extends Application
                     // do nothing
                 } elseif (is_file($path . '/' . $file) && strpos($file, '.json') !== false) {
                     $this->createActionFromJsonConfig($path . '/' . $file);
-                } else {
+                } elseif (is_dir($path . '/' . $file)) {
                     $this->loadActionsFromDirectory($path . '/' . $file);
                 }
             }
