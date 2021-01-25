@@ -352,6 +352,7 @@ class CommonApplication extends Application
      */
     protected function loadActionsFromDirectory(string $path): void
     {
+        // TODO make this method public, so we can call it in CabApplication tests
         if (file_exists($path)) {
             $files = scandir($path);
 
