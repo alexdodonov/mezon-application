@@ -350,9 +350,8 @@ class CommonApplication extends Application
      *
      * @param string $path
      */
-    protected function loadActionsFromDirectory(string $path): void
+    public function loadActionsFromDirectory(string $path): void
     {
-        // TODO make this method public, so we can call it in CabApplication tests
         if (file_exists($path)) {
             $files = scandir($path);
 
