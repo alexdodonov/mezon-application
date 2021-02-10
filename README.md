@@ -4,19 +4,19 @@
 
 ## Intro
 
-All your applications will be derived from this class or will be using classes wich are siblings of this Application class.
+All your applications will be derived from this class or will be using classes which are siblings of this Application class.
 
 ## Functionality
 
-This class provieds:
+This class provides:
 
 - routing
-- transformation actionActionName methods into static routes /action-name/ wich handles GET and POST methods
+- transformation actionActionName methods into static routes /action-name/ which handles GET and POST methods
 - loading routes from config file (php or json)
 
 ### Loading routes from config file
 
-With time your application will grow and number of routes will increase. So we have provided convinient way to store all routes in a standalone config file. So it is not necessary to initialize all routes in an Application (or any derived class) object's constructor.
+With time your application will grow and number of routes will increase. So we have provided convenient way to store all routes in a standalone config file. So it is not necessary to initialize all routes in an Application (or any derived class) object's constructor.
 
 Let's find out how you can use it.
 
@@ -67,7 +67,7 @@ This class provides simple application routine with more complex rendering and e
 
 ### Extended routes processing
 
-In [Application](https://github.com/alexdodonov/mezon/tree/master/Application) class routes may return only strings. But CommonApplication class allows you to return arrays of string wich will be placed in the template placeholders.
+In [Application](https://github.com/alexdodonov/mezon/tree/master/Application) class routes may return only strings. But CommonApplication class allows you to return arrays of string which will be placed in the template placeholders.
 
 Simple example:
 
@@ -117,7 +117,7 @@ class           ExampleApplication extends CommonApplication
 }
 ```
 
-Here we pass instance of the class View (or any class derived from View) to the application page compilator. It will call View::render method wich must return compiled html content.
+Here we pass instance of the class View (or any class derived from View) to the application page compilator. It will call View::render method which must return compiled html content.
 
 ### Routes config
 
@@ -205,7 +205,7 @@ Then if the class will find `$_GET['action-message']` parameter, then `action-me
 # View
 
 ## Static view
-You can simply output content of the *.tpl file as common view. It can be usefull if you ned to render static pages or static page parts. It will let you to avoid creating separate class and separate view methods for these purposes.
+You can simply output content of the *.tpl file as common view. It can be usefull if you need to render static pages or static page parts. It will let you to avoid creating separate class and separate view methods for these purposes.
 
 It is quite simple:
 
@@ -215,7 +215,7 @@ It is quite simple:
 $view = new \Mezon\Application\ViewStatic($template, 'block-name');
 ```
 
-For more details about MEzon templates [see](https://github.com/alexdodonov/mezon-html-template)
+For more details about Mezon templates [see](https://github.com/alexdodonov/mezon-html-template)
 
 # Controller
 
