@@ -5,6 +5,7 @@ use Mezon\Transport\RequestParamsInterface;
 use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
 use Mezon\Transport\Request;
+use Mezon\Redirect\Layer;
 
 /**
  * Class Application
@@ -248,8 +249,7 @@ class Application
             $url = str_replace('{redirect-to}', urldecode($_GET['redirect-to']), $url);
         }
 
-        header('Location: ' . $url);
-        exit(0);
+        Layer::redirectTo($url);
         // @codeCoverageIgnoreEnd
     }
 
