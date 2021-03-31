@@ -67,7 +67,7 @@ This class provides simple application routine with more complex rendering and e
 
 ### Extended routes processing
 
-In [Application](https://github.com/alexdodonov/mezon/tree/master/Application) class routes may return only strings. But CommonApplication class allows you to return arrays of string which will be placed in the template placeholders.
+In [Application](https://github.com/alexdodonov/mezon-application) class routes may return only strings. But CommonApplication class allows you to return arrays of string which will be placed in the template placeholders.
 
 Simple example:
 
