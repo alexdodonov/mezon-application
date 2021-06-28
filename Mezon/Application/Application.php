@@ -288,7 +288,7 @@ class Application
                 (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
         }
 
-        return $stack;
+        return array_reverse($stack);
     }
 
     /**
