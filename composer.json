@@ -11,7 +11,8 @@
 		}
 	],
 	"require-dev": {
-		"phpunit/phpunit": "^8.5"
+		"phpunit/phpunit": "^8.5",
+		"vimeo/psalm" : "^4.2"
 	},
 	"require": {
 		"php": ">=7.2.0",
@@ -21,7 +22,8 @@
 		"mezon/html-template": ">=1.1.4",
 		"mezon/http-request-params": "1.0.*",
 		"mezon/presenter": ">=1.1.0 <1.3.0",
-		"mezon/infrastructure-layer": "1.0.*"
+		"mezon/infrastructure-layer": "1.0.*",
+		"mezon/router": "1.3.2"
 	},
 	"support": {
 		"email": "alexey@dodonov.pro",
@@ -37,6 +39,7 @@
 		}
 	},
 	"scripts": {
-		"test": "php ./vendor/phpunit/phpunit/phpunit"
+		"test": "php ./vendor/phpunit/phpunit/phpunit",
+		"psalm" : "php ./vendor/vimeo/psalm/psalm --show-info=true"
 	}
 }
