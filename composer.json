@@ -23,7 +23,7 @@
 		"mezon/http-request-params": "1.0.*",
 		"mezon/presenter": ">=1.1.0 <1.3.0",
 		"mezon/infrastructure-layer": "1.0.*",
-		"mezon/router": "1.3.2"
+		"mezon/router": ">=1.3.2"
 	},
 	"support": {
 		"email": "alexey@dodonov.pro",
