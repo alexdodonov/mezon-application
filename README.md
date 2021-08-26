@@ -28,22 +28,22 @@ $callbackProvider = new SomeCallbackClass();
 return 
     [
         [
-            'route' => '/news/' , // your route
-            'callback' => 'displayNewsLine' // this must be the method name of your 
-                                              // Application derived class
+            'route' => '/news/' ,  // your route
+            'callback' => 'displayNewsLine'    // this must be the method name of your 
+                                               // Application derived class
         ] , 
         [
             'route' => '/news/[i:news_id]/' ,    // your route
-            'callback' => 'displayExactNews' , // this must be the method name of your 
+            'callback' => 'displayExactNews' ,   // this must be the method name of your 
             'method' => 'POST'                   // Application derived class
         ] , 
         [
-        	'route' => '/some-route/' , 
-        	'method' => 'GET' , 
-        	'callback' => [ // here we specify callback as pair [object, method]
-        		callbackProvider , 
-        		'someMethod'
-        	]        	
+            'route' => '/some-route/' , 
+            'method' => 'GET' , 
+            'callback' => [  // here we specify callback as pair [object, method]
+                callbackProvider , 
+        	'someMethod'
+            ]        	
         ]
     ];
 ```
@@ -72,17 +72,17 @@ In [Application](https://github.com/alexdodonov/mezon-application) class routes 
 Simple example:
 
 ```PHP
-class           ExampleApplication extends CommonApplication
+class ExampleApplication extends CommonApplication
 {
-	/**
-	 * Constructor.
-	 */
-	function			__construct( $template )
-	{
-		parent::__construct( $template );
-	}
+    /**
+     * Constructor.
+     */
+    function __construct( $template )
+    {
+        parent::__construct( $template );
+    }
 
-    function            actionSimplePage()
+    function actionSimplePage()
     {
         return [ 
             'title' => 'Route title' , 
@@ -97,17 +97,17 @@ Here route's handler generates two parts of the page /simple-page/ - 'title' and
 More complex example:
 
 ```PHP
-class           ExampleApplication extends CommonApplication
+class ExampleApplication extends CommonApplication
 {
-	/**
-	 * Constructor.
-	 */
-	function			__construct($template)
-	{
-		parent::__construct($template);
-	}
+    /**
+     * Constructor.
+     */
+    function __construct($template)
+    {
+        parent::__construct($template);
+    }
 
-    function            actionSimplePage()
+    function actionSimplePage()
     {
         return [ 
             'title' => 'Route title' , 
@@ -125,16 +125,16 @@ You can also keep al routes in configs. You can use json configs:
 
 ```JS
 [
-	{
-		"route": "/route1/",
-		"callback": "route1",
-		"method": "GET"
-	},
-	{
-		"route": "/route2/",
-		"callback": "route2",
-		"method": ["GET","POST"]
-	}
+    {
+        "route": "/route1/",
+	"callback": "route1",
+	"method": "GET"
+    },
+    {
+	"route": "/route2/",
+	"callback": "route2",
+	"method": ["GET","POST"]
+    }
 ]
 ```
 
@@ -143,27 +143,27 @@ This data must be stored in the './conf/' dir of your project. Or load configs e
 And we also need these methods in the application class.
 
 ```PHP
-class           ExampleApplication extends CommonApplication
+class ExampleApplication extends CommonApplication
 {
-	/**
-	 * Constructor.
-	 */
-	function			__construct($template)
-	{
-		parent::__construct($template);
+    /**
+     * Constructor.
+     */
+    function __construct($template)
+    {
+        parent::__construct($template);
 
-		// loading config on custom path
-		$this->loadRoutesFromConfig('./my-routes.json');
-	}
+	// loading config on custom path
+	$this->loadRoutesFromConfig('./my-routes.json');
+    }
 
-    function            route1()
+    function route1()
     {
         return [ 
             // here result
         ];
     }
 
-    function            route2()
+    function route2()
     {
         return [ 
             // here result
@@ -175,23 +175,23 @@ class           ExampleApplication extends CommonApplication
 Note that you can load multiple configs with one call of the method loadRoutesFromConfigs
 
 ```PHP
-function			__construct($template)
-	{
-		parent::__construct($template);
+function __construct($template)
+{
+    parent::__construct($template);
 
-		$this->loadRoutesFromConfigs(['./conf/my/routes.json', './conf/my-routes.php']);
-	}
+    $this->loadRoutesFromConfigs(['./conf/my/routes.json', './conf/my-routes.php']);
+}
 ```
 
 Or the same:
 
 ```PHP
-function			__construct($template)
-	{
-		parent::__construct($template);
+function __construct($template)
+{
+    parent::__construct($template);
 
-		$this->loadRoutesFromDirectory('./conf');
-	}
+    $this->loadRoutesFromDirectory('./conf');
+}
 ```
 
 ## Action messages
