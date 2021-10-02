@@ -5,6 +5,17 @@ use Mezon\Application\Application;
 
 class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
 {
+    
+    /**
+     *
+     * {@inheritdoc}
+     * @see \PHPUnit\Framework\TestCase::setUp()
+     */
+    protected function setUp(): void
+    {
+        // context setup
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+    }
 
     /**
      * Running with correct router.
@@ -199,7 +210,6 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
             'callback' => 'fly'
         ]);
 
-        $_SERVER['REQUEST_METHOD'] = 'GET';
         $_GET['r'] = '/fly-route/';
 
         $this->expectOutputString('OK!');
