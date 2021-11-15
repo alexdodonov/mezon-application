@@ -2,14 +2,16 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\Application\Application;
+use Mezon\Transport\HttpRequestParams;
+use PHPUnit\Framework\TestCase;
 
-class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
+class ApplicationUnitTest extends TestCase
 {
-    
+
     /**
      *
      * {@inheritdoc}
-     * @see \PHPUnit\Framework\TestCase::setUp()
+     * @see TestCase::setUp()
      */
     protected function setUp(): void
     {
@@ -86,9 +88,9 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     /**
      * Method constructs application with the default routes
      *
-     * @return \Mezon\Application\Application
+     * @return Application
      */
-    protected function getTestApplicationWithTestRoutes(): \Mezon\Application\Application
+    protected function getTestApplicationWithTestRoutes(): Application
     {
         $application = new TestApplication();
 
@@ -173,7 +175,7 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
      */
     protected function getMock(): object
     {
-        return $this->getMockBuilder(\Mezon\Application\Application::class)
+        return $this->getMockBuilder(Application::class)
             ->disableOriginalConstructor()
             ->setMethods([
             'handleException'
@@ -195,54 +197,12 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing call of the method added onthe fly.
-     */
-    public function testOnTheFlyMethod(): void
-    {
-        $application = new \Mezon\Application\Application();
-
-        $application->fly = function () {
-            return 'OK!';
-        };
-
-        $application->loadRoute([
-            'route' => '/fly-route/',
-            'callback' => 'fly'
-        ]);
-
-        $_GET['r'] = '/fly-route/';
-
-        $this->expectOutputString('OK!');
-
-        $application->run();
-    }
-
-    /**
-     * Testing call of the method added in runtime
-     */
-    public function testOnTheFlyUnexistingMethod(): void
-    {
-        // setup
-        $application = new \Mezon\Application\Application();
-
-        $application->fly = function () {
-            return 'OK!';
-        };
-
-        // test body
-        $application->fly();
-
-        // assertions
-        $this->addToAssertionCount(1);
-    }
-
-    /**
      * Testing unexisting method call
      */
     public function testUnexistingMethodCall(): void
     {
         // setup
-        $application = new \Mezon\Application\Application();
+        $application = new Application();
 
         // assertions
         $this->expectException(\Exception::class);
@@ -323,13 +283,13 @@ class ApplicationUnitTest extends \PHPUnit\Framework\TestCase
     public function testGetRequestParamsFetcher(): void
     {
         // setup
-        $application = new \Mezon\Application\Application();
+        $application = new Application();
 
         // test body
         $requestParams = $application->getRequestParamsFetcher();
 
         // assertions
-        $this->assertInstanceOf(\Mezon\Transport\HttpRequestParams::class, $requestParams);
+        $this->assertInstanceOf(HttpRequestParams::class, $requestParams);
     }
 
     /**

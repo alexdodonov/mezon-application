@@ -1,5 +1,4 @@
 <?php
-
 namespace Mezon\Application\Tests;
 
 /**
@@ -7,14 +6,14 @@ namespace Mezon\Application\Tests;
  */
 class TestApplication extends \Mezon\Application\Application
 {
-    
-    function actionExisting()
+
+    function actionExisting(): string
     {
         /* existing action */
         return 'OK!';
     }
-    
-    function compound()
+
+    function compound(): string
     {
         return 'compond';
     }

@@ -8,6 +8,10 @@ namespace Mezon\Application\Tests;
 class TestApplication2 extends \Mezon\Application\Application
 {
 
+    /**
+     * 
+     * @var integer
+     */
     var $counter = 0;
 
     /**
