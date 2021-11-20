@@ -2,9 +2,12 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\Application\Application;
-use Mezon\Transport\HttpRequestParams;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * 
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class OnTheFlyMethodUnitTest extends TestCase
 {
 

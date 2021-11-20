@@ -5,6 +5,10 @@ use Mezon\Application\Application;
 use Mezon\Transport\HttpRequestParams;
 use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class ApplicationUnitTest extends TestCase
 {
 
@@ -177,7 +181,7 @@ class ApplicationUnitTest extends TestCase
     {
         return $this->getMockBuilder(Application::class)
             ->disableOriginalConstructor()
-            ->setMethods([
+            ->onlyMethods([
             'handleException'
         ])
             ->getMock();

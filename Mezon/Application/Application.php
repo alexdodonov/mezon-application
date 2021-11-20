@@ -26,14 +26,14 @@ class Application
     /**
      * Router object
      *
-     * @var Router
+     * @var ?Router
      */
     private $router = null;
 
     /**
      * Params fetcher
      *
-     * @var HttpRequestParams
+     * @var ?HttpRequestParams
      */
     private $requestParams = null;
 
@@ -67,6 +67,7 @@ class Application
     protected function getClassPath(): string
     {
         $reflector = new \ReflectionClass(get_class($this));
+
         return dirname($reflector->getFileName());
     }
 
@@ -78,7 +79,7 @@ class Application
     public function getRequestParamsFetcher(): RequestParamsInterface
     {
         if ($this->requestParams === null) {
-            $this->requestParams = new HttpRequestParams($this->router);
+            $this->requestParams = new HttpRequestParams($this->getRouter());
         }
 
         return $this->requestParams;
@@ -86,16 +87,14 @@ class Application
 
     /**
      * Method calls route and returns it's content
+     *
+     * @return mixed route processing result
      */
     protected function callRoute()
     {
         $route = explode('/', trim(@$_GET['r'], '/'));
 
-        if ($this->router === null) {
-            throw (new \Exception('this->router was not set', - 2));
-        }
-
-        return $this->router->callRoute($route);
+        return $this->getRouter()->callRoute($route);
     }
 
     /**
@@ -125,7 +124,7 @@ class Application
                 $callback
             ];
         }
-        $this->router->addRoute($route['route'], $callback, isset($route['method']) ? $route['method'] : 'GET');
+        $this->getRouter()->addRoute($route['route'], $callback, isset($route['method']) ? $route['method'] : 'GET');
     }
 
     /**
@@ -260,16 +259,20 @@ class Application
      */
     public function routeExists(string $route): bool
     {
-        return $this->router->routeExists($route);
+        return $this->getRouter()->routeExists($route);
     }
 
     /**
      * Method returns router
      *
-     * @return \Mezon\Router\Router router
+     * @return Router router
      */
-    public function getRouter(): \Mezon\Router\Router
+    public function &getRouter(): Router
     {
+        if ($this->router === null) {
+            throw (new \Exception('Router was not setup', - 1));
+        }
+
         return $this->router;
     }
 
