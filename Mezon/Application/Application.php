@@ -64,7 +64,7 @@ class Application
      *
      * @return string
      */
-    private function getClassPath(): string
+    protected function getClassPath(): string
     {
         // TODO move to Utilities
         $reflector = new \ReflectionClass(get_class($this));

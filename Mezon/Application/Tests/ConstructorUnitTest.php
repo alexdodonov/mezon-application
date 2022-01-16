@@ -17,7 +17,7 @@ class ConstructorUnitTest extends TestCase
     public function testRouterToRequest(): void
     {
         // test body
-        $_REQUEST['REQUEST_METHOD'] = 'GET';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         $_GET['r'] = 'param-route/112233';
         $application = new TestApplication();
         $application->loadRoutesFromConfig(__DIR__ . '/TestRoutes.json');
