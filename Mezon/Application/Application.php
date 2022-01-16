@@ -26,9 +26,9 @@ class Application
     /**
      * Router object
      *
-     * @var ?Router
+     * @var Router
      */
-    private $router = null;
+    private $router;
 
     /**
      * Params fetcher
@@ -42,10 +42,10 @@ class Application
      */
     function __construct()
     {
-        // getting application's actions
         $this->router = new Router();
         Request::registerRouter($this->router);
 
+        // getting application's actions
         $this->router->fetchActions($this);
 
         $classPath = $this->getClassPath();
@@ -64,8 +64,9 @@ class Application
      *
      * @return string
      */
-    protected function getClassPath(): string
+    private function getClassPath(): string
     {
+        // TODO move to Utilities
         $reflector = new \ReflectionClass(get_class($this));
 
         return dirname($reflector->getFileName());
@@ -92,9 +93,7 @@ class Application
      */
     protected function callRoute()
     {
-        $route = explode('/', trim(@$_GET['r'], '/'));
-
-        return $this->getRouter()->callRoute($route);
+        return $this->getRouter()->callRoute(@$_GET['r']);
     }
 
     /**
@@ -158,7 +157,7 @@ class Application
             }
             $this->loadRoutes($routes);
         } else {
-            throw (new \Exception('Route ' . $configPath . ' was not found', 1));
+            throw (new \Exception('Route "' . $configPath . '" was not found', 1));
         }
     }
 
@@ -269,10 +268,6 @@ class Application
      */
     public function &getRouter(): Router
     {
-        if ($this->router === null) {
-            throw (new \Exception('Router was not setup', - 1));
-        }
-
         return $this->router;
     }
 

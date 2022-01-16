@@ -12,5 +12,10 @@
 		"route": "/json-route/",
 		"callback": "actionExisting",
 		"method": "POST"
+	},
+	{
+		"route": "/param-route/[i:id]",
+		"callback": "paramRoute",
+		"method": "GET"
 	}
 ]

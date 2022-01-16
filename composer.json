@@ -43,6 +43,6 @@
 		"test": "php ./vendor/phpunit/phpunit/phpunit --order-by=random",
 		"psalm" : "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache",
 		"psalm-self" : "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache --config=psalm-self.xml",
-		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=52"
+		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=60"
 	}
 }

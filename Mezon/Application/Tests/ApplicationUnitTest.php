@@ -159,48 +159,6 @@ class ApplicationUnitTest extends TestCase
     }
 
     /**
-     * Trying to load unexisting config.
-     */
-    public function testLoadingFromUnexistingRoute(): void
-    {
-        try {
-            $application = new TestApplication();
-
-            $application->loadRoutesFromConfig('unexisting');
-
-            $this->assertEquals(true, false, 'Exception was not thrown');
-        } catch (\Exception $e) {
-            $this->assertEquals(true, true, 'OK');
-        }
-    }
-
-    /**
-     * Method returns mocko bject of the application.
-     */
-    protected function getMock(): object
-    {
-        return $this->getMockBuilder(Application::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods([
-            'handleException'
-        ])
-            ->getMock();
-    }
-
-    /**
-     * Trying to load unexisting config.
-     */
-    public function testUnexistingRouter(): void
-    {
-        $this->expectException(\Exception::class);
-
-        $application = $this->getMock();
-        $application->method('handleException')->willThrowException(new \Exception());
-
-        $application->run();
-    }
-
-    /**
      * Testing unexisting method call
      */
     public function testUnexistingMethodCall(): void
