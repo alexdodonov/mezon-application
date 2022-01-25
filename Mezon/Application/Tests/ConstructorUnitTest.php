@@ -3,6 +3,7 @@ namespace Mezon\Application\Tests;
 
 use PHPUnit\Framework\TestCase;
 use function Safe\ob_end_flush;
+use Mezon\Conf\Conf;
 
 /**
  *
@@ -10,6 +11,16 @@ use function Safe\ob_end_flush;
  */
 class ConstructorUnitTest extends TestCase
 {
+
+    /**
+     *
+     * {@inheritdoc}
+     * @see TestCase::setUp()
+     */
+    protected function setUp(): void
+    {
+        Conf::setConfigStringValue('headers/layer', 'mock');
+    }
 
     /**
      * Testing that application's router is passed to the Request
