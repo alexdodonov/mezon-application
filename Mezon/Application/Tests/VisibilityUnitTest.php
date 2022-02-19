@@ -27,10 +27,6 @@ class VisibilityUnitTest extends TestCase
             // #1
             [
                 'formatCallStack'
-            ],
-            // #2
-            [
-                'getClassPath'
             ]
         ];
     }
@@ -53,5 +49,6 @@ class VisibilityUnitTest extends TestCase
 
         // test body and assertions
         $this->assertTrue($method->isProtected());
+        $this->assertFalse($method->isPrivate());
     }
 }

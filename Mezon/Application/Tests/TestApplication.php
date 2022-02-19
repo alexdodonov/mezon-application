@@ -18,7 +18,7 @@ class TestApplication extends Application
 
     function compound(): string
     {
-        return 'compond';
+        return 'compound';
     }
 
     function paramRoute(): string

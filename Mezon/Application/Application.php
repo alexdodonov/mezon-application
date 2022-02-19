@@ -6,6 +6,7 @@ use Mezon\Transport\HttpRequestParams;
 use Mezon\Router\Router;
 use Mezon\Transport\Request;
 use Mezon\Redirect\Layer;
+use Mezon\Utils\Fs;
 
 /**
  * Class Application
@@ -48,7 +49,7 @@ class Application
         // getting application's actions
         $this->router->fetchActions($this);
 
-        $classPath = $this->getClassPath();
+        $classPath = Fs::getClassPath($this);
 
         if (file_exists($classPath . '/Conf/routes.php')) {
             $this->loadRoutesFromConfig($classPath . '/Conf/routes.php');
@@ -57,19 +58,6 @@ class Application
         if (file_exists($classPath . '/Conf/routes.json')) {
             $this->loadRoutesFromConfig($classPath . '/Conf/routes.json');
         }
-    }
-
-    /**
-     * Method returns class path
-     *
-     * @return string
-     */
-    protected function getClassPath(): string
-    {
-        // TODO move to Utilities
-        $reflector = new \ReflectionClass(get_class($this));
-
-        return dirname($reflector->getFileName());
     }
 
     /**
@@ -113,10 +101,7 @@ class Application
 
         $callback = $route['callback'];
 
-        if (is_array($route['callback'])) {
-            $route['class'] = $route['callback'][0];
-            $route['callback'] = $route['callback'][1];
-        } else {
+        if (! is_array($route['callback'])) {
             $class = isset($route['class']) ? new $route['class']() : $this;
             $callback = [
                 $class,

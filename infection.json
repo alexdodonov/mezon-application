@@ -17,6 +17,11 @@
 		"perMutator": "\/tmp\/per-mutator-log.txt"
 	},
 	"mutators": {
-		"@default": true
+		"@default": true,
+		"ProtectedVisibility": {
+			"ignore": [
+				"Mezon\\Application\\Application::callRoute::82"
+			]
+		}
 	}
 }

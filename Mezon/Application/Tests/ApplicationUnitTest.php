@@ -205,25 +205,6 @@ class ApplicationUnitTest extends TestCase
     }
 
     /**
-     * Testing compound routes ['callback'=>[object, function-name]]
-     */
-    public function testCompondCallback(): void
-    {
-        // setup and test body
-        $application = new TestApplication();
-        $application->loadRoute([
-            'callback' => [
-                $this,
-                'compound'
-            ],
-            'route' => '/compound/'
-        ]);
-
-        // assertions
-        $this->assertTrue($application->routeExists('/compound/'));
-    }
-
-    /**
      * Testing loadRoutesFromDirectory method
      */
     public function testLoadRoutesFromDirectory(): void
