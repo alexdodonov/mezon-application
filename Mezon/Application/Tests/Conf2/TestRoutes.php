@@ -13,5 +13,10 @@ return [
         "route" => "/php-route/",
         "callback" => "actionExisting",
         "method" => "POST"
+    ],
+    [
+        "route" => "/test-php-route/",
+        "callback" => "actionExisting",
+        "method" => "POST"
     ]
 ];

@@ -13,6 +13,9 @@
 			<directory suffix="UnitTest.php">./Mezon</directory>
 			<directory suffix="UnitTest.php">./vendor/mezon</directory>
 		</testsuite>
+		<testsuite name="self">
+			<directory suffix="UnitTest.php">./Mezon</directory>
+		</testsuite>
 	</testsuites>
 
 	<filter>

@@ -42,9 +42,15 @@
 	},
 	"scripts": {
 		"test": "php ./vendor/phpunit/phpunit/phpunit --order-by=random",
+		"test-self": "php ./vendor/phpunit/phpunit/phpunit --testsuite=self --order-by=random",
 		"psalm": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache",
 		"psalm-self": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache --config=psalm-self.xml",
-		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=63",
+		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=77",
 		"debug": "php ./vendor/phpunit/phpunit/phpunit --order-by=random --random-order-seed 1642345095"
+	},
+	"config": {
+		"allow-plugins": {
+			"infection/extension-installer": true
+		}
 	}
 }

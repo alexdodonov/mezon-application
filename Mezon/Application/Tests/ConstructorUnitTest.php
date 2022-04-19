@@ -31,7 +31,7 @@ class ConstructorUnitTest extends TestCase
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $_GET['r'] = 'param-route/112233';
         $application = new TestApplication();
-        $application->loadRoutesFromConfig(__DIR__ . '/TestRoutes.json');
+        $application->loadRoutesFromConfig(__DIR__ . '/Conf2/TestRoutes.json');
 
         // test body
         ob_start();
@@ -41,5 +41,17 @@ class ConstructorUnitTest extends TestCase
 
         // assertions
         $this->assertEquals('112233', $content);
+    }
+    
+    /**
+     * Testing loading default configs from 'Conf' directory
+     */
+    public function testLoadingDefaultConfigs(): void
+    {
+        // setup and test body
+        $application = new TestApplication2();
+        
+        // assertions
+        $this->assertEquals(2, $application->counter);
     }
 }

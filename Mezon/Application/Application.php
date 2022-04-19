@@ -215,7 +215,7 @@ class Application
 
             return call_user_func_array($function, $args);
         } else {
-            throw (new \Exception('Method ' . $method . ' was not found in the application ' . get_class($this)));
+            throw (new \Exception('Method ' . $method . ' was not found in the application ' . get_class($this), -1));
         }
     }
 
