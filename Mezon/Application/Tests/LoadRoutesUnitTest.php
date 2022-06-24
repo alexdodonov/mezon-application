@@ -29,10 +29,10 @@ class LoadRoutesUnitTest extends TestCase
                 ]
             ]);
 
+        /** @var array{0:callable} $callback */
+        $callback = $application->getRouter()->getCallback('some-route');
+
         // assertions
-        $this->assertEquals(
-            'GET : some-route, ; POST : <none>; PUT : <none>; DELETE : <none>; OPTION : <none>; PATCH : <none>',
-            $application->getRouter()
-                ->getAllRoutesTrace());
+        $this->assertInstanceOf(TestApplication::class, $callback[0]);
     }
 }
