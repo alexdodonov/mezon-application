@@ -18,6 +18,7 @@ class LoadRoutesUnitTest extends TestCase
     {
         // setup
         $application = new Application();
+        $_SERVER['REQUEST_METHOD'] = 'GET';
 
         // test body
         $application->loadRoutes(
