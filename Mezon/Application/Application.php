@@ -81,6 +81,7 @@ class Application
      */
     protected function callRoute()
     {
+        /** @var array<string, string> $_GET */
         return $this->getRouter()->callRoute(@$_GET['r']);
     }
 
@@ -115,7 +116,7 @@ class Application
      * Method loads routes
      *
      * @param array $routes
-     *            List of routes
+     *            list of routes
      */
     public function loadRoutes(array $routes): void
     {
@@ -128,7 +129,7 @@ class Application
      * Method loads routes from config file in *.php or *.json format
      *
      * @param string $configPath
-     *            Path of the config for routes
+     *            path of the config for routes
      */
     public function loadRoutesFromConfig(string $configPath): void
     {
@@ -180,7 +181,7 @@ class Application
      * Method processes exception
      *
      * @param \Exception $e
-     *            Exception object to be formatted
+     *            exception object to be formatted
      */
     public function handleException(\Exception $e): void
     {
@@ -223,7 +224,7 @@ class Application
      * Method redirects user to another page
      *
      * @param string $url
-     *            New page
+     *            new page
      */
     public function redirectTo($url): void
     {
