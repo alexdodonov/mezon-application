@@ -30,7 +30,7 @@ class LoadRoutesUnitTest extends TestCase
                 ]
             ]);
 
-        /** @var array{0:callable} $callback */
+        /** @var array{0:TestApplication} $callback */
         $callback = $application->getRouter()->getCallback('some-route');
 
         // assertions

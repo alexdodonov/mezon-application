@@ -228,6 +228,7 @@ class Application
      */
     public function redirectTo($url): void
     {
+        /** @var array{retirect-to: string} $_GET */
         if (isset($_GET['redirect-to'])) {
             $url = str_replace('{redirect-to}', urldecode($_GET['redirect-to']), $url);
         }
