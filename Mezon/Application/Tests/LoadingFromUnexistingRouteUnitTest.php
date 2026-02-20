@@ -1,26 +1,12 @@
 <?php
 namespace Mezon\Application\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class LoadingFromUnexistingRouteUnitTest extends TestCase
+class LoadingFromUnexistingRouteUnitTest extends ApplicationTests
 {
-
-    /**
-     *
-     * {@inheritdoc}
-     * @see TestCase::setUp()
-     */
-    protected function setUp(): void
-    {
-        // TODO move to the root class
-        // context setup
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-    }
 
     /**
      * Trying to load unexisting config.

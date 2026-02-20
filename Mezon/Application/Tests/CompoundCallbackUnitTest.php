@@ -1,26 +1,12 @@
 <?php
 namespace Mezon\Application\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class CompoundCallbackUnitTest extends TestCase
+class CompoundCallbackUnitTest extends ApplicationTests
 {
-
-    /**
-     *
-     * {@inheritdoc}
-     * @see TestCase::setUp()
-     */
-    protected function setUp(): void
-    {
-        // context setup
-        // TODO make base class
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-    }
 
     /**
      * Testing compound routes ['callback'=>[object, function-name]]

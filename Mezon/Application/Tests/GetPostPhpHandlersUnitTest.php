@@ -30,7 +30,7 @@ class GetPostPhpHandlersUnitTest extends TestCase
      *
      * @return array test data
      */
-    public function getPostRoutesConfigDataProvider(): array
+    public static function getPostRoutesConfigDataProvider(): array
     {
         return [
             [

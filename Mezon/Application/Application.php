@@ -7,6 +7,7 @@ use Mezon\Router\Router;
 use Mezon\Transport\Request;
 use Mezon\Redirect\Layer;
 use Mezon\Utils\Fs;
+use AllowDynamicProperties;
 
 /**
  * Class Application
@@ -21,6 +22,7 @@ use Mezon\Utils\Fs;
 /**
  * Base class of the application
  */
+#[AllowDynamicProperties]
 class Application
 {
 
@@ -228,7 +230,7 @@ class Application
      */
     public function redirectTo($url): void
     {
-        /** @var array{retirect-to: string} $_GET */
+        /** @var array{redirect-to: string} $_GET */
         if (isset($_GET['redirect-to'])) {
             $url = str_replace('{redirect-to}', urldecode($_GET['redirect-to']), $url);
         }

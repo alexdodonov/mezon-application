@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/7.0/phpunit.xsd"
+	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/10.5/phpunit.xsd"
 	backupGlobals="false" colors="true" bootstrap='./vendor/autoload.php'
-	stopOnError="true" stopOnFailure="true">
+	stopOnError="true" stopOnFailure="true" displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnTestsThatTriggerWarnings="true">
 	<php>
 		<ini name="error_reporting" value="-1" />
 	</php>
@@ -17,22 +18,15 @@
 			<directory suffix="UnitTest.php">./Mezon</directory>
 		</testsuite>
 	</testsuites>
-
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="false">
-			<directory>./</directory>
-			<exclude>
+	
+	<!--coverage>
+        <include>
+            <directory>./</directory>
+        </include>
+        <exclude>
 				<directory>./Mezon/Application/Tests</directory>
 				<directory>./vendor</directory>
 				<file>autoloader.php</file>
 			</exclude>
-		</whitelist>
-	</filter>
-
-	<logging>
-		<log type="coverage-html"
-			target="./tmp/coverage-phpunit.html"></log>
-		<log type="coverage-text" target="php://stdout"
-			showOnlySummary="true"></log>
-	</logging>
+    </coverage-->
 </phpunit>
