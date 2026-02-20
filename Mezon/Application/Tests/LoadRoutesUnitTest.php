@@ -2,13 +2,12 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\Application\Application;
-use PHPUnit\Framework\TestCase;
 
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class LoadRoutesUnitTest extends TestCase
+class LoadRoutesUnitTest extends ApplicationTests
 {
 
     /**
@@ -18,7 +17,6 @@ class LoadRoutesUnitTest extends TestCase
     {
         // setup
         $application = new Application();
-        $_SERVER['REQUEST_METHOD'] = 'GET';
 
         // test body
         $application->loadRoutes(

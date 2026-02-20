@@ -2,25 +2,13 @@
 namespace Mezon\Application\Tests;
 
 use Mezon\Application\Application;
-use PHPUnit\Framework\TestCase;
 
 /**
- * 
+ *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class OnTheFlyMethodUnitTest extends TestCase
+class OnTheFlyMethodUnitTest extends ApplicationTests
 {
-
-    /**
-     *
-     * {@inheritdoc}
-     * @see TestCase::setUp()
-     */
-    protected function setUp(): void
-    {
-        // context setup
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-    }
 
     /**
      * Testing call of the method added onthe fly.

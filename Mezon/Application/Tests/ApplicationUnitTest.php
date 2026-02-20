@@ -1,25 +1,12 @@
 <?php
 namespace Mezon\Application\Tests;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class ApplicationUnitTest extends TestCase
+class ApplicationUnitTest extends ApplicationTests
 {
-
-    /**
-     *
-     * {@inheritdoc}
-     * @see TestCase::setUp()
-     */
-    protected function setUp(): void
-    {
-        // context setup
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-    }
 
     /**
      * Running with correct router.

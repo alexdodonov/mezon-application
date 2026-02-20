@@ -1,7 +1,6 @@
 <?php
 namespace Mezon\Application\Tests;
 
-use PHPUnit\Framework\TestCase;
 use function Safe\ob_end_flush;
 use Mezon\Conf\Conf;
 
@@ -9,16 +8,18 @@ use Mezon\Conf\Conf;
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
-class ConstructorUnitTest extends TestCase
+class ConstructorUnitTest extends ApplicationTests
 {
 
     /**
      *
      * {@inheritdoc}
-     * @see TestCase::setUp()
+     * @see ApplicationTests::setUp()
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         Conf::setConfigStringValue('headers/layer', 'mock');
     }
 
@@ -28,7 +29,6 @@ class ConstructorUnitTest extends TestCase
     public function testRouterToRequest(): void
     {
         // test body
-        $_SERVER['REQUEST_METHOD'] = 'GET';
         $_GET['r'] = 'param-route/112233';
         $application = new TestApplication();
         $application->loadRoutesFromConfig(__DIR__ . '/Conf2/TestRoutes.json');
