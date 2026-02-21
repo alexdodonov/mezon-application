@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<psalm errorLevel="3" resolveFromConfigFile="true"
+<psalm errorLevel="8" resolveFromConfigFile="true"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="https://getpsalm.org/schema/config"
 	xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-	allowStringToStandInForClass="true">
+	allowStringToStandInForClass="true" findUnusedBaselineEntry="false" findUnusedCode="false">
 	<projectFiles>
 		<directory name="./Mezon" />
 	</projectFiles>

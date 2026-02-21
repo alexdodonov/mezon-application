@@ -49,6 +49,7 @@ class ConstructorUnitTest extends ApplicationTests
     public function testLoadingDefaultConfigs(): void
     {
         // setup and test body
+        // TODO заменить на анонимный nested класс
         $application = new TestApplication2();
         
         // assertions

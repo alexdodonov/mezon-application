@@ -23,7 +23,6 @@ class TestApplication extends Application
 
     function paramRoute(): string
     {
-        // TODO сделать типизированный метод Request::getIntParam
-        return Request::getParam('id');
+        return Request::getParamAsString('id');
     }
 }

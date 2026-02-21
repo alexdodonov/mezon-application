@@ -40,6 +40,10 @@ class Application
      */
     private $requestParams = null;
 
+    // TODO починить одну ошибку, которая мешает запускать composer test
+    // TODO починить ошибки, которая мешает запускать composer psalm
+    // TODO сделать (MSI): 79%
+
     /**
      * Constructor
      */
@@ -81,7 +85,7 @@ class Application
      *
      * @return mixed route processing result
      */
-    protected function callRoute()
+    protected function callRoute(): mixed
     {
         /** @var array<string, string> $_GET */
         return $this->getRouter()->callRoute(@$_GET['r']);
@@ -218,7 +222,7 @@ class Application
 
             return call_user_func_array($function, $args);
         } else {
-            throw (new \Exception('Method ' . $method . ' was not found in the application ' . get_class($this), -1));
+            throw (new \Exception('Method ' . $method . ' was not found in the application ' . get_class($this), - 1));
         }
     }
 
@@ -271,8 +275,7 @@ class Application
         $stack = $e->getTrace();
 
         foreach ($stack as $i => $call) {
-            $stack[$i] = (@$call['file'] == '' ? 'lambda : ' : @$call['file'] . ' (' . $call['line'] . ') : ') .
-                (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
+            $stack[$i] = (@$call['file'] == '' ? 'lambda : ' : @$call['file'] . ' (' . $call['line'] . ') : ') . (@$call['class'] == '' ? '' : $call['class'] . '->') . $call['function'];
         }
 
         return array_reverse($stack);

@@ -1,12 +1,32 @@
 <?php
 namespace Mezon\Application\Tests;
 
+use Mezon\Application\Application;
+
 /**
  *
  * @psalm-suppress PropertyNotSetInConstructor
  */
 class ApplicationUnitTest extends ApplicationTests
 {
+
+    /**
+     * Method runs application
+     *
+     * @param Application $application
+     *            Application object
+     * @return string application execution result
+     */
+    protected function runApplication(Application $application): string
+    {
+        // TODO этот метод в других файлах с тестами нужен? Если да, то в трейт
+        ob_start();
+        $application->run();
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        return $output;
+    }
 
     /**
      * Running with correct router.
@@ -27,18 +47,11 @@ class ApplicationUnitTest extends ApplicationTests
      */
     public function testIncorrectRoute(): void
     {
-        $application = new TestApplication();
-
         $_GET['r'] = '/unexisting/';
 
-        ob_start();
-        $application->run();
-        $output = ob_get_contents();
-        ob_end_clean();
+        $output = $this->runApplication(new TestApplication());
 
-        $this->assertTrue(
-            strpos($output, 'The processor was not found for the route') !== false,
-            'Invalid behavior with incorrect route');
+        $this->assertTrue(strpos($output, 'The processor was not found for the route') !== false, 'Invalid behavior with incorrect route');
     }
 
     /**
@@ -72,5 +85,30 @@ class ApplicationUnitTest extends ApplicationTests
         }
 
         $this->assertEquals('Field "callback" must be set', $msg, 'Invalid behavior for callback');
+    }
+
+    /**
+     * Testing 'protected' access to the method Application::callRoute()
+     */
+    public function testProtectedCallRoute(): void
+    {
+        // setup
+        $application = new class() extends Application {
+
+            public function run(): void
+            {
+                try {
+                    print($this->callRoute());
+                } catch (\Exception $e) {
+                    $this->handleException($e);
+                }
+            }
+        };
+
+        // test body
+        $output = $this->runApplication($application);
+
+        // assertions
+        $this->assertStringContainsString('The processor was not found for the route unexisting', $output);
     }
 }

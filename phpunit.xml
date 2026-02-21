@@ -18,15 +18,21 @@
 			<directory suffix="UnitTest.php">./Mezon</directory>
 		</testsuite>
 	</testsuites>
-	
-	<!--coverage>
+
+	<source>
         <include>
-            <directory>./</directory>
+            <directory>./Mezon</directory>
         </include>
         <exclude>
-				<directory>./Mezon/Application/Tests</directory>
-				<directory>./vendor</directory>
-				<file>autoloader.php</file>
-			</exclude>
-    </coverage-->
+        	<directory>./Mezon/*/Tests</directory>
+        </exclude>
+    </source>
+
+	<coverage>
+        <report>
+            <html outputDirectory="./Tmp"/>
+            <clover outputFile="./Tmp/coverage.xml"/>
+            <text outputFile="php://stdout" showOnlySummary="true"/>
+        </report>
+    </coverage>
 </phpunit>
