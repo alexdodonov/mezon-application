@@ -93,6 +93,8 @@ class ApplicationUnitTest extends ApplicationTests
     public function testProtectedCallRoute(): void
     {
         // setup
+        $_GET['r'] = '/unexisting/';
+
         $application = new class() extends Application {
 
             public function run(): void

@@ -88,7 +88,7 @@ class Application
     protected function callRoute(): mixed
     {
         /** @var array<string, string> $_GET */
-        return $this->getRouter()->callRoute(@$_GET['r']);
+        return $this->getRouter()->callRoute($_GET['r'] ?? '');
     }
 
     /**
