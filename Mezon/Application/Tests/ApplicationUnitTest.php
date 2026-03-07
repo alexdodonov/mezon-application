@@ -51,7 +51,9 @@ class ApplicationUnitTest extends ApplicationTests
 
         $output = $this->runApplication(new TestApplication());
 
-        $this->assertTrue(strpos($output, 'The processor was not found for the route') !== false, 'Invalid behavior with incorrect route');
+        $this->assertStringContainsString('<pre>The processor was not found for the route unexisting ', $output);
+        $this->assertStringContainsString('<none><br/>', $output);
+        $this->assertStringContainsString('<br/>lambda : Mezon\Router\RouterBase->noProcessorFoundErrorHandler', $output);
     }
 
     /**

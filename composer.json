@@ -19,6 +19,7 @@
 	"require": {
 		"php": ">=8.2.0",
 		"mezon/conf": "1.2.*",
+		"mezon/functional": "1.1.*",
 		"mezon/html-template": ">=1.1.4 <1.2.0",
 		"mezon/http-request-params": "1.0.*",
 		"mezon/infrastructure-layer": "1.2.*",
@@ -52,8 +53,8 @@
 		],
 		"psalm": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache",
 		"psalm-self": "php ./vendor/vimeo/psalm/psalm --show-info=true --no-cache --config=psalm-self.xml",
-		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=77",
-		"infection-self": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=77 --test-framework-options=\"--testsuite=self\"",
+		"infection": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=82",
+		"infection-self": "php ./vendor/infection/infection/bin/infection --threads=4 --min-msi=90 --test-framework-options=\"--testsuite=self\"",
 		"debug": "php ./vendor/phpunit/phpunit/phpunit --order-by=random --random-order-seed 1642345095"
 	},
 	"config": {

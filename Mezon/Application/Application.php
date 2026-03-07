@@ -40,9 +40,10 @@ class Application
      */
     private $requestParams = null;
 
-    // TODO починить одну ошибку, которая мешает запускать composer test
+    // TODO сделать собственный (MSI): 81%
+    // TODO для всех дочерних пакетов апнуть юниь-тестирование
+    // TODO сделать (MSI) проекта и фреймворка: +1%
     // TODO починить ошибки, которая мешает запускать composer psalm
-    // TODO сделать (MSI): 79%
 
     /**
      * Constructor
@@ -189,7 +190,7 @@ class Application
      * @param \Exception $e
      *            exception object to be formatted
      */
-    public function handleException(\Exception $e): void
+    protected function handleException(\Exception $e): void
     {
         print('<pre>' . $e->getMessage() . '<br/>' . implode('<br/>', $this->formatCallStack($e)));
     }

@@ -19,7 +19,7 @@ class LoadRoutesFromDirectoryUnitTest extends TestCase
         $application = new TestApplication();
 
         // test body
-        $application->loadRoutesFromDirectory(__DIR__ . '/Conf2/');
+        $application->loadRoutesFromDirectory(__DIR__ . '/Conf2');
 
         // assertions
         $this->assertTrue($application->routeExists('/test-php-route/'));

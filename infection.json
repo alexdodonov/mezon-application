@@ -11,10 +11,10 @@
 		"customPath": ".\/vendor\/phpunit\/phpunit\/phpunit"
 	},
 	"logs": {
-		"text": ".\/tmp\/infection-text.txt",
-		"summary": "\/tmp\/summary-log.txt",
-		"debug": "\/tmp\/debug-log.txt",
-		"perMutator": "\/tmp\/per-mutator-log.txt"
+		"text": ".\/Tmp\/infection-text.txt",
+		"summary": "\/Tmp\/summary-log.txt",
+		"debug": "\/Tmp\/debug-log.txt",
+		"perMutator": "\/Tmp\/per-mutator-log.txt"
 	},
 	"mutators": {
 		"@default": true
